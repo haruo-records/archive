@@ -206,7 +206,7 @@ button.tag { cursor: pointer; }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 20px;
+  padding: 10px;
   transition: transform 0.45s ease, opacity 0.3s;
 }
 .work-card:hover .work-card__thumb img {
@@ -218,7 +218,7 @@ button.tag { cursor: pointer; }
   letter-spacing: 0.1em;
 }
 .work-card__body {
-  padding: 14px 16px 18px;
+  padding: 10px 12px 14px;
   border-top: 1px solid var(--border);
 }
 .work-card__title {

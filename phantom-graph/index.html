@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phantom Graph — animals / haruo records</title>
+  <meta name="description" content="Phantom Graph: A visual format where motion emerges from the viewer's unconscious interpolation between still images.">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+
+    /* ── page layout ── */
+    .pg-header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .pg-header__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      margin-bottom: 36px;
+      transition: color 0.18s;
+    }
+    .pg-header__back:hover { color: var(--text); }
+    .pg-header__label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 14px;
+    }
+    .pg-header__title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .pg-header__tag {
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── content body ── */
+    .pg-body {
+      max-width: 640px;
+    }
+
+    /* ── poetic intro ── */
+    .pg-poetic {
+      margin-bottom: 64px;
+    }
+    .pg-poetic__text {
+      font-size: 1.0625rem;
+      line-height: 2;
+      color: var(--sub);
+    }
+    .pg-poetic__text p + p {
+      margin-top: 20px;
+    }
+
+    /* ── divider ── */
+    .pg-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--border-d);
+      margin: 48px 0;
+    }
+
+    /* ── section ── */
+    .pg-section {
+      margin-bottom: 56px;
+    }
+    .pg-section__heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pg-section__body {
+      font-size: 0.9375rem;
+      line-height: 1.85;
+      color: var(--sub);
+    }
+    .pg-section__body p + p {
+      margin-top: 14px;
+    }
+    .pg-section__body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .pg-section__body em {
+      font-style: italic;
+      color: var(--text);
+    }
+
+    /* ── core principle block ── */
+    .pg-principle {
+      margin: 0 0 56px;
+      padding: 24px 28px;
+      border-left: 3px solid var(--border-d);
+      background: var(--surface);
+    }
+    .pg-principle p {
+      font-size: 0.9375rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .pg-principle p + p {
+      margin-top: 10px;
+      color: var(--sub);
+    }
+
+    /* ── format list ── */
+    .pg-list {
+      list-style: none;
+      margin-top: 14px;
+    }
+    .pg-list li {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--sub);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .pg-list li::before {
+      content: '—';
+      color: var(--faint);
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    /* ── not list ── */
+    .pg-not-list {
+      list-style: none;
+      margin-top: 14px;
+    }
+    .pg-not-list li {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--sub);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .pg-not-list li::before {
+      content: '✕';
+      color: var(--faint);
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    /* ── quote definition ── */
+    .pg-quote-def {
+      margin: 56px 0;
+      padding: 32px 36px;
+      border: 1px solid var(--border-d);
+      background: var(--surface);
+    }
+    .pg-quote-def__term {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+    .pg-quote-def__body {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--sub);
+      font-style: italic;
+    }
+
+    /* ── credit ── */
+    .pg-credit {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 600px) {
+      .pg-header { padding: 48px 0 36px; margin-bottom: 48px; }
+      .pg-quote-def { padding: 24px 20px; }
+      .pg-principle { padding: 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <p class="site-logo">
+        <a href="/portal/">haruo / records</a>
+      </p>
+      <nav class="site-nav">
+        <a href="/portal/works/">works</a>
+        <a href="/portal/#elsewhere">links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="pg-header">
+      <a class="pg-header__back" href="/portal/">← animals</a>
+      <p class="pg-header__label">concept</p>
+      <h1 class="pg-header__title">Phantom Graph</h1>
+      <p class="pg-header__tag">#PhantomGraph</p>
+    </div>
+
+    <div class="pg-body">
+
+      <!-- Poetic Introduction -->
+      <div class="pg-poetic">
+        <div class="pg-section__body pg-poetic__text">
+          <p>We do not only see what is there.<br>
+          We also see what is about to happen.</p>
+          <p>When something is slightly incomplete or separated, our mind quietly connects it — and in that moment, we begin to feel motion, change, and life.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <!-- Definition -->
+      <div class="pg-section">
+        <p class="pg-section__heading">Definition</p>
+        <div class="pg-section__body">
+          <p>Phantom Graph is a visual format where motion emerges from the viewer's unconscious interpolation between still images.</p>
+          <p>It is not animation.<br>
+          The motion does not exist in the images themselves — it is constructed by the observer.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <!-- What is Phantom Graph -->
+      <div class="pg-section">
+        <p class="pg-section__heading">What is Phantom Graph</p>
+        <div class="pg-section__body">
+          <p>Phantom Graph is a visual format in which motion emerges not from actual animation, but from the viewer's unconscious interpolation between multiple still images.</p>
+          <p>When two or more images are placed side by side with intentional gaps, the human brain fills in the missing continuity.<br>
+          This creates a perceived motion that does not physically exist.</p>
+          <p>Phantom Graph is not an animation.<br>
+          It is a structure that reveals how perception itself generates movement.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <!-- Core Principle -->
+      <div class="pg-section">
+        <p class="pg-section__heading">Core Principle</p>
+        <div class="pg-principle">
+          <p>Motion is not always displayed.<br>It can be constructed inside the observer.</p>
+          <p>The images themselves do not move.<br>The observer creates the motion.</p>
+        </div>
+      </div>
+
+      <!-- Format -->
+      <div class="pg-section">
+        <p class="pg-section__heading">Format</p>
+        <div class="pg-section__body">
+          <p>A Phantom Graph typically:</p>
+          <ul class="pg-list">
+            <li>Uses 2–4 still images</li>
+            <li>Places them side by side with intentional spacing</li>
+            <li>Introduces slight differences between each image</li>
+            <li>Suggests motion without explicitly rendering it</li>
+          </ul>
+          <p style="margin-top:20px;">If motion exists without interpretation, it is not Phantom Graph.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <!-- What Phantom Graph is NOT -->
+      <div class="pg-section">
+        <p class="pg-section__heading">What Phantom Graph is NOT</p>
+        <div class="pg-section__body">
+          <p>Phantom Graph is NOT:</p>
+          <ul class="pg-not-list">
+            <li>GIF animations</li>
+            <li>Video loops</li>
+            <li>Frame-by-frame motion playback</li>
+            <li>Explicit transitions</li>
+          </ul>
+          <p style="margin-top:20px;">If motion exists without the viewer's interpretation, it is not Phantom Graph.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <!-- Why it matters -->
+      <div class="pg-section">
+        <p class="pg-section__heading">Why it matters</p>
+        <div class="pg-section__body">
+          <p>We do not passively receive images.<br>
+          We actively construct reality.</p>
+          <p>Phantom Graph reveals this hidden process.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <!-- Usage -->
+      <div class="pg-section">
+        <p class="pg-section__heading">Usage</p>
+        <div class="pg-section__body">
+          <p>Phantom Graph can be applied to:</p>
+          <ul class="pg-list">
+            <li>Visual art</li>
+            <li>Design</li>
+            <li>Installations</li>
+            <li>Social media formats</li>
+            <li>Slow Watching</li>
+          </ul>
+          <p style="margin-top:20px;">It is both a format and a way of seeing.</p>
+        </div>
+      </div>
+
+      <!-- Quote Definition -->
+      <div class="pg-quote-def">
+        <p class="pg-quote-def__term">Phantom Graph</p>
+        <p class="pg-quote-def__body">A format where motion is perceived, not displayed.</p>
+      </div>
+
+      <!-- Credit -->
+      <p class="pg-credit">Observed and structured by Haruo</p>
+
+    </div><!-- /pg-body -->
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <div class="footer-group">
+          <p class="footer-group__name">Animals</p>
+          <ul>
+            <li><a href="/portal/works/">archive</a></li>
+            <li><a href="/portal/phantom-graph/">phantom graph</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">HARMONEER</p>
+          <ul>
+            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">Rebooting Dad</p>
+          <ul>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© haruo records</p>
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+</body>
+</html>

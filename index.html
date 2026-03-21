@@ -6,11 +6,11 @@
   <title>Animals — Field Notes of Unknown Forms</title>
   <meta name="description" content="A field notes archive of speculative organisms. Slow Watching.">
   <link rel="stylesheet" href="assets/style.css">
-
   <style>
-    /* ── Hero ── */
+
+    /* HERO */
     .hero {
-      padding: 72px 0 60px;
+      padding: 72px 0 64px;
       border-bottom: 1px solid var(--border);
       margin-bottom: var(--gap);
     }
@@ -49,54 +49,65 @@
       letter-spacing: 0.08em;
       margin-bottom: 36px;
     }
-    .hero__cta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
     .btn-primary {
       display: inline-block;
-      padding: 0.65em 1.75em;
+      padding: 0.7em 2em;
       background: var(--text);
       color: var(--white);
       font-size: 0.8125rem;
       font-weight: 500;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       transition: opacity 0.2s;
     }
     .btn-primary:hover { opacity: 0.72; }
-    .btn-ghost {
-      display: inline-block;
-      padding: 0.65em 1.4em;
-      border: 1px solid var(--border-d);
-      font-size: 0.8125rem;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      transition: opacity 0.2s;
-    }
-    .btn-ghost:hover { opacity: 0.55; }
 
-    /* ── Slow Watching ── */
-    .slow-watching {
+    /* HOW TO BEGIN */
+    .how-to-begin {
       padding: var(--gap) 0;
       border-bottom: 1px solid var(--border);
       margin-bottom: var(--gap);
     }
-    .slow-watching__word {
-      font-size: clamp(1.25rem, 3vw, 1.875rem);
+    .how-to-begin__label {
+      font-size: 0.6875rem;
       font-weight: 600;
-      color: var(--text);
-      margin-bottom: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 20px;
     }
-    .slow-watching__lead {
+    .how-to-begin__text {
       font-size: 0.9375rem;
-      line-height: 1.8;
+      line-height: 1.95;
       color: var(--sub);
-      max-width: 46ch;
+      max-width: 44ch;
     }
+    .how-to-begin__text p + p { margin-top: 16px; }
 
-    /* ── Concept ── */
+    /* RECENT WORKS */
+    .works-section { margin-bottom: var(--gap); }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .section-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+    .see-all {
+      font-size: 0.8125rem;
+      color: var(--sub);
+      letter-spacing: 0.04em;
+      transition: color 0.18s;
+    }
+    .see-all:hover { color: var(--text); }
+
+    /* WHAT IS ANIMALS */
     .concept {
       margin-bottom: var(--gap);
       padding-bottom: var(--gap);
@@ -133,7 +144,7 @@
     .concept__item-body ul { list-style: none; margin-top: 6px; }
     .concept__item-body li { padding: 2px 0; }
     .concept__item-body li::before {
-      content: '—';
+      content: "—";
       margin-right: 8px;
       color: var(--faint);
       font-size: 0.7rem;
@@ -146,85 +157,115 @@
       line-height: 1.7;
     }
 
-    /* ── Works section ── */
-    .works-section { margin-bottom: var(--gap); }
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 10px;
+    /* CONCEPT CARD */
+    .concept-card {
+      display: block;
+      margin-bottom: calc(var(--gap) * 0.75);
+      padding: 32px 36px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
     }
-    .section-heading {
+    .concept-card:hover {
+      border-color: var(--border-d);
+      background: var(--surface);
+    }
+    .concept-card__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .concept-card__label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 8px;
+    }
+    .concept-card__title {
       font-size: 1.125rem;
       font-weight: 600;
       color: var(--text);
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--border);
-      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
     }
-    .see-all {
-      font-size: 0.8125rem;
+    .concept-card__desc {
+      font-size: 0.875rem;
+      line-height: 1.7;
       color: var(--sub);
-      letter-spacing: 0.04em;
-      transition: color 0.18s;
+      max-width: 44ch;
     }
-    .see-all:hover { color: var(--text); }
+    .concept-card__cta {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      white-space: nowrap;
+      padding: 0.6em 1.4em;
+      border: 1px solid var(--border-d);
+      flex-shrink: 0;
+      transition: background 0.18s, color 0.18s, border-color 0.18s;
+    }
+    .concept-card:hover .concept-card__cta {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
 
-    /* ── Expansion ── */
-    .expansion {
+    /* PHILOSOPHICAL BLOCK */
+    .phil {
       padding: var(--gap) 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       margin-bottom: var(--gap);
-    }
-    .expansion__heading {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--border);
-    }
-    .expansion__lead {
-      font-size: 0.9375rem;
-      line-height: 1.75;
-      color: var(--sub);
-      max-width: 50ch;
-      margin-bottom: 16px;
-    }
-    .expansion__tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    /* ── Closing ── */
-    .closing {
-      padding: 64px 0 56px;
-      border-top: 1px solid var(--border);
       text-align: center;
     }
-    .closing__text {
+    .phil__text {
       font-size: clamp(0.9375rem, 2vw, 1.125rem);
-      line-height: 2;
+      line-height: 2.1;
       color: var(--sub);
-      margin-bottom: 28px;
     }
-    .closing__text strong {
+    .phil__text strong {
       display: block;
       font-weight: 600;
       color: var(--text);
-      font-size: 1.15em;
+      font-size: 1.1em;
       margin-bottom: 4px;
     }
 
-    /* responsive */
-    @media (max-width: 600px) {
-      .hero { padding: 48px 0 40px; }
-      .concept__grid { grid-template-columns: 1fr; gap: 24px; }
-      .hero__catch { max-width: 100%; }
+    /* EXPANSION TEASER */
+    .expansion-teaser {
+      margin-bottom: var(--gap);
+      padding-top: calc(var(--gap) * 0.5);
     }
-    @media (max-width: 400px) {
-      .hero__cta { flex-direction: column; align-items: flex-start; }
-      .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+    .expansion-teaser__label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 10px;
+    }
+    .expansion-teaser__text {
+      font-size: 0.875rem;
+      line-height: 1.8;
+      color: var(--faint);
+      max-width: 40ch;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero { padding: 48px 0 48px; }
+      .hero__catch { max-width: 100%; }
+      .concept__grid { grid-template-columns: 1fr; gap: 24px; }
+      .how-to-begin__text { max-width: 100%; }
+    }
+    @media (max-width: 540px) {
+      .concept-card { padding: 24px 20px; }
+      .concept-card__cta { width: 100%; text-align: center; display: block; }
     }
   </style>
 </head>
@@ -244,9 +285,9 @@
 
   <main>
 
-    <!-- Hero -->
+    <!-- 1. Hero -->
     <section class="hero fade-in">
-      <p class="hero__eyebrow">1998 — ongoing</p>
+      <p class="hero__eyebrow">1998 &mdash; ongoing</p>
       <h1 class="hero__series">Animals</h1>
       <p class="hero__subtitle">Field Notes of Unknown Forms</p>
       <p class="hero__catch">
@@ -254,105 +295,133 @@
         Not quite creatures. Not quite objects. Something in between.
       </p>
       <p class="hero__tags-line">
-        speculative biology &nbsp;·&nbsp; generative art &nbsp;·&nbsp; observed not explained
+        speculative biology &nbsp;&middot;&nbsp; generative art &nbsp;&middot;&nbsp; observed not explained
       </p>
-      <div class="hero__cta">
-        <a class="btn-primary" href="works/">View Archive</a>
-        <a class="btn-ghost" href="#what">What is Animals</a>
+      <a class="btn-primary" href="works/">View Archive</a>
+    </section>
+
+    <!-- 3. How to begin -->
+    <section class="how-to-begin fade-in">
+      <p class="how-to-begin__label">How to begin</p>
+      <div class="how-to-begin__text">
+        <p>
+          Look at multiple images.<br>
+          Notice the space between them.<br>
+          Stay there for a moment.
+        </p>
+        <p>
+          If something begins to move in your mind,<br>
+          you are already experiencing Animals.
+        </p>
       </div>
     </section>
 
-    <!-- Slow Watching -->
-    <section class="slow-watching fade-in">
-      <p class="slow-watching__word">Slow Watching</p>
-      <p class="slow-watching__lead">
-        You don't need to understand immediately.<br>
-        Stay a little longer with what you see.<br>
-        Meaning appears over time.
-      </p>
+    <!-- 4. Recent Works -->
+    <section class="works-section fade-in">
+      <div class="section-head">
+        <h2 class="section-heading">Recent Works</h2>
+        <a class="see-all" href="works/">View all &rarr;</a>
+      </div>
+      <div class="filter-bar" id="top-filter"></div>
+      <p class="count-label" id="top-count"></p>
+      <div class="works-grid" id="top-grid"></div>
     </section>
 
-    <!-- Concept -->
+    <!-- 5. What is Animals -->
     <section class="concept fade-in" id="what">
       <h2 class="concept__heading">What is Animals</h2>
       <div class="concept__grid">
         <div class="concept__item">
-          <p class="concept__item-title">Forms of Existence</p>
+          <p class="concept__item-title">Designed for this experience</p>
           <div class="concept__item-body">
-            <p>Animals are not characters.</p>
-            <p>They are forms of existence — like creatures, like objects, somewhere in between.</p>
+            <p>animals are artworks built around Phantom Graph.</p>
+            <p>They are not fully explained. Not always moving.
+            Instead, they are slightly incomplete, slightly strange,
+            and open to interpretation.</p>
+            <p class="concept__quote">&ldquo;Somewhere between what is shown<br>and what is imagined,<br>something feels alive.&rdquo;</p>
+          </div>
+        </div>
+        <div class="concept__item">
+          <p class="concept__item-title">Not characters. Forms.</p>
+          <div class="concept__item-body">
+            <p>animals are forms of existence &mdash;
+            like creatures, like objects, somewhere in between.</p>
             <ul>
               <li>float</li><li>connect</li><li>detach</li><li>pulse</li><li>change</li>
             </ul>
           </div>
         </div>
         <div class="concept__item">
-          <p class="concept__item-title">Survival Strategies</p>
+          <p class="concept__item-title">Completed by the viewer</p>
           <div class="concept__item-body">
-            <p>Each form reflects a way of surviving.</p>
-            <p>Spreading, floating, branching — inspired by real biological principles, abstracted into form.</p>
-            <p class="concept__quote">"There are many ways to exist,<br>and every form has its own reason to live."</p>
+            <p>Because they are slightly incomplete,
+            your mind begins to fill the gaps.</p>
+            <p>animals are completed inside the viewer&rsquo;s mind.</p>
           </div>
         </div>
         <div class="concept__item">
-          <p class="concept__item-title">Why They Are Hard to Describe</p>
+          <p class="concept__item-title">How to begin</p>
           <div class="concept__item-body">
-            <p>When language fails, imagination begins.</p>
-            <p>Animals are completed inside the viewer's mind.</p>
-          </div>
-        </div>
-        <div class="concept__item">
-          <p class="concept__item-title">How to Engage</p>
-          <div class="concept__item-body">
-            <ul>
-              <li>observe</li><li>imagine</li><li>name them</li><li>watch movement</li><li>collect</li>
-            </ul>
+            <p>Look at multiple images. Notice the space between them.
+            Stay there for a moment.</p>
+            <p>If something starts to &ldquo;move&rdquo; in your mind,
+            you are already experiencing it.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Recent works -->
-    <section class="works-section fade-in">
-      <div class="section-head">
-        <h2 class="section-heading" style="margin-bottom:0;border-bottom:none;">Recent Works</h2>
-        <a class="see-all" href="works/">View all →</a>
+    <!-- 6. Phantom Graph card -->
+    <a class="concept-card fade-in" href="/portal/phantom-graph/">
+      <div class="concept-card__inner">
+        <div>
+          <p class="concept-card__label">concept</p>
+          <p class="concept-card__title">Phantom Graph</p>
+          <p class="concept-card__desc">A visual format where motion emerges from perception, not animation.</p>
+        </div>
+        <span class="concept-card__cta">Read More &rarr;</span>
       </div>
-      <div class="filter-bar" id="top-filter">
-        <span class="filter-bar__label">filter —</span>
-      </div>
-      <p class="count-label" id="top-count"></p>
-      <div class="works-grid" id="top-grid"></div>
-    </section>
+    </a>
 
-    <!-- Expansion -->
-    <section class="expansion fade-in">
-      <h2 class="expansion__heading">Expansion</h2>
-      <p class="expansion__lead">
-        Beginning as hand-drawn sketches, Animals expand into many forms.
-      </p>
-      <div class="expansion__tags">
-        <span class="tag">field notes</span>
-        <span class="tag">video</span>
-        <span class="tag">mobile sculptures</span>
-        <span class="tag">3D objects</span>
-        <span class="tag">game assets</span>
-        <span class="tag">printable crafts</span>
+    <!-- 7. Slow Watching card -->
+    <a class="concept-card fade-in" href="/portal/slow-watching/">
+      <div class="concept-card__inner">
+        <div>
+          <p class="concept-card__label">concept</p>
+          <p class="concept-card__title">Slow Watching</p>
+          <p class="concept-card__desc">A way of perceiving motion, change, and life without rushing.</p>
+        </div>
+        <span class="concept-card__cta">Read More &rarr;</span>
       </div>
-    </section>
+    </a>
 
-    <!-- Closing -->
-    <section class="closing fade-in">
-      <p class="closing__text">
-        <strong>You don't need to understand.</strong>
+    <!-- 8. Philosophical block -->
+    <section class="phil fade-in">
+      <p class="phil__text">
+        <strong>You don&rsquo;t need to understand.</strong>
         Just observe.<br>
-        Notice what changes inside you.
+        Wait a moment.<br>
+        Notice what begins to move inside you.
       </p>
+    </section>
+
+    <!-- 9. Final CTA -->
+    <div class="fade-in" style="text-align:center; margin-bottom:var(--gap);">
       <a class="btn-primary" href="works/">View Archive</a>
+    </div>
+
+    <!-- 10. Expansion teaser -->
+    <section class="expansion-teaser fade-in">
+      <p class="expansion-teaser__label">Expansion</p>
+      <p class="expansion-teaser__text">
+        Animals may continue beyond drawings.<br>
+        Into motion, objects, and space.
+      </p>
     </section>
 
   </main>
 
+  <!-- 11. Footer -->
   <footer class="site-footer" id="elsewhere">
     <div class="footer-inner">
       <div class="footer-links">
@@ -360,8 +429,7 @@
           <p class="footer-group__name">Animals</p>
           <ul>
             <li><a href="works/">archive</a></li>
-            <!-- <li><a href="https://note.com/xxxxx" target="_blank" rel="noopener">note</a></li> -->
-            <!-- <li><a href="https://youtube.com/xxxxx" target="_blank" rel="noopener">youtube</a></li> -->
+            <li><a href="/portal/phantom-graph/">concepts</a></li>
           </ul>
         </div>
         <div class="footer-group">
@@ -380,7 +448,7 @@
           </ul>
         </div>
       </div>
-      <p class="footer-copy">© haruo records</p>
+      <p class="footer-copy">&copy; haruo records</p>
     </div>
   </footer>
 
@@ -389,69 +457,69 @@
 <script src="assets/app.js"></script>
 <script>
 (async () => {
-  const grid    = document.getElementById('top-grid');
-  const filter  = document.getElementById('top-filter');
-  const countEl = document.getElementById('top-count');
+  const grid    = document.getElementById("top-grid");
+  const filter  = document.getElementById("top-filter");
+  const countEl = document.getElementById("top-count");
 
   let works = [];
-  let activeTag = getParam('tag') || 'all';
+  let activeTag = getParam("tag") || "all";
 
   try {
     works = await fetchWorks();
   } catch(e) {
-    grid.innerHTML = '<p class="empty-state">—</p>';
+    grid.innerHTML = "<p class=\"empty-state\">\u2014</p>";
     return;
   }
 
-  const allTags = ['all', ...new Set(works.flatMap(w => w.tags || []))]
-    .sort((a, b) => a === 'all' ? -1 : b === 'all' ? 1 : a.localeCompare(b));
+  const allTags = ["all", ...new Set(works.flatMap(w => w.tags || []))]
+    .sort((a, b) => a === "all" ? -1 : b === "all" ? 1 : a.localeCompare(b));
 
   allTags.forEach(tag => {
     const btn = makeTagButton(tag, () => {
       activeTag = tag;
-      history.replaceState(null, '',
-        tag === 'all' ? location.pathname : '?tag=' + encodeURIComponent(tag));
+      history.replaceState(null, "",
+        tag === "all" ? location.pathname : "?tag=" + encodeURIComponent(tag));
       render();
       syncFilter();
     });
-    btn.setAttribute('aria-pressed', tag === activeTag ? 'true' : 'false');
-    if (tag === activeTag) btn.classList.add('active');
+    btn.setAttribute("aria-pressed", tag === activeTag ? "true" : "false");
+    if (tag === activeTag) btn.classList.add("active");
     filter.appendChild(btn);
   });
 
   function render() {
-    grid.innerHTML = '';
-    const list = activeTag === 'all'
+    grid.innerHTML = "";
+    const list = activeTag === "all"
       ? works
       : works.filter(w => (w.tags || []).includes(activeTag));
-    list.sort((a, b) => (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
-    countEl.textContent = list.length + ' record' + (list.length !== 1 ? 's' : '');
-    if (!list.length) { grid.innerHTML = '<p class="empty-state">— no records —</p>'; return; }
+    list.sort((a, b) => (b.observed || b.date || "").localeCompare(a.observed || a.date || ""));
+    countEl.textContent = list.length + " work" + (list.length !== 1 ? "s" : "");
+    if (!list.length) { grid.innerHTML = "<p class=\"empty-state\">\u2014 no records \u2014</p>"; return; }
 
     list.forEach((w, i) => {
-      const card = document.createElement('a');
-      card.className = 'work-card fade-in';
-      card.href = 'works/work.html?id=' + encodeURIComponent(w.id);
-      card.style.transitionDelay = (i * 0.04) + 's';
+      const card = document.createElement("a");
+      card.className = "work-card fade-in";
+      card.href = "works/work.html?id=" + encodeURIComponent(w.id);
+      card.style.transitionDelay = (i * 0.04) + "s";
 
-      const thumb = document.createElement('div');
-      thumb.className = 'work-card__thumb';
+      const thumb = document.createElement("div");
+      thumb.className = "work-card__thumb";
       if (w.thumbnail) {
         thumb.appendChild(makeImg(w.thumbnail, w.title));
       } else {
-        const ph = document.createElement('span');
-        ph.className = 'work-card__no-img';
-        ph.textContent = '—';
+        const ph = document.createElement("span");
+        ph.className = "work-card__no-img";
+        ph.textContent = "\u2014";
         thumb.appendChild(ph);
       }
 
-      const tags = (w.tags || []).slice(0, 3).map(t => '<span class="tag">' + t + '</span>').join('');
-      const body = document.createElement('div');
-      body.className = 'work-card__body';
+      const tags = (w.tags || []).slice(0, 3).map(t => "<span class=\"tag\">" + t + "</span>").join("");
+      const body = document.createElement("div");
+      body.className = "work-card__body";
       body.innerHTML =
-        '<p class="work-card__title">' + w.title + '</p>' +
-        '<p class="work-card__meta">' + [w.series, w.observed || w.date].filter(Boolean).join(' · ') + '</p>' +
-        '<div class="work-card__tags">' + tags + '</div>';
+        "<p class=\"work-card__title\">" + w.title + "</p>" +
+        "<p class=\"work-card__meta\">" + [w.series, w.observed || w.date].filter(Boolean).join(" \u00b7 ") + "</p>" +
+        "<div class=\"work-card__tags\">" + tags + "</div>";
 
       card.appendChild(thumb);
       card.appendChild(body);
@@ -459,9 +527,11 @@
     });
 
     requestAnimationFrame(() => {
-      document.querySelectorAll('.work-card.fade-in').forEach(el => {
+      document.querySelectorAll(".work-card.fade-in").forEach(el => {
         const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
+          });
         }, { threshold: 0.05 });
         obs.observe(el);
       });
@@ -469,10 +539,10 @@
   }
 
   function syncFilter() {
-    filter.querySelectorAll('.tag').forEach(btn => {
+    filter.querySelectorAll(".tag").forEach(btn => {
       const on = btn.textContent === activeTag;
-      btn.classList.toggle('active', on);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
   }
 

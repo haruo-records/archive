@@ -6,6 +6,256 @@
   <title>— Animals</title>
   <meta name="description" content="animals field notes">
   <link rel="stylesheet" href="../assets/style.css">
+  <style>
+
+    /* ─────────────────────────────
+       WORK PAGE
+    ───────────────────────────── */
+
+    /* Back link — top of page, minimal */
+    .work-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.08em;
+      padding: 32px 0 28px;
+      transition: color 0.18s;
+    }
+    .work-back:hover { color: var(--text); }
+
+    /* ─────────────────────────────
+       IMAGE FIELD
+       All images shown simultaneously.
+       No switching. No thumbnails.
+    ───────────────────────────── */
+    .image-field {
+      margin-bottom: 40px;
+    }
+
+    /* observation note — quiet, minimal */
+    .image-field__note {
+      font-size: 0.6875rem;
+      color: var(--faint);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    /* Single image */
+    .image-field--single .image-row {
+      display: block;
+    }
+    .image-field--single .image-row img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+      background: var(--surface);
+    }
+
+    /* Two images: side by side, gap preserved intentionally */
+    .image-field--two .image-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .image-field--two .image-row img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: var(--surface);
+    }
+
+    /* Three images: horizontal row */
+    .image-field--three .image-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .image-field--three .image-row img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: var(--surface);
+    }
+
+    /* Four images: 2x2 grid */
+    .image-field--four .image-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .image-field--four .image-row img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: var(--surface);
+    }
+
+    /* Five+ images: horizontal scroll strip */
+    .image-field--many .image-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;
+    }
+    .image-field--many .image-row img {
+      flex-shrink: 0;
+      height: 60vw;
+      max-height: 480px;
+      width: auto;
+      object-fit: contain;
+      scroll-snap-align: start;
+      background: var(--surface);
+    }
+
+    /* Scrollbar — quiet */
+    .image-field--many .image-row::-webkit-scrollbar {
+      height: 2px;
+    }
+    .image-field--many .image-row::-webkit-scrollbar-track {
+      background: var(--border);
+    }
+    .image-field--many .image-row::-webkit-scrollbar-thumb {
+      background: var(--border-d);
+    }
+
+    /* ─────────────────────────────
+       METADATA — below image field
+    ───────────────────────────── */
+    .work-meta-block {
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      max-width: 560px;
+    }
+
+    /* Title */
+    .work-meta-block__title {
+      font-size: clamp(1.25rem, 3vw, 1.625rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    /* Date / category line */
+    .work-meta-block__line {
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    /* Archive note */
+    .work-meta-block__note {
+      font-size: 0.875rem;
+      line-height: 1.85;
+      color: var(--sub);
+      margin-bottom: 20px;
+      max-width: 48ch;
+    }
+
+    /* Tags */
+    .work-meta-block__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 24px;
+    }
+
+    /* External links */
+    .work-meta-block__links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    .work-meta-block__link {
+      font-size: 0.8125rem;
+      color: var(--sub);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.18s;
+    }
+    .work-meta-block__link:hover { color: var(--text); }
+    .work-meta-block__link::before { content: "\2197"; font-size: 0.65rem; }
+
+    /* Archive context */
+    .work-archive-context {
+      margin-top: 24px;
+      font-size: 0.6875rem;
+      color: var(--faint);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─────────────────────────────
+       NAVIGATION
+    ───────────────────────────── */
+    .work-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--faint);
+      letter-spacing: 0.04em;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .work-nav a {
+      color: var(--sub);
+      transition: color 0.18s;
+    }
+    .work-nav a:hover { color: var(--text); }
+    .work-nav span { opacity: 0.3; }
+    .work-nav__archive {
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.08em;
+      transition: color 0.18s;
+    }
+    .work-nav__archive:hover { color: var(--text); }
+
+    /* ─────────────────────────────
+       MOBILE
+    ───────────────────────────── */
+    @media (max-width: 600px) {
+      /* Two images: keep side by side, slightly tighter */
+      .image-field--two .image-row {
+        gap: 6px;
+      }
+
+      /* Three images: scroll on mobile */
+      .image-field--three .image-row {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding-bottom: 8px;
+      }
+      .image-field--three .image-row img {
+        flex-shrink: 0;
+        height: 70vw;
+        width: auto;
+        scroll-snap-align: start;
+      }
+
+      .work-meta-block { max-width: 100%; }
+      .work-back { padding: 24px 0 20px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -24,8 +274,9 @@
   </header>
 
   <main>
+    <a class="work-back" href="index.html">&larr; Back to Archive</a>
     <div id="content">
-      <p style="color:var(--faint);font-size:0.8125rem;padding:40px 0;">Loading…</p>
+      <p style="color:var(--faint);font-size:0.8125rem;padding:20px 0;">Loading&hellip;</p>
     </div>
   </main>
 
@@ -54,29 +305,20 @@
           </ul>
         </div>
       </div>
-      <p class="footer-copy">© haruo records</p>
+      <p class="footer-copy">&copy; haruo records</p>
     </div>
   </footer>
 
 </div><!-- /wrap -->
 
-<!-- Modal -->
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Image">
-  <button class="modal__close" id="modal-close" type="button">close ✕</button>
-  <img class="modal__img" id="modal-img" src="" alt="">
-</div>
-
 <script src="../assets/app.js"></script>
 <script>
 (async () => {
-  const content   = document.getElementById('content');
-  const modal     = document.getElementById('modal');
-  const modalImg  = document.getElementById('modal-img');
-  const modalClose = document.getElementById('modal-close');
-  const id        = getParam('id');
+  const content = document.getElementById("content");
+  const id      = getParam("id");
 
   if (!id) {
-    content.innerHTML = '<p style="color:var(--faint);padding:40px 0;">— id not specified —</p>';
+    content.innerHTML = "<p style=\"color:var(--faint);padding:40px 0;\">\u2014 id not specified \u2014</p>";
     return;
   }
 
@@ -84,193 +326,159 @@
   try {
     works = await fetchWorks();
     works.sort((a, b) =>
-      (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
+      (b.observed || b.date || "").localeCompare(a.observed || a.date || ""));
     idx  = works.findIndex(w => w.id === id);
     work = works[idx];
   } catch(e) {
-    content.innerHTML = '<p style="color:var(--faint);padding:40px 0;">— data unavailable —</p>';
+    content.innerHTML = "<p style=\"color:var(--faint);padding:40px 0;\">\u2014 data unavailable \u2014</p>";
     return;
   }
 
   if (!work) {
-    content.innerHTML = '<p style="color:var(--faint);padding:40px 0;">— record not found —</p>';
+    content.innerHTML = "<p style=\"color:var(--faint);padding:40px 0;\">\u2014 record not found \u2014</p>";
     return;
   }
 
-  document.title = work.title + ' — Animals';
+  document.title = work.title + " \u2014 Animals";
 
-  /* ── images ── */
-  const images = work.images?.length ? work.images : (work.thumbnail ? [work.thumbnail] : []);
-  let currentSrc = images[0] || '';
+  const images = work.images && work.images.length ? work.images : (work.thumbnail ? [work.thumbnail] : []);
+  const n = images.length;
 
-  /* ── gallery ── */
-  const galleryDiv = document.createElement('div');
-  galleryDiv.className = 'work-detail__gallery fade-in';
+  /* ── determine layout class ── */
+  let fieldClass = "image-field--single";
+  if      (n === 2) fieldClass = "image-field--two";
+  else if (n === 3) fieldClass = "image-field--three";
+  else if (n === 4) fieldClass = "image-field--four";
+  else if (n >= 5)  fieldClass = "image-field--many";
 
-  const mainBox = document.createElement('div');
-  mainBox.className = 'gallery__main';
-  if (currentSrc) {
-    mainBox.setAttribute('title', 'Click to enlarge');
-    mainBox.addEventListener('click', () => openModal(mainImg.src));
+  /* ── build image field ── */
+  const imageField = document.createElement("div");
+  imageField.className = "image-field " + fieldClass + " fade-in";
+
+  /* quiet observation note for multi-image works */
+  if (n > 1) {
+    const note = document.createElement("p");
+    note.className = "image-field__note";
+    note.textContent = "Observe the space between images.";
+    imageField.appendChild(note);
   }
 
-  const mainImg = document.createElement('img');
-  mainImg.src = currentSrc;
-  mainImg.alt = work.title;
+  const row = document.createElement("div");
+  row.className = "image-row";
 
-  const hint = document.createElement('span');
-  hint.className = 'gallery__hint';
-  hint.textContent = 'click to enlarge';
+  images.forEach((src, i) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = work.title + (n > 1 ? " " + (i + 1) : "");
+    img.loading = i === 0 ? "eager" : "lazy";
+    img.onerror = () => { img.style.display = "none"; };
+    row.appendChild(img);
+  });
 
-  mainBox.appendChild(mainImg);
-  if (currentSrc) mainBox.appendChild(hint);
-  galleryDiv.appendChild(mainBox);
+  imageField.appendChild(row);
 
-  /* thumbnails (if multiple) */
-  if (images.length > 1) {
-    const thumbsDiv = document.createElement('div');
-    thumbsDiv.className = 'gallery__thumbs';
-    images.forEach((src, i) => {
-      const t = document.createElement('img');
-      t.src = src;
-      t.alt = work.title + ' ' + (i + 1);
-      t.loading = 'lazy';
-      if (i === 0) t.classList.add('active');
-      t.addEventListener('click', () => {
-        mainImg.src = src;
-        thumbsDiv.querySelectorAll('img').forEach(x => x.classList.remove('active'));
-        t.classList.add('active');
-      });
-      thumbsDiv.appendChild(t);
-    });
-    galleryDiv.appendChild(thumbsDiv);
-  }
-
-  /* ── info panel ── */
-  const infoDiv = document.createElement('div');
-  infoDiv.className = 'work-detail__info fade-in';
-  infoDiv.style.transitionDelay = '0.08s';
-
-  /* back button */
-  const backBtn = document.createElement('a');
-  backBtn.className = 'work-info__back';
-  backBtn.href = 'index.html';
-  backBtn.innerHTML = '← Animals';
-  infoDiv.appendChild(backBtn);
-
-  /* series */
-  if (work.series) {
-    const s = document.createElement('p');
-    s.className = 'work-info__series';
-    s.textContent = work.series;
-    infoDiv.appendChild(s);
-  }
+  /* ── metadata block ── */
+  const metaBlock = document.createElement("div");
+  metaBlock.className = "work-meta-block fade-in";
+  metaBlock.style.transitionDelay = "0.08s";
 
   /* title */
-  const titleEl = document.createElement('h1');
-  titleEl.className = 'work-info__title';
+  const titleEl = document.createElement("h1");
+  titleEl.className = "work-meta-block__title";
   titleEl.textContent = work.title;
-  infoDiv.appendChild(titleEl);
+  metaBlock.appendChild(titleEl);
 
-  /* meta table */
-  const metaRows = [
-    ['observed', work.observed || work.date],
-    work.series && ['series', work.series],
-  ].filter(Boolean).filter(([, v]) => v);
-
-  if (metaRows.length) {
-    const metaDiv = document.createElement('div');
-    metaDiv.className = 'work-meta';
-    metaRows.forEach(([k, v]) => {
-      const row = document.createElement('div');
-      row.className = 'work-meta__row';
-      row.innerHTML = '<span class="work-meta__key">' + k + '</span><span class="work-meta__val">' + v + '</span>';
-      metaDiv.appendChild(row);
-    });
-    infoDiv.appendChild(metaDiv);
+  /* date / category line */
+  const lineParts = [work.series, work.observed || work.date].filter(Boolean);
+  if (lineParts.length) {
+    const line = document.createElement("p");
+    line.className = "work-meta-block__line";
+    line.textContent = lineParts.join(" \u00b7 ");
+    metaBlock.appendChild(line);
   }
 
-  /* description */
+  /* archive note */
   if (work.description) {
-    const desc = document.createElement('p');
-    desc.className = 'work-info__desc';
-    desc.textContent = work.description;
-    infoDiv.appendChild(desc);
+    const note = document.createElement("p");
+    note.className = "work-meta-block__note";
+    note.textContent = work.description;
+    metaBlock.appendChild(note);
   }
 
   /* tags */
   if ((work.tags || []).length) {
-    const tagsDiv = document.createElement('div');
-    tagsDiv.className = 'work-info__tags';
+    const tagsDiv = document.createElement("div");
+    tagsDiv.className = "work-meta-block__tags";
     (work.tags || []).forEach(t => {
-      tagsDiv.appendChild(makeTagLink(t, 'index.html?tag=' + encodeURIComponent(t)));
+      tagsDiv.appendChild(makeTagLink(t, "index.html?tag=" + encodeURIComponent(t)));
     });
-    infoDiv.appendChild(tagsDiv);
+    metaBlock.appendChild(tagsDiv);
   }
 
   /* external links */
   if (work.links && work.links.length) {
-    const linksDiv = document.createElement('div');
-    linksDiv.className = 'work-links';
+    const linksDiv = document.createElement("div");
+    linksDiv.className = "work-meta-block__links";
     work.links.forEach(l => {
-      const a = document.createElement('a');
-      a.className = 'work-links__item';
+      const a = document.createElement("a");
+      a.className = "work-meta-block__link";
       a.href = l.url;
-      a.target = '_blank';
-      a.rel = 'noopener';
+      a.target = "_blank";
+      a.rel = "noopener";
       a.textContent = l.label;
       linksDiv.appendChild(a);
     });
-    infoDiv.appendChild(linksDiv);
+    metaBlock.appendChild(linksDiv);
   }
 
-  /* ── assemble detail ── */
-  const detailDiv = document.createElement('div');
-  detailDiv.className = 'work-detail';
-  detailDiv.appendChild(galleryDiv);
-  detailDiv.appendChild(infoDiv);
+  /* archive context */
+  const ctx = document.createElement("p");
+  ctx.className = "work-archive-context";
+  ctx.textContent = "Part of the Animals archive.";
+  metaBlock.appendChild(ctx);
 
   /* ── prev / next nav ── */
   const prev = idx > 0 ? works[idx - 1] : null;
   const next = idx < works.length - 1 ? works[idx + 1] : null;
-  const navDiv = document.createElement('div');
-  navDiv.className = 'work-nav fade-in';
-  navDiv.style.transitionDelay = '0.12s';
-  navDiv.innerHTML =
-    (prev ? '<a href="work.html?id=' + encodeURIComponent(prev.id) + '">← ' + prev.title + '</a>' : '<span>←</span>') +
-    (next ? '<a href="work.html?id=' + encodeURIComponent(next.id) + '">' + next.title + ' →</a>' : '<span>→</span>');
+  const navDiv = document.createElement("div");
+  navDiv.className = "work-nav fade-in";
+  navDiv.style.transitionDelay = "0.12s";
 
-  content.innerHTML = '';
-  content.appendChild(detailDiv);
+  const prevEl = document.createElement(prev ? "a" : "span");
+  if (prev) { prevEl.href = "work.html?id=" + encodeURIComponent(prev.id); prevEl.textContent = "\u2190 " + prev.title; }
+  else       { prevEl.textContent = "\u2190"; }
+
+  const archiveEl = document.createElement("a");
+  archiveEl.href = "index.html";
+  archiveEl.className = "work-nav__archive";
+  archiveEl.textContent = "Archive";
+
+  const nextEl = document.createElement(next ? "a" : "span");
+  if (next) { nextEl.href = "work.html?id=" + encodeURIComponent(next.id); nextEl.textContent = next.title + " \u2192"; }
+  else       { nextEl.textContent = "\u2192"; }
+
+  navDiv.appendChild(prevEl);
+  navDiv.appendChild(archiveEl);
+  navDiv.appendChild(nextEl);
+
+  /* ── assemble ── */
+  content.innerHTML = "";
+  content.appendChild(imageField);
+  content.appendChild(metaBlock);
   content.appendChild(navDiv);
 
-  /* trigger fade-in */
+  /* fade-in trigger */
   requestAnimationFrame(() => {
-    document.querySelectorAll('.fade-in').forEach(el => {
+    document.querySelectorAll(".fade-in").forEach(el => {
       const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+          if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
         });
-      }, { threshold: 0.05 });
+      }, { threshold: 0.03 });
       obs.observe(el);
     });
   });
 
-  /* ── modal ── */
-  function openModal(src) {
-    modalImg.src = src;
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-    modalImg.src = '';
-  }
-
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 })();
 </script>
 </body>
