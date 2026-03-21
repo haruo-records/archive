@@ -433,26 +433,33 @@
   /* ── prev / next nav ── */
   const prev = idx > 0 ? works[idx - 1] : null;
   const next = idx < works.length - 1 ? works[idx + 1] : null;
-  const navDiv = document.createElement("div");
-  navDiv.className = "work-nav fade-in";
-  navDiv.style.transitionDelay = "0.12s";
 
-  const prevEl = document.createElement(prev ? "a" : "span");
-  if (prev) { prevEl.href = "work.html?id=" + encodeURIComponent(prev.id); prevEl.textContent = "\u2190 " + prev.title; }
-  else       { prevEl.textContent = "\u2190"; }
+  if (prev || next) {
+    const navDiv = document.createElement("div");
+    navDiv.className = "work-nav fade-in";
+    navDiv.style.transitionDelay = "0.12s";
 
-  const nextEl = document.createElement(next ? "a" : "span");
-  if (next) { nextEl.href = "work.html?id=" + encodeURIComponent(next.id); nextEl.textContent = next.title + " \u2192"; }
-  else       { nextEl.textContent = "\u2192"; }
+    if (prev) {
+      const prevEl = document.createElement("a");
+      prevEl.href = "work.html?id=" + encodeURIComponent(prev.id);
+      prevEl.textContent = "\u2190 " + prev.title;
+      navDiv.appendChild(prevEl);
+    }
 
-  navDiv.appendChild(prevEl);
-  navDiv.appendChild(nextEl);
+    if (next) {
+      const nextEl = document.createElement("a");
+      nextEl.href = "work.html?id=" + encodeURIComponent(next.id);
+      nextEl.textContent = next.title + " \u2192";
+      navDiv.appendChild(nextEl);
+    }
+
+    content.appendChild(navDiv);
+  }
 
   /* ── assemble ── */
   content.innerHTML = "";
   content.appendChild(imageField);
   content.appendChild(metaBlock);
-  content.appendChild(navDiv);
 
   /* fade-in trigger */
   requestAnimationFrame(() => {
