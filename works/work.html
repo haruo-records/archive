@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>— animals — haruo records</title>
+  <meta name="description" content="animals work">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <p class="site-logo">
+        <a href="/portal/" style="color:inherit">
+          haruo <span class="sep">/</span> <em>records</em>
+        </a>
+      </p>
+      <nav class="site-nav">
+        <a href="/portal/works/" class="active">works</a>
+        <a href="/portal/#elsewhere">links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <a class="back-link" href="index.html">← works 一覧</a>
+    <div id="content">
+      <p style="font-size:0.7rem;color:var(--faint);letter-spacing:0.1em">loading…</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>© haruo records</span>
+    <span>animals 1998 —</span>
+  </footer>
+
+</div>
+
+<!-- ライトボックス -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="拡大表示">
+  <button class="lightbox-close" id="lb-close">close ✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script src="../assets/app.js"></script>
+<script>
+(async () => {
+  const content = document.getElementById('content');
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbClose = document.getElementById('lb-close');
+  const id      = getParam('id');
+
+  if (!id) {
+    content.innerHTML = '<p style="color:var(--faint);font-size:0.75rem;letter-spacing:0.1em">— id not specified —</p>';
+    return;
+  }
+
+  let works, work, idx;
+  try {
+    works = await fetchWorks();
+    // observed 降順（一覧と同じ順）
+    works.sort((a, b) =>
+      (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
+    idx  = works.findIndex(w => w.id === id);
+    work = works[idx];
+  } catch(e) {
+    content.innerHTML = '<p style="color:var(--faint);font-size:0.75rem">— data unavailable —</p>';
+    return;
+  }
+
+  if (!work) {
+    content.innerHTML = '<p style="color:var(--faint);font-size:0.75rem">— record not found —</p>';
+    return;
+  }
+
+  // ページタイトル更新
+  document.title = `${work.title} — animals — haruo records`;
+
+  /* ── ギャラリー構築 ────────────── */
+  const images = work.images?.length ? work.images : (work.thumbnail ? [work.thumbnail] : []);
+
+  const galleryWrap = document.createElement('div');
+  galleryWrap.className = 'work-detail__gallery anim';
+
+  const mainBox = document.createElement('div');
+  mainBox.className = 'gallery__main';
+
+  const mainImg = document.createElement('img');
+  if (images[0]) {
+    mainImg.src = images[0];
+    mainImg.alt = work.title;
+    mainImg.addEventListener('click', () => openLightbox(mainImg.src));
+  }
+  mainBox.appendChild(mainImg);
+  galleryWrap.appendChild(mainBox);
+
+  // 複数画像→サムネイル列
+  if (images.length > 1) {
+    const thumbsDiv = document.createElement('div');
+    thumbsDiv.className = 'gallery__thumbs';
+    images.forEach((src, i) => {
+      const t = document.createElement('img');
+      t.src = src;
+      t.alt = `${work.title} — ${i + 1}`;
+      t.loading = 'lazy';
+      if (i === 0) t.classList.add('active');
+      t.addEventListener('click', () => {
+        mainImg.src = src;
+        thumbsDiv.querySelectorAll('img').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+      });
+      thumbsDiv.appendChild(t);
+    });
+    galleryWrap.appendChild(thumbsDiv);
+  }
+
+  /* ── 情報パネル構築 ──────────────── */
+  const infoDiv = document.createElement('div');
+  infoDiv.className = 'work-detail__info anim anim-d1';
+
+  // eyebrow（シリーズ）
+  const eyebrow = work.series
+    ? `<p class="work-info__eyebrow">${work.series}</p>`
+    : '';
+
+  // タイトル
+  const titleHtml = `<h1 class="work-info__title">${work.title}</h1>`;
+
+  // メタ行
+  const metaRows = [
+    ['observed', work.observed || work.date],
+    ['series',   work.series],
+  ].filter(([, v]) => v)
+   .map(([k, v]) => `
+    <div class="work-meta__row">
+      <span class="work-meta__key">${k}</span>
+      <span class="work-meta__val">${v}</span>
+    </div>`).join('');
+
+  // タグ
+  const tagLinks = (work.tags || [])
+    .map(t => `<a class="tag" href="index.html?tag=${encodeURIComponent(t)}">${t}</a>`)
+    .join('');
+
+  // description
+  const descHtml = work.description
+    ? `<p class="work-info__desc">${work.description}</p>`
+    : '';
+
+  // 外部リンク（YouTube / note / 購入 等を後から追加しやすい形）
+  let linksHtml = '';
+  if (work.links && work.links.length) {
+    const items = work.links
+      .map(l => `<a class="work-links__item" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`)
+      .join('');
+    linksHtml = `<div class="work-links">${items}</div>`;
+  }
+
+  infoDiv.innerHTML = `
+    ${eyebrow}
+    ${titleHtml}
+    <div class="work-meta">${metaRows}</div>
+    ${descHtml}
+    <div class="work-info__tags">${tagLinks}</div>
+    ${linksHtml}
+  `;
+
+  /* ── 前後ナビ ────────────────────── */
+  const prev = idx > 0 ? works[idx - 1] : null;
+  const next = idx < works.length - 1 ? works[idx + 1] : null;
+
+  const navDiv = document.createElement('div');
+  navDiv.className = 'work-nav anim anim-d2';
+  navDiv.innerHTML = `
+    ${prev ? `<a href="work.html?id=${encodeURIComponent(prev.id)}">← ${prev.title}</a>` : '<span>←</span>'}
+    ${next ? `<a href="work.html?id=${encodeURIComponent(next.id)}">${next.title} →</a>` : '<span>→</span>'}
+  `;
+
+  /* ── 描画 ──────────────────────── */
+  const detailDiv = document.createElement('div');
+  detailDiv.className = 'work-detail';
+  detailDiv.appendChild(galleryWrap);
+  detailDiv.appendChild(infoDiv);
+
+  content.innerHTML = '';
+  content.appendChild(detailDiv);
+  content.appendChild(navDiv);
+
+  /* ── ライトボックス ─────────────── */
+  function openLightbox(src) {
+    lbImg.src = src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>

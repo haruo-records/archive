@@ -1,0 +1,7 @@
+# GitHub Pages 設定
+# Jekyll処理を最小限にして素のHTMLをそのまま配信する
+include:
+  - assets
+  - data
+  - works
+  - img

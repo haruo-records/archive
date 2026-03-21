@@ -1,73 +1,308 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>portal</title>
-
-  <!-- SEO -->
-  <meta name="description" content="A quiet portal to ongoing works: animals, HARMONEER, and related traces." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://haruo-records.github.io/portal/" />
-
-  <!-- OG / Twitter -->
-  <meta property="og:title" content="portal" />
-  <meta property="og:description" content="A quiet portal to ongoing works: animals, HARMONEER, and related traces." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://haruo-records.github.io/portal/" />
-  <meta name="twitter:card" content="summary" />
-
-  <!-- Shared assets -->
-  <link rel="stylesheet" href="./assets/site.css" />
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"CollectionPage",
-    "name":"portal",
-    "url":"https://haruo-records.github.io/portal/",
-    "isPartOf":{
-      "@type":"WebSite",
-      "name":"haruo-records.github.io",
-      "url":"https://haruo-records.github.io/"
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>animals — haruo records</title>
+  <meta name="description" content="animals. 作品アーカイブ。observed not explained.">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ── トップページ固有 ── */
+    .hero {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--gap-section);
     }
-  }
-  </script>
+    .hero__kicker {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: var(--ls-label);
+      color: var(--faint);
+      margin-bottom: 20px;
+    }
+    .hero__title {
+      font-size: clamp(1.875rem, 5.5vw, 3rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: var(--ls-ui);
+      color: var(--text);
+    }
+    .hero__title em {
+      font-style: normal;
+      font-weight: 400;
+      color: var(--muted);
+      display: block;
+      font-size: 0.6em;
+      letter-spacing: 0.07em;
+      margin-top: 10px;
+    }
+    .hero__tagline {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: var(--ls-label);
+      color: var(--faint);
+      margin-top: 20px;
+      line-height: 1.9;
+    }
+    .hero__cta {
+      margin-top: 32px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-ghost {
+      display: inline-block;
+      padding: 0.5em 1.4em;
+      border: 1px solid var(--border-d);
+      border-radius: 0;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: var(--ls-ui);
+      color: var(--text);
+      transition: opacity 0.2s;
+    }
+    .btn-ghost:hover { opacity: 0.55; }
 
-<link rel="stylesheet" href="./assets/site.css">
+    /* ── セクションラベル ── */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 20px;
+    }
+    .section-label {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: var(--ls-label);
+      color: var(--faint);
+    }
+    .see-all {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: var(--ls-ui);
+      color: var(--faint);
+      transition: color 0.2s;
+    }
+    .see-all:hover { color: var(--muted); }
+
+    /* ── 外部リンクセクション ── */
+    .external-section {
+      margin-top: var(--gap-section);
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .ext-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+    }
+    .ext-group__name {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: var(--ls-label);
+      color: var(--faint);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ext-group ul { list-style: none; }
+    .ext-group li + li { margin-top: 8px; }
+    .ext-group a {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      letter-spacing: var(--ls-body);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: opacity 0.2s;
+    }
+    .ext-group a:hover { opacity: 0.6; }
+    .ext-group a::after {
+      content: '↗';
+      font-size: 0.6rem;
+      opacity: 0.4;
+    }
+  </style>
 </head>
-
 <body>
 
-  <main class="container">
+<div class="wrap">
 
-    <h1>Portal</h1>
+  <header class="site-header">
+    <div class="site-header__bar">
+      <p class="site-logo">
+        haruo <span class="sep">/</span> <em>records</em>
+      </p>
+      <nav class="site-nav">
+        <a href="/portal/works/">works</a>
+        <a href="#elsewhere">links</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="section" aria-labelledby="sec-animals">
-      <h2 id="sec-animals">animals (1998- )</h2>
-      <ul class="list">
-        <li><a href="./animals/">animals</a></li>
-      </ul>
+  <main>
+
+    <!-- ヒーロー -->
+    <section class="hero anim">
+      <p class="hero__kicker">1998 — ongoing</p>
+      <h1 class="hero__title">
+        animals<br>
+        <em>archive</em>
+      </h1>
+      <p class="hero__tagline">
+        speculative biology &nbsp;/&nbsp; generative art &nbsp;/&nbsp; observed not explained
+      </p>
+      <div class="hero__cta">
+        <a class="btn-ghost" href="works/">すべての作品を見る</a>
+        <a class="see-all" href="works/?tag=test-tube%20animals">test-tube series →</a>
+      </div>
     </section>
 
-    <section class="section" aria-labelledby="sec-harmoneer">
-      <h2 id="sec-harmoneer">HARMONEER (2025- )</h2>
-      <ul class="list">
-        <li><a href="https://harmoneer.net/" target="_blank">harmoneer.net</a></li>
-        <li><a href="https://knowledge.harmoneer.net/" target="_blank">knowledge.harmoneer.net</a></li>
-        <li><a href="https://selfdesign.harmoneer.net/" target="_blank">selfdesign.harmoneer.net</a></li>
-      </ul>
+    <!-- 最近の作品 -->
+    <section class="anim anim-d1" aria-label="最近の作品">
+      <div class="section-head">
+        <p class="section-label">recent works</p>
+        <a class="see-all" href="works/">all →</a>
+      </div>
+
+      <!-- タグフィルター（トップでも使えるように） -->
+      <div class="filter-bar" id="top-filter">
+        <span class="filter-bar__label">filter —</span>
+      </div>
+
+      <p class="count-label" id="top-count"></p>
+      <div class="works-grid" id="top-grid"></div>
     </section>
 
-    <section class="section" aria-labelledby="sec-papa">
-      <h2 id="sec-papa">パパ再起動 (2025- )</h2>
-      <ul class="list">
-        <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank">パパ再起動 instagram</a></li>
-        <li><a href="https://x.com/haruo_harmoneer" target="_blank">パパ再起動 x.com</a></li>
-      </ul>
+    <!-- 外部リンク -->
+    <section class="external-section anim anim-d2" id="elsewhere">
+      <p class="section-label">elsewhere</p>
+      <div class="ext-grid">
+        <div class="ext-group">
+          <p class="ext-group__name">HARMONEER</p>
+          <ul>
+            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+          </ul>
+        </div>
+        <div class="ext-group">
+          <p class="ext-group__name">パパ再起動</p>
+          <ul>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+          </ul>
+        </div>
+      </div>
     </section>
 
   </main>
+
+  <footer class="site-footer">
+    <span>© haruo records</span>
+    <span>animals 1998 —</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script src="assets/app.js"></script>
+<script>
+(async () => {
+  const grid    = document.getElementById('top-grid');
+  const filter  = document.getElementById('top-filter');
+  const countEl = document.getElementById('top-count');
+
+  let works = [];
+  let activeTag = getParam('tag') || 'all';
+
+  try {
+    works = await fetchWorks();
+  } catch(e) {
+    grid.innerHTML = '<p class="empty-state">—</p>';
+    return;
+  }
+
+  // タグ一覧
+  const allTags = ['all', ...new Set(works.flatMap(w => w.tags || []))]
+    .sort((a, b) => a === 'all' ? -1 : b === 'all' ? 1 : a.localeCompare(b));
+
+  // フィルターボタン
+  allTags.forEach(tag => {
+    const btn = makeTagButton(tag, () => {
+      activeTag = tag;
+      history.replaceState(null, '', tag === 'all' ? location.pathname : `?tag=${encodeURIComponent(tag)}`);
+      render();
+      syncFilter();
+    });
+    btn.setAttribute('aria-pressed', tag === activeTag ? 'true' : 'false');
+    if (tag === activeTag) btn.classList.add('active');
+    filter.appendChild(btn);
+  });
+
+  function render() {
+    grid.innerHTML = '';
+    const list = activeTag === 'all'
+      ? works
+      : works.filter(w => (w.tags || []).includes(activeTag));
+
+    list.sort((a, b) => (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
+    countEl.textContent = `${list.length} work${list.length !== 1 ? 's' : ''}`;
+
+    if (!list.length) {
+      grid.innerHTML = '<p class="empty-state">— no records —</p>';
+      return;
+    }
+
+    list.forEach((w, i) => {
+      const card = document.createElement('a');
+      card.className = 'work-card anim';
+      card.style.animationDelay = `${0.05 * i}s`;
+      card.href = `works/work.html?id=${encodeURIComponent(w.id)}`;
+
+      // サムネイル
+      const thumb = document.createElement('div');
+      thumb.className = 'work-card__thumb';
+      if (w.thumbnail) {
+        thumb.appendChild(makeImg(w.thumbnail, w.title));
+      } else {
+        const ph = document.createElement('span');
+        ph.className = 'work-card__no-img';
+        ph.textContent = '—';
+        thumb.appendChild(ph);
+      }
+
+      // ボディ
+      const body = document.createElement('div');
+      body.className = 'work-card__body';
+
+      const tags = (w.tags || []).slice(0, 3)
+        .map(t => `<span class="tag">${t}</span>`).join('');
+
+      body.innerHTML = `
+        <p class="work-card__title">${w.title}</p>
+        <p class="work-card__sub">${[w.series, w.observed || w.date].filter(Boolean).join(' · ')}</p>
+        <div class="work-card__tags">${tags}</div>
+      `;
+
+      card.appendChild(thumb);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+  }
+
+  function syncFilter() {
+    filter.querySelectorAll('.tag').forEach(btn => {
+      const on = btn.textContent === activeTag;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  render();
+})();
+</script>
 </body>
 </html>

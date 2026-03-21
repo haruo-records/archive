@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>works — animals — haruo records</title>
+  <meta name="description" content="animals 作品アーカイブ一覧">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .page-title {
+      font-size: clamp(1.25rem, 3.5vw, 1.875rem);
+      font-weight: 500;
+      letter-spacing: var(--ls-ui);
+      color: var(--text);
+      padding: 40px 0 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .page-title span {
+      font-weight: 400;
+      font-size: 0.55em;
+      color: var(--faint);
+      margin-left: 12px;
+      letter-spacing: var(--ls-label);
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <p class="site-logo">
+        <a href="/portal/" style="color:inherit">
+          haruo <span class="sep">/</span> <em>records</em>
+        </a>
+      </p>
+      <nav class="site-nav">
+        <a href="/portal/works/" class="active">works</a>
+        <a href="/portal/#elsewhere">links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-title anim">
+      works
+      <span>1998 —</span>
+    </h1>
+
+    <!-- フィルター -->
+    <div class="filter-bar anim anim-d1" id="filter-bar" role="group" aria-label="タグで絞り込む">
+      <span class="filter-bar__label">filter —</span>
+    </div>
+
+    <p class="count-label anim anim-d1" id="count-label"></p>
+
+    <!-- グリッド -->
+    <div class="works-grid anim anim-d2" id="works-grid" role="list"></div>
+  </main>
+
+  <footer class="site-footer">
+    <span>© haruo records</span>
+    <span>animals 1998 —</span>
+  </footer>
+
+</div>
+
+<script src="../assets/app.js"></script>
+<script>
+(async () => {
+  const grid      = document.getElementById('works-grid');
+  const filterBar = document.getElementById('filter-bar');
+  const countEl   = document.getElementById('count-label');
+
+  let works = [];
+  let activeTag = getParam('tag') || 'all';
+
+  try {
+    works = await fetchWorks();
+  } catch(e) {
+    grid.innerHTML = '<p class="empty-state">— data unavailable —</p>';
+    return;
+  }
+
+  // タグ一覧（重複排除・ソート）
+  const allTags = ['all', ...new Set(works.flatMap(w => w.tags || []))]
+    .sort((a, b) => a === 'all' ? -1 : b === 'all' ? 1 : a.localeCompare(b));
+
+  // フィルターボタン生成
+  allTags.forEach(tag => {
+    const btn = makeTagButton(tag, () => {
+      activeTag = tag;
+      history.replaceState(null, '', tag === 'all' ? location.pathname : `?tag=${encodeURIComponent(tag)}`);
+      renderGrid();
+      syncFilter();
+    });
+    btn.setAttribute('aria-pressed', tag === activeTag ? 'true' : 'false');
+    if (tag === activeTag) btn.classList.add('active');
+    filterBar.appendChild(btn);
+  });
+
+  function renderGrid() {
+    grid.innerHTML = '';
+
+    const filtered = activeTag === 'all'
+      ? works
+      : works.filter(w => (w.tags || []).includes(activeTag));
+
+    // observed 降順
+    filtered.sort((a, b) =>
+      (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
+
+    countEl.textContent = `${filtered.length} work${filtered.length !== 1 ? 's' : ''}`;
+
+    if (!filtered.length) {
+      grid.innerHTML = '<p class="empty-state">— no records matching this tag —</p>';
+      return;
+    }
+
+    filtered.forEach((w, i) => {
+      const card = document.createElement('a');
+      card.className = 'work-card';
+      card.href = `work.html?id=${encodeURIComponent(w.id)}`;
+      card.setAttribute('role', 'listitem');
+
+      // サムネイル
+      const thumb = document.createElement('div');
+      thumb.className = 'work-card__thumb';
+      if (w.thumbnail) {
+        thumb.appendChild(makeImg(w.thumbnail, w.title));
+      } else {
+        const ph = document.createElement('span');
+        ph.className = 'work-card__no-img';
+        ph.textContent = '—';
+        thumb.appendChild(ph);
+      }
+
+      // ボディ
+      const tags = (w.tags || []).slice(0, 3)
+        .map(t => `<span class="tag">${t}</span>`).join('');
+
+      const body = document.createElement('div');
+      body.className = 'work-card__body';
+      body.innerHTML = `
+        <p class="work-card__title">${w.title}</p>
+        <p class="work-card__sub">${[w.series, w.observed || w.date].filter(Boolean).join(' · ')}</p>
+        <div class="work-card__tags">${tags}</div>
+      `;
+
+      card.appendChild(thumb);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+  }
+
+  function syncFilter() {
+    filterBar.querySelectorAll('.tag').forEach(btn => {
+      const on = btn.textContent === activeTag;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  renderGrid();
+})();
+</script>
+</body>
+</html>
