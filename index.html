@@ -1,70 +1,162 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>animals — haruo records</title>
-  <meta name="description" content="animals. 作品アーカイブ。observed not explained.">
+  <title>Animals — Field Notes of Unknown Forms</title>
+  <meta name="description" content="A living record of forms, survival strategies, and perception. Slow Watching. You don't need to understand. Just observe.">
   <link rel="stylesheet" href="assets/style.css">
+
   <style>
-    /* ── トップページ固有 ── */
+    /* ── Hero ── */
     .hero {
-      padding: 56px 0 48px;
+      padding: 80px 0 72px;
       border-bottom: 1px solid var(--border);
       margin-bottom: var(--gap-section);
     }
-    .hero__kicker {
+    .hero__eyebrow {
       font-size: 0.6875rem;
       font-weight: 400;
-      letter-spacing: var(--ls-label);
+      letter-spacing: 0.14em;
       color: var(--faint);
       margin-bottom: 20px;
+      text-transform: uppercase;
     }
-    .hero__title {
-      font-size: clamp(1.875rem, 5.5vw, 3rem);
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: var(--ls-ui);
+    /* Animals: series name — large, bold, dominant */
+    .hero__series {
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.02em;
       color: var(--text);
+      margin-bottom: 0;
     }
-    .hero__title em {
-      font-style: normal;
+    /* Subtitle: subordinate — small, light, stepped below */
+    .hero__subtitle {
+      font-size: clamp(0.875rem, 2.2vw, 1.125rem);
       font-weight: 400;
+      letter-spacing: 0.06em;
       color: var(--muted);
-      display: block;
-      font-size: 0.6em;
-      letter-spacing: 0.07em;
       margin-top: 10px;
+      margin-bottom: 28px;
     }
-    .hero__tagline {
-      font-size: 0.75rem;
+    .hero__catch {
+      font-size: clamp(0.9375rem, 2vw, 1.0625rem);
       font-weight: 400;
-      letter-spacing: var(--ls-label);
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 44ch;
+      margin-bottom: 24px;
+    }
+    .hero__tags {
+      font-size: 0.75rem;
       color: var(--faint);
-      margin-top: 20px;
-      line-height: 1.9;
+      letter-spacing: 0.08em;
+      margin-bottom: 40px;
     }
     .hero__cta {
-      margin-top: 32px;
       display: flex;
-      gap: 20px;
-      align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
+      align-items: center;
     }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.7em 2em;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.72; }
     .btn-ghost {
       display: inline-block;
-      padding: 0.5em 1.4em;
+      padding: 0.7em 1.5em;
       border: 1px solid var(--border-d);
-      border-radius: 0;
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       font-weight: 400;
-      letter-spacing: var(--ls-ui);
+      letter-spacing: 0.06em;
       color: var(--text);
       transition: opacity 0.2s;
     }
     .btn-ghost:hover { opacity: 0.55; }
 
-    /* ── セクションラベル ── */
+    /* ── Slow Watching ── */
+    .slow-watching {
+      padding: var(--gap-section) 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--gap-section);
+    }
+    .slow-watching__word {
+      font-size: clamp(1.375rem, 3.5vw, 2.25rem);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .slow-watching__lead {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 2;
+      color: var(--muted);
+      max-width: 46ch;
+    }
+
+    /* ── Concept ── */
+    .concept {
+      margin-bottom: var(--gap-section);
+      padding-bottom: var(--gap-section);
+      border-bottom: 1px solid var(--border);
+    }
+    .concept__label {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      color: var(--faint);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .concept__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px 56px;
+    }
+    .concept__item-title {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .concept__item-body {
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+    .concept__item-body p + p { margin-top: 8px; }
+    .concept__item-body ul { list-style: none; margin-top: 8px; }
+    .concept__item-body li { padding: 2px 0; }
+    .concept__item-body li::before {
+      content: '—';
+      margin-right: 8px;
+      color: var(--faint);
+      font-size: 0.7rem;
+    }
+    .concept__quote {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--faint);
+      font-style: italic;
+      line-height: 1.75;
+    }
+
+    /* ── Works section ── */
+    .works-section { margin-bottom: var(--gap-section); }
     .section-head {
       display: flex;
       justify-content: space-between;
@@ -74,56 +166,164 @@
     .section-label {
       font-size: 0.6875rem;
       font-weight: 400;
-      letter-spacing: var(--ls-label);
+      letter-spacing: 0.14em;
       color: var(--faint);
+      text-transform: uppercase;
     }
     .see-all {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      transition: opacity 0.2s;
+    }
+    .see-all:hover { opacity: 0.55; }
+
+    /* ── Expansion ── */
+    .expansion {
+      padding: var(--gap-section) 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--gap-section);
+    }
+    .expansion__label {
       font-size: 0.6875rem;
       font-weight: 400;
-      letter-spacing: var(--ls-ui);
+      letter-spacing: 0.14em;
       color: var(--faint);
-      transition: color 0.2s;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
-    .see-all:hover { color: var(--muted); }
+    .expansion__lead {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 50ch;
+      margin-bottom: 16px;
+    }
+    .expansion__tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
-    /* ── 外部リンクセクション ── */
-    .external-section {
-      margin-top: var(--gap-section);
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-    .ext-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 32px;
-      margin-top: 20px;
-    }
-    .ext-group__name {
+    /* ── Elsewhere ── */
+    .elsewhere { margin-bottom: var(--gap-section); }
+    .elsewhere__label {
       font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: var(--ls-label);
+      font-weight: 400;
+      letter-spacing: 0.14em;
       color: var(--faint);
-      margin-bottom: 12px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .elsewhere__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 24px 36px;
+    }
+    .elsewhere__group-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      margin-bottom: 10px;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
     }
-    .ext-group ul { list-style: none; }
-    .ext-group li + li { margin-top: 8px; }
-    .ext-group a {
+    .elsewhere__group ul { list-style: none; }
+    .elsewhere__group li + li { margin-top: 8px; }
+    .elsewhere__group a {
       font-size: 0.8125rem;
       font-weight: 400;
-      letter-spacing: var(--ls-body);
       color: var(--muted);
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       transition: opacity 0.2s;
     }
-    .ext-group a:hover { opacity: 0.6; }
-    .ext-group a::after {
+    .elsewhere__group a:hover { opacity: 0.55; }
+    .elsewhere__group a::after { content: '↗'; font-size: 0.58rem; opacity: 0.4; }
+
+    /* ── Closing ── */
+    .closing {
+      padding: 72px 0 56px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .closing__text {
+      font-size: clamp(0.9375rem, 2.2vw, 1.25rem);
+      font-weight: 400;
+      line-height: 2.1;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .closing__text strong {
+      display: block;
+      font-weight: 500;
+      color: var(--text);
+      font-size: 1.15em;
+      margin-bottom: 4px;
+    }
+
+    /* ── Footer with links ── */
+    .site-footer {
+      margin-top: 0;
+      display: block;          /* 共通CSSのflexを上書き */
+      padding: 48px 0 36px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .footer__links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 24px 36px;
+      margin-bottom: 36px;
+    }
+    .footer__copy {
+      font-size: 0.6875rem;
+      color: var(--faint);
+      letter-spacing: 0.1em;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    /* reuse elsewhere__group styles inside footer */
+    .site-footer .elsewhere__group-name {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+    }
+    .site-footer .elsewhere__group ul { list-style: none; }
+    .site-footer .elsewhere__group li + li { margin-top: 7px; }
+    .site-footer .elsewhere__group a {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: opacity 0.2s;
+    }
+    .site-footer .elsewhere__group a:hover { opacity: 0.55; }
+    .site-footer .elsewhere__group a::after {
       content: '↗';
-      font-size: 0.6rem;
-      opacity: 0.4;
+      font-size: 0.58rem;
+      opacity: 0.35;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero { padding: 48px 0 40px; }
+      .hero__catch { max-width: 100%; }
+      .concept__grid { grid-template-columns: 1fr; gap: 28px; }
+      .slow-watching__lead { max-width: 100%; }
+      .closing { padding: 48px 0 40px; }
+    }
+    @media (max-width: 400px) {
+      .hero__cta { flex-direction: column; align-items: flex-start; }
+      .btn-primary, .btn-ghost { width: 100%; text-align: center; box-sizing: border-box; }
     }
   </style>
 </head>
@@ -133,9 +333,7 @@
 
   <header class="site-header">
     <div class="site-header__bar">
-      <p class="site-logo">
-        haruo <span class="sep">/</span> <em>records</em>
-      </p>
+      <p class="site-logo">haruo <span class="sep">/</span> <em>records</em></p>
       <nav class="site-nav">
         <a href="/portal/works/">works</a>
         <a href="#elsewhere">links</a>
@@ -145,68 +343,164 @@
 
   <main>
 
-    <!-- ヒーロー -->
-    <section class="hero anim">
-      <p class="hero__kicker">1998 — ongoing</p>
-      <h1 class="hero__title">
-        animals<br>
-        <em>archive</em>
-      </h1>
-      <p class="hero__tagline">
-        speculative biology &nbsp;/&nbsp; generative art &nbsp;/&nbsp; observed not explained
+    <!-- First view -->
+    <section class="hero">
+      <p class="hero__eyebrow">1998 — ongoing</p>
+      <h1 class="hero__series">Animals</h1>
+      <p class="hero__subtitle">Field Notes of Unknown Forms</p>
+      <p class="hero__catch">
+        A living record of forms, survival strategies, and perception.<br>
+        Not quite creatures. Not quite objects. Something in between.
+      </p>
+      <p class="hero__tags">
+        speculative biology &nbsp;·&nbsp; generative art &nbsp;·&nbsp; observed not explained
       </p>
       <div class="hero__cta">
-        <a class="btn-ghost" href="works/">すべての作品を見る</a>
-        <a class="see-all" href="works/?tag=test-tube%20animals">test-tube series →</a>
+        <a class="btn-primary" href="works/">View Archive</a>
+        <a class="btn-ghost" href="#what">What is Animals</a>
       </div>
     </section>
 
-    <!-- 最近の作品 -->
-    <section class="anim anim-d1" aria-label="最近の作品">
-      <div class="section-head">
-        <p class="section-label">recent works</p>
-        <a class="see-all" href="works/">all →</a>
-      </div>
+    <!-- Slow Watching -->
+    <section class="slow-watching">
+      <p class="slow-watching__word">Slow Watching</p>
+      <p class="slow-watching__lead">
+        You don't need to understand immediately.<br>
+        Stay a little longer with what you see.<br>
+        Meaning appears over time.
+      </p>
+    </section>
 
-      <!-- タグフィルター（トップでも使えるように） -->
+    <!-- Concept -->
+    <section class="concept" id="what">
+      <p class="concept__label">What is Animals</p>
+      <div class="concept__grid">
+
+        <div class="concept__item">
+          <p class="concept__item-title">Forms of Existence</p>
+          <div class="concept__item-body">
+            <p>Animals are not characters.</p>
+            <p>They are forms of existence — like creatures, like objects, somewhere in between.</p>
+            <ul>
+              <li>float</li>
+              <li>connect</li>
+              <li>detach</li>
+              <li>pulse</li>
+              <li>change</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="concept__item">
+          <p class="concept__item-title">Survival Strategies</p>
+          <div class="concept__item-body">
+            <p>Each form reflects a way of surviving.</p>
+            <p>Spreading, floating, branching — inspired by real biological principles, abstracted into form.</p>
+            <p class="concept__quote">
+              "There are many ways to exist,<br>
+              and every form has its own reason to live."
+            </p>
+          </div>
+        </div>
+
+        <div class="concept__item">
+          <p class="concept__item-title">Why They Are Hard to Describe</p>
+          <div class="concept__item-body">
+            <p>When language fails, imagination begins.</p>
+            <p>Animals are completed inside the viewer's mind.</p>
+          </div>
+        </div>
+
+        <div class="concept__item">
+          <p class="concept__item-title">How to Engage</p>
+          <div class="concept__item-body">
+            <ul>
+              <li>observe</li>
+              <li>imagine</li>
+              <li>name them</li>
+              <li>watch movement</li>
+              <li>collect</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Recent works -->
+    <section class="works-section">
+      <div class="section-head">
+        <p class="section-label">Recent Works</p>
+        <a class="see-all" href="works/">View all →</a>
+      </div>
       <div class="filter-bar" id="top-filter">
         <span class="filter-bar__label">filter —</span>
       </div>
-
       <p class="count-label" id="top-count"></p>
       <div class="works-grid" id="top-grid"></div>
     </section>
 
-    <!-- 外部リンク -->
-    <section class="external-section anim anim-d2" id="elsewhere">
-      <p class="section-label">elsewhere</p>
-      <div class="ext-grid">
-        <div class="ext-group">
-          <p class="ext-group__name">HARMONEER</p>
-          <ul>
-            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
-            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
-            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
-          </ul>
-        </div>
-        <div class="ext-group">
-          <p class="ext-group__name">パパ再起動</p>
-          <ul>
-            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
-            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
-          </ul>
-        </div>
+    <!-- Expansion -->
+    <section class="expansion">
+      <p class="expansion__label">Expansion</p>
+      <p class="expansion__lead">
+        Beginning as hand-drawn sketches, Animals expand into many forms.
+      </p>
+      <div class="expansion__tags">
+        <span class="tag">field notes</span>
+        <span class="tag">video</span>
+        <span class="tag">mobile sculptures</span>
+        <span class="tag">3D objects</span>
+        <span class="tag">game assets</span>
+        <span class="tag">printable crafts</span>
       </div>
+    </section>
+
+    <!-- Closing — last content section -->
+    <section class="closing">
+      <p class="closing__text">
+        <strong>You don't need to understand.</strong>
+        Just observe.<br>
+        Notice what changes inside you.
+      </p>
+      <a class="btn-primary" href="works/">View Archive</a>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <span>© haruo records</span>
-    <span>animals 1998 —</span>
+  <!-- Footer with external links -->
+  <footer class="site-footer" id="elsewhere">
+    <div class="footer__links">
+      <div class="elsewhere__group">
+        <p class="elsewhere__group-name">animals</p>
+        <ul>
+          <li><a href="works/">archive</a></li>
+          <!-- Add when ready:
+          <li><a href="https://note.com/xxxxx" target="_blank" rel="noopener">note</a></li>
+          <li><a href="https://youtube.com/xxxxx" target="_blank" rel="noopener">youtube</a></li>
+          -->
+        </ul>
+      </div>
+      <div class="elsewhere__group">
+        <p class="elsewhere__group-name">HARMONEER</p>
+        <ul>
+          <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
+          <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
+          <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+        </ul>
+      </div>
+      <div class="elsewhere__group">
+        <p class="elsewhere__group-name">Rebooting Dad</p>
+        <ul>
+          <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
+          <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__copy">© haruo records &nbsp;·&nbsp; animals 1998 —</p>
   </footer>
 
-</div><!-- /wrap -->
+</div>
 
 <script src="assets/app.js"></script>
 <script>
@@ -225,11 +519,9 @@
     return;
   }
 
-  // タグ一覧
   const allTags = ['all', ...new Set(works.flatMap(w => w.tags || []))]
     .sort((a, b) => a === 'all' ? -1 : b === 'all' ? 1 : a.localeCompare(b));
 
-  // フィルターボタン
   allTags.forEach(tag => {
     const btn = makeTagButton(tag, () => {
       activeTag = tag;
@@ -247,22 +539,16 @@
     const list = activeTag === 'all'
       ? works
       : works.filter(w => (w.tags || []).includes(activeTag));
-
     list.sort((a, b) => (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
-    countEl.textContent = `${list.length} work${list.length !== 1 ? 's' : ''}`;
-
+    countEl.textContent = list.length + ' work' + (list.length !== 1 ? 's' : '');
     if (!list.length) {
       grid.innerHTML = '<p class="empty-state">— no records —</p>';
       return;
     }
-
-    list.forEach((w, i) => {
+    list.forEach(w => {
       const card = document.createElement('a');
-      card.className = 'work-card anim';
-      card.style.animationDelay = `${0.05 * i}s`;
-      card.href = `works/work.html?id=${encodeURIComponent(w.id)}`;
-
-      // サムネイル
+      card.className = 'work-card';
+      card.href = 'works/work.html?id=' + encodeURIComponent(w.id);
       const thumb = document.createElement('div');
       thumb.className = 'work-card__thumb';
       if (w.thumbnail) {
@@ -273,20 +559,12 @@
         ph.textContent = '—';
         thumb.appendChild(ph);
       }
-
-      // ボディ
       const body = document.createElement('div');
       body.className = 'work-card__body';
-
-      const tags = (w.tags || []).slice(0, 3)
-        .map(t => `<span class="tag">${t}</span>`).join('');
-
-      body.innerHTML = `
-        <p class="work-card__title">${w.title}</p>
-        <p class="work-card__sub">${[w.series, w.observed || w.date].filter(Boolean).join(' · ')}</p>
-        <div class="work-card__tags">${tags}</div>
-      `;
-
+      const tags = (w.tags || []).slice(0, 3).map(t => '<span class="tag">' + t + '</span>').join('');
+      body.innerHTML = '<p class="work-card__title">' + w.title + '</p>'
+        + '<p class="work-card__sub">' + [w.series, w.observed || w.date].filter(Boolean).join(' · ') + '</p>'
+        + '<div class="work-card__tags">' + tags + '</div>';
       card.appendChild(thumb);
       card.appendChild(body);
       grid.appendChild(card);
