@@ -129,8 +129,8 @@
     }
     .concept__grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px 48px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px 40px;
     }
     .concept__item-title {
       font-size: 0.8125rem;
@@ -263,6 +263,9 @@
     }
 
     /* RESPONSIVE */
+    @media (max-width: 760px) {
+      .concept__grid { grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+    }
     @media (max-width: 600px) {
       .hero { padding: 48px 0 48px; }
       .hero__catch { max-width: 100%; }
@@ -365,37 +368,28 @@
             <p>animals are completed inside the viewer&rsquo;s mind.</p>
           </div>
         </div>
-        <div class="concept__item">
-          <p class="concept__item-title">How to begin</p>
-          <div class="concept__item-body">
-            <p>Look at multiple images. Notice the space between them.
-            Stay there for a moment.</p>
-            <p>If something starts to &ldquo;move&rdquo; in your mind,
-            you are already experiencing it.</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- 6. Phantom Graph card -->
-    <a class="concept-card fade-in" href="/portal/phantom-graph/">
-      <div class="concept-card__inner">
-        <div>
-          <p class="concept-card__label">concept</p>
-          <p class="concept-card__title">Phantom Graph</p>
-          <p class="concept-card__desc">A visual format where motion emerges from perception, not animation.</p>
-        </div>
-        <span class="concept-card__cta">Read More &rarr;</span>
-      </div>
-    </a>
-
-    <!-- 7. Slow Watching card -->
+    <!-- 6. Slow Watching card -->
     <a class="concept-card fade-in" href="/portal/slow-watching/">
       <div class="concept-card__inner">
         <div>
           <p class="concept-card__label">concept</p>
           <p class="concept-card__title">Slow Watching</p>
           <p class="concept-card__desc">A way of perceiving motion, change, and life without rushing.</p>
+        </div>
+        <span class="concept-card__cta">Read More &rarr;</span>
+      </div>
+    </a>
+
+    <!-- 7. Phantom Graph card -->
+    <a class="concept-card fade-in" href="/portal/phantom-graph/">
+      <div class="concept-card__inner">
+        <div>
+          <p class="concept-card__label">concept</p>
+          <p class="concept-card__title">Phantom Graph</p>
+          <p class="concept-card__desc">A visual format where motion emerges from perception, not animation.</p>
         </div>
         <span class="concept-card__cta">Read More &rarr;</span>
       </div>
