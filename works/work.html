@@ -12,14 +12,15 @@
        WORK PAGE
     ───────────────────────────── */
 
-    /* Back link — top of page, minimal */
+    /* Back to Archive — top of page, clearly visible */
     .work-back {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.75rem;
-      color: var(--faint);
-      letter-spacing: 0.08em;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--sub);
+      letter-spacing: 0.04em;
       padding: 32px 0 28px;
       transition: color 0.18s;
     }
@@ -219,13 +220,6 @@
     }
     .work-nav a:hover { color: var(--text); }
     .work-nav span { opacity: 0.3; }
-    .work-nav__archive {
-      font-size: 0.75rem;
-      color: var(--faint);
-      letter-spacing: 0.08em;
-      transition: color 0.18s;
-    }
-    .work-nav__archive:hover { color: var(--text); }
 
     /* ─────────────────────────────
        MOBILE
@@ -268,7 +262,6 @@
       </p>
       <nav class="site-nav">
         <a href="/portal/works/" class="active">works</a>
-        <a href="/portal/#elsewhere">links</a>
       </nav>
     </div>
   </header>
@@ -448,17 +441,11 @@
   if (prev) { prevEl.href = "work.html?id=" + encodeURIComponent(prev.id); prevEl.textContent = "\u2190 " + prev.title; }
   else       { prevEl.textContent = "\u2190"; }
 
-  const archiveEl = document.createElement("a");
-  archiveEl.href = "index.html";
-  archiveEl.className = "work-nav__archive";
-  archiveEl.textContent = "Archive";
-
   const nextEl = document.createElement(next ? "a" : "span");
   if (next) { nextEl.href = "work.html?id=" + encodeURIComponent(next.id); nextEl.textContent = next.title + " \u2192"; }
   else       { nextEl.textContent = "\u2192"; }
 
   navDiv.appendChild(prevEl);
-  navDiv.appendChild(archiveEl);
   navDiv.appendChild(nextEl);
 
   /* ── assemble ── */
