@@ -1,28 +1,46 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>works — animals — haruo records</title>
-  <meta name="description" content="animals 作品アーカイブ一覧">
+  <title>Animals — Archive</title>
+  <meta name="description" content="A field notes archive of speculative organisms.">
   <link rel="stylesheet" href="../assets/style.css">
   <style>
-    .page-title {
-      font-size: clamp(1.25rem, 3.5vw, 1.875rem);
-      font-weight: 500;
-      letter-spacing: var(--ls-ui);
-      color: var(--text);
-      padding: 40px 0 32px;
+    /* ── page header ── */
+    .page-header {
+      padding: 48px 0 36px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
-    .page-title span {
-      font-weight: 400;
-      font-size: 0.55em;
+    .page-header__top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .page-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.125rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .page-sub {
+      font-size: 0.875rem;
       color: var(--faint);
-      margin-left: 12px;
-      letter-spacing: var(--ls-label);
-      vertical-align: middle;
+      letter-spacing: 0.04em;
+      margin-top: 6px;
+    }
+    /* controls: filter + random */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
     }
   </style>
 </head>
@@ -33,9 +51,7 @@
   <header class="site-header">
     <div class="site-header__bar">
       <p class="site-logo">
-        <a href="/portal/" style="color:inherit">
-          haruo <span class="sep">/</span> <em>records</em>
-        </a>
+        <a href="/portal/">haruo / records</a>
       </p>
       <nav class="site-nav">
         <a href="/portal/works/" class="active">works</a>
@@ -45,39 +61,69 @@
   </header>
 
   <main>
-    <h1 class="page-title anim">
-      works
-      <span>1998 —</span>
-    </h1>
-
-    <!-- フィルター -->
-    <div class="filter-bar anim anim-d1" id="filter-bar" role="group" aria-label="タグで絞り込む">
-      <span class="filter-bar__label">filter —</span>
+    <div class="page-header fade-in">
+      <div class="page-header__top">
+        <h1 class="page-title">Animals</h1>
+        <button class="btn-random" id="btn-random" type="button">
+          ↻ &nbsp;Random
+        </button>
+      </div>
+      <p class="page-sub">A field notes archive of speculative organisms.</p>
     </div>
 
-    <p class="count-label anim anim-d1" id="count-label"></p>
+    <div class="controls fade-in">
+      <div class="filter-bar" id="filter-bar">
+        <span class="filter-bar__label">filter —</span>
+      </div>
+      <p class="count-label" id="count-label"></p>
+    </div>
 
-    <!-- グリッド -->
-    <div class="works-grid anim anim-d2" id="works-grid" role="list"></div>
+    <div class="works-grid" id="works-grid" role="list"></div>
   </main>
 
   <footer class="site-footer">
-    <span>© haruo records</span>
-    <span>animals 1998 —</span>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <div class="footer-group">
+          <p class="footer-group__name">Animals</p>
+          <ul>
+            <li><a href="/portal/works/">archive</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">HARMONEER</p>
+          <ul>
+            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">Rebooting Dad</p>
+          <ul>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© haruo records</p>
+    </div>
   </footer>
 
-</div>
+</div><!-- /wrap -->
 
 <script src="../assets/app.js"></script>
 <script>
 (async () => {
-  const grid      = document.getElementById('works-grid');
+  const grid     = document.getElementById('works-grid');
   const filterBar = document.getElementById('filter-bar');
-  const countEl   = document.getElementById('count-label');
+  const countEl  = document.getElementById('count-label');
+  const btnRandom = document.getElementById('btn-random');
 
   let works = [];
   let activeTag = getParam('tag') || 'all';
 
+  /* ── load data ── */
   try {
     works = await fetchWorks();
   } catch(e) {
@@ -85,15 +131,15 @@
     return;
   }
 
-  // タグ一覧（重複排除・ソート）
+  /* ── build tag list ── */
   const allTags = ['all', ...new Set(works.flatMap(w => w.tags || []))]
     .sort((a, b) => a === 'all' ? -1 : b === 'all' ? 1 : a.localeCompare(b));
 
-  // フィルターボタン生成
   allTags.forEach(tag => {
     const btn = makeTagButton(tag, () => {
       activeTag = tag;
-      history.replaceState(null, '', tag === 'all' ? location.pathname : `?tag=${encodeURIComponent(tag)}`);
+      history.replaceState(null, '',
+        tag === 'all' ? location.pathname : '?tag=' + encodeURIComponent(tag));
       renderGrid();
       syncFilter();
     });
@@ -102,31 +148,39 @@
     filterBar.appendChild(btn);
   });
 
+  /* ── random button ── */
+  btnRandom.addEventListener('click', () => {
+    if (!works.length) return;
+    const w = works[Math.floor(Math.random() * works.length)];
+    location.href = 'work.html?id=' + encodeURIComponent(w.id);
+  });
+
+  /* ── render grid ── */
   function renderGrid() {
     grid.innerHTML = '';
-
-    const filtered = activeTag === 'all'
+    const list = activeTag === 'all'
       ? works
       : works.filter(w => (w.tags || []).includes(activeTag));
 
-    // observed 降順
-    filtered.sort((a, b) =>
+    list.sort((a, b) =>
       (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
 
-    countEl.textContent = `${filtered.length} work${filtered.length !== 1 ? 's' : ''}`;
+    countEl.textContent = list.length + ' record' + (list.length !== 1 ? 's' : '');
 
-    if (!filtered.length) {
-      grid.innerHTML = '<p class="empty-state">— no records matching this tag —</p>';
+    if (!list.length) {
+      grid.innerHTML = '<p class="empty-state">— no records —</p>';
       return;
     }
 
-    filtered.forEach((w, i) => {
+    list.forEach((w, i) => {
       const card = document.createElement('a');
-      card.className = 'work-card';
-      card.href = `work.html?id=${encodeURIComponent(w.id)}`;
+      card.className = 'work-card fade-in';
+      card.href = 'work.html?id=' + encodeURIComponent(w.id);
       card.setAttribute('role', 'listitem');
+      /* staggered fade */
+      card.style.transitionDelay = (i * 0.04) + 's';
 
-      // サムネイル
+      /* thumbnail */
       const thumb = document.createElement('div');
       thumb.className = 'work-card__thumb';
       if (w.thumbnail) {
@@ -138,21 +192,37 @@
         thumb.appendChild(ph);
       }
 
-      // ボディ
-      const tags = (w.tags || []).slice(0, 3)
-        .map(t => `<span class="tag">${t}</span>`).join('');
+      /* body */
+      const tagPills = (w.tags || []).slice(0, 3)
+        .map(t => '<span class="tag">' + t + '</span>').join('');
 
       const body = document.createElement('div');
       body.className = 'work-card__body';
-      body.innerHTML = `
-        <p class="work-card__title">${w.title}</p>
-        <p class="work-card__sub">${[w.series, w.observed || w.date].filter(Boolean).join(' · ')}</p>
-        <div class="work-card__tags">${tags}</div>
-      `;
+      body.innerHTML =
+        '<p class="work-card__title">' + w.title + '</p>' +
+        '<p class="work-card__meta">' +
+          [w.series, w.observed || w.date].filter(Boolean).join(' · ') +
+        '</p>' +
+        '<div class="work-card__tags">' + tagPills + '</div>';
 
       card.appendChild(thumb);
       card.appendChild(body);
       grid.appendChild(card);
+    });
+
+    /* trigger fade-in for newly added cards */
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.work-card.fade-in').forEach(el => {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.05 });
+        obs.observe(el);
+      });
     });
   }
 

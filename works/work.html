@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>— animals — haruo records</title>
-  <meta name="description" content="animals work">
+  <title>— Animals</title>
+  <meta name="description" content="animals field notes">
   <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
@@ -14,9 +14,7 @@
   <header class="site-header">
     <div class="site-header__bar">
       <p class="site-logo">
-        <a href="/portal/" style="color:inherit">
-          haruo <span class="sep">/</span> <em>records</em>
-        </a>
+        <a href="/portal/">haruo / records</a>
       </p>
       <nav class="site-nav">
         <a href="/portal/works/" class="active">works</a>
@@ -26,86 +24,116 @@
   </header>
 
   <main>
-    <a class="back-link" href="index.html">← works 一覧</a>
     <div id="content">
-      <p style="font-size:0.7rem;color:var(--faint);letter-spacing:0.1em">loading…</p>
+      <p style="color:var(--faint);font-size:0.8125rem;padding:40px 0;">Loading…</p>
     </div>
   </main>
 
   <footer class="site-footer">
-    <span>© haruo records</span>
-    <span>animals 1998 —</span>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <div class="footer-group">
+          <p class="footer-group__name">Animals</p>
+          <ul>
+            <li><a href="/portal/works/">archive</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">HARMONEER</p>
+          <ul>
+            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">Rebooting Dad</p>
+          <ul>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© haruo records</p>
+    </div>
   </footer>
 
-</div>
+</div><!-- /wrap -->
 
-<!-- ライトボックス -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="拡大表示">
-  <button class="lightbox-close" id="lb-close">close ✕</button>
-  <img id="lb-img" src="" alt="">
+<!-- Modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Image">
+  <button class="modal__close" id="modal-close" type="button">close ✕</button>
+  <img class="modal__img" id="modal-img" src="" alt="">
 </div>
 
 <script src="../assets/app.js"></script>
 <script>
 (async () => {
-  const content = document.getElementById('content');
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lb-img');
-  const lbClose = document.getElementById('lb-close');
-  const id      = getParam('id');
+  const content   = document.getElementById('content');
+  const modal     = document.getElementById('modal');
+  const modalImg  = document.getElementById('modal-img');
+  const modalClose = document.getElementById('modal-close');
+  const id        = getParam('id');
 
   if (!id) {
-    content.innerHTML = '<p style="color:var(--faint);font-size:0.75rem;letter-spacing:0.1em">— id not specified —</p>';
+    content.innerHTML = '<p style="color:var(--faint);padding:40px 0;">— id not specified —</p>';
     return;
   }
 
   let works, work, idx;
   try {
     works = await fetchWorks();
-    // observed 降順（一覧と同じ順）
     works.sort((a, b) =>
       (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
     idx  = works.findIndex(w => w.id === id);
     work = works[idx];
   } catch(e) {
-    content.innerHTML = '<p style="color:var(--faint);font-size:0.75rem">— data unavailable —</p>';
+    content.innerHTML = '<p style="color:var(--faint);padding:40px 0;">— data unavailable —</p>';
     return;
   }
 
   if (!work) {
-    content.innerHTML = '<p style="color:var(--faint);font-size:0.75rem">— record not found —</p>';
+    content.innerHTML = '<p style="color:var(--faint);padding:40px 0;">— record not found —</p>';
     return;
   }
 
-  // ページタイトル更新
-  document.title = `${work.title} — animals — haruo records`;
+  document.title = work.title + ' — Animals';
 
-  /* ── ギャラリー構築 ────────────── */
+  /* ── images ── */
   const images = work.images?.length ? work.images : (work.thumbnail ? [work.thumbnail] : []);
+  let currentSrc = images[0] || '';
 
-  const galleryWrap = document.createElement('div');
-  galleryWrap.className = 'work-detail__gallery anim';
+  /* ── gallery ── */
+  const galleryDiv = document.createElement('div');
+  galleryDiv.className = 'work-detail__gallery fade-in';
 
   const mainBox = document.createElement('div');
   mainBox.className = 'gallery__main';
+  if (currentSrc) {
+    mainBox.setAttribute('title', 'Click to enlarge');
+    mainBox.addEventListener('click', () => openModal(mainImg.src));
+  }
 
   const mainImg = document.createElement('img');
-  if (images[0]) {
-    mainImg.src = images[0];
-    mainImg.alt = work.title;
-    mainImg.addEventListener('click', () => openLightbox(mainImg.src));
-  }
-  mainBox.appendChild(mainImg);
-  galleryWrap.appendChild(mainBox);
+  mainImg.src = currentSrc;
+  mainImg.alt = work.title;
 
-  // 複数画像→サムネイル列
+  const hint = document.createElement('span');
+  hint.className = 'gallery__hint';
+  hint.textContent = 'click to enlarge';
+
+  mainBox.appendChild(mainImg);
+  if (currentSrc) mainBox.appendChild(hint);
+  galleryDiv.appendChild(mainBox);
+
+  /* thumbnails (if multiple) */
   if (images.length > 1) {
     const thumbsDiv = document.createElement('div');
     thumbsDiv.className = 'gallery__thumbs';
     images.forEach((src, i) => {
       const t = document.createElement('img');
       t.src = src;
-      t.alt = `${work.title} — ${i + 1}`;
+      t.alt = work.title + ' ' + (i + 1);
       t.loading = 'lazy';
       if (i === 0) t.classList.add('active');
       t.addEventListener('click', () => {
@@ -115,96 +143,134 @@
       });
       thumbsDiv.appendChild(t);
     });
-    galleryWrap.appendChild(thumbsDiv);
+    galleryDiv.appendChild(thumbsDiv);
   }
 
-  /* ── 情報パネル構築 ──────────────── */
+  /* ── info panel ── */
   const infoDiv = document.createElement('div');
-  infoDiv.className = 'work-detail__info anim anim-d1';
+  infoDiv.className = 'work-detail__info fade-in';
+  infoDiv.style.transitionDelay = '0.08s';
 
-  // eyebrow（シリーズ）
-  const eyebrow = work.series
-    ? `<p class="work-info__eyebrow">${work.series}</p>`
-    : '';
+  /* back button */
+  const backBtn = document.createElement('a');
+  backBtn.className = 'work-info__back';
+  backBtn.href = 'index.html';
+  backBtn.innerHTML = '← Animals';
+  infoDiv.appendChild(backBtn);
 
-  // タイトル
-  const titleHtml = `<h1 class="work-info__title">${work.title}</h1>`;
+  /* series */
+  if (work.series) {
+    const s = document.createElement('p');
+    s.className = 'work-info__series';
+    s.textContent = work.series;
+    infoDiv.appendChild(s);
+  }
 
-  // メタ行
+  /* title */
+  const titleEl = document.createElement('h1');
+  titleEl.className = 'work-info__title';
+  titleEl.textContent = work.title;
+  infoDiv.appendChild(titleEl);
+
+  /* meta table */
   const metaRows = [
     ['observed', work.observed || work.date],
-    ['series',   work.series],
-  ].filter(([, v]) => v)
-   .map(([k, v]) => `
-    <div class="work-meta__row">
-      <span class="work-meta__key">${k}</span>
-      <span class="work-meta__val">${v}</span>
-    </div>`).join('');
+    work.series && ['series', work.series],
+  ].filter(Boolean).filter(([, v]) => v);
 
-  // タグ
-  const tagLinks = (work.tags || [])
-    .map(t => `<a class="tag" href="index.html?tag=${encodeURIComponent(t)}">${t}</a>`)
-    .join('');
-
-  // description
-  const descHtml = work.description
-    ? `<p class="work-info__desc">${work.description}</p>`
-    : '';
-
-  // 外部リンク（YouTube / note / 購入 等を後から追加しやすい形）
-  let linksHtml = '';
-  if (work.links && work.links.length) {
-    const items = work.links
-      .map(l => `<a class="work-links__item" href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`)
-      .join('');
-    linksHtml = `<div class="work-links">${items}</div>`;
+  if (metaRows.length) {
+    const metaDiv = document.createElement('div');
+    metaDiv.className = 'work-meta';
+    metaRows.forEach(([k, v]) => {
+      const row = document.createElement('div');
+      row.className = 'work-meta__row';
+      row.innerHTML = '<span class="work-meta__key">' + k + '</span><span class="work-meta__val">' + v + '</span>';
+      metaDiv.appendChild(row);
+    });
+    infoDiv.appendChild(metaDiv);
   }
 
-  infoDiv.innerHTML = `
-    ${eyebrow}
-    ${titleHtml}
-    <div class="work-meta">${metaRows}</div>
-    ${descHtml}
-    <div class="work-info__tags">${tagLinks}</div>
-    ${linksHtml}
-  `;
+  /* description */
+  if (work.description) {
+    const desc = document.createElement('p');
+    desc.className = 'work-info__desc';
+    desc.textContent = work.description;
+    infoDiv.appendChild(desc);
+  }
 
-  /* ── 前後ナビ ────────────────────── */
-  const prev = idx > 0 ? works[idx - 1] : null;
-  const next = idx < works.length - 1 ? works[idx + 1] : null;
+  /* tags */
+  if ((work.tags || []).length) {
+    const tagsDiv = document.createElement('div');
+    tagsDiv.className = 'work-info__tags';
+    (work.tags || []).forEach(t => {
+      tagsDiv.appendChild(makeTagLink(t, 'index.html?tag=' + encodeURIComponent(t)));
+    });
+    infoDiv.appendChild(tagsDiv);
+  }
 
-  const navDiv = document.createElement('div');
-  navDiv.className = 'work-nav anim anim-d2';
-  navDiv.innerHTML = `
-    ${prev ? `<a href="work.html?id=${encodeURIComponent(prev.id)}">← ${prev.title}</a>` : '<span>←</span>'}
-    ${next ? `<a href="work.html?id=${encodeURIComponent(next.id)}">${next.title} →</a>` : '<span>→</span>'}
-  `;
+  /* external links */
+  if (work.links && work.links.length) {
+    const linksDiv = document.createElement('div');
+    linksDiv.className = 'work-links';
+    work.links.forEach(l => {
+      const a = document.createElement('a');
+      a.className = 'work-links__item';
+      a.href = l.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = l.label;
+      linksDiv.appendChild(a);
+    });
+    infoDiv.appendChild(linksDiv);
+  }
 
-  /* ── 描画 ──────────────────────── */
+  /* ── assemble detail ── */
   const detailDiv = document.createElement('div');
   detailDiv.className = 'work-detail';
-  detailDiv.appendChild(galleryWrap);
+  detailDiv.appendChild(galleryDiv);
   detailDiv.appendChild(infoDiv);
+
+  /* ── prev / next nav ── */
+  const prev = idx > 0 ? works[idx - 1] : null;
+  const next = idx < works.length - 1 ? works[idx + 1] : null;
+  const navDiv = document.createElement('div');
+  navDiv.className = 'work-nav fade-in';
+  navDiv.style.transitionDelay = '0.12s';
+  navDiv.innerHTML =
+    (prev ? '<a href="work.html?id=' + encodeURIComponent(prev.id) + '">← ' + prev.title + '</a>' : '<span>←</span>') +
+    (next ? '<a href="work.html?id=' + encodeURIComponent(next.id) + '">' + next.title + ' →</a>' : '<span>→</span>');
 
   content.innerHTML = '';
   content.appendChild(detailDiv);
   content.appendChild(navDiv);
 
-  /* ── ライトボックス ─────────────── */
-  function openLightbox(src) {
-    lbImg.src = src;
-    lb.classList.add('open');
+  /* trigger fade-in */
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.fade-in').forEach(el => {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.05 });
+      obs.observe(el);
+    });
+  });
+
+  /* ── modal ── */
+  function openModal(src) {
+    modalImg.src = src;
+    modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-  function closeLightbox() {
-    lb.classList.remove('open');
+  function closeModal() {
+    modal.classList.remove('open');
     document.body.style.overflow = '';
-    lbImg.src = '';
+    modalImg.src = '';
   }
 
-  lbClose.addEventListener('click', closeLightbox);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 })();
 </script>
 </body>
