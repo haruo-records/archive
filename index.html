@@ -8,9 +8,25 @@
   <link rel="stylesheet" href="assets/style.css">
 
   <style>
+    /* =============================================
+       変更ログ
+       ① hero__series: clamp縮小 + line-height調整
+       ② concept__label / expansion__label: h2化・サイズUP・weight強化・余白確保
+       ③ site-footer: padding拡張 + footer-inner コンテナ化
+       ④ セクション間余白を --gap-section: 56px に統一、行間 1.7 に統一
+       ⑤ テキストカラーを #444 ベースに（style.css側で --text を上書き）
+    ============================================= */
+
+    /* ⑤ カラーをページ固有でソフトに上書き */
+    :root {
+      --text:  #3d3d3d;   /* #222 → やや柔らかいダークグレー */
+      --muted: #787878;   /* やや明るく */
+      --gap-section: 56px; /* ④ セクション間余白を統一 */
+    }
+
     /* ── Hero ── */
     .hero {
-      padding: 80px 0 72px;
+      padding: 72px 0 64px;
       border-bottom: 1px solid var(--border);
       margin-bottom: var(--gap-section);
     }
@@ -22,37 +38,39 @@
       margin-bottom: 20px;
       text-transform: uppercase;
     }
-    /* Animals: series name — large, bold, dominant */
+
+    /* ① Animals: 1〜2段階縮小。強さは維持しつつ圧迫感を軽減 */
     .hero__series {
-      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-size: clamp(1.75rem, 4vw, 2.625rem); /* 旧: clamp(3rem,10vw,5.5rem) */
       font-weight: 600;
-      line-height: 1;
-      letter-spacing: -0.02em;
+      line-height: 1.05;           /* 旧: 1 → 少しゆとりを追加 */
+      letter-spacing: -0.01em;
       color: var(--text);
       margin-bottom: 0;
     }
-    /* Subtitle: subordinate — small, light, stepped below */
+
+    /* Subtitle: 主従関係を維持 */
     .hero__subtitle {
-      font-size: clamp(0.875rem, 2.2vw, 1.125rem);
+      font-size: clamp(0.8125rem, 1.8vw, 1rem);
       font-weight: 400;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: var(--muted);
-      margin-top: 10px;
-      margin-bottom: 28px;
+      margin-top: 8px;
+      margin-bottom: 24px;
     }
     .hero__catch {
-      font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+      font-size: 0.9375rem;
       font-weight: 400;
-      line-height: 1.85;
+      line-height: 1.75;           /* ④ 統一: 1.7〜1.8 */
       color: var(--muted);
       max-width: 44ch;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .hero__tags {
       font-size: 0.75rem;
       color: var(--faint);
       letter-spacing: 0.08em;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
     .hero__cta {
       display: flex;
@@ -90,7 +108,7 @@
       margin-bottom: var(--gap-section);
     }
     .slow-watching__word {
-      font-size: clamp(1.375rem, 3.5vw, 2.25rem);
+      font-size: clamp(1.25rem, 3vw, 1.875rem);
       font-weight: 500;
       letter-spacing: 0.02em;
       color: var(--text);
@@ -99,7 +117,7 @@
     .slow-watching__lead {
       font-size: 0.9375rem;
       font-weight: 400;
-      line-height: 2;
+      line-height: 1.8;            /* ④ 統一 */
       color: var(--muted);
       max-width: 46ch;
     }
@@ -110,14 +128,20 @@
       padding-bottom: var(--gap-section);
       border-bottom: 1px solid var(--border);
     }
+
+    /* ② What is Animals: h2として階層を明確に */
     .concept__label {
-      font-size: 0.6875rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      color: var(--faint);
-      text-transform: uppercase;
-      margin-bottom: 32px;
+      font-size: 1.125rem;         /* 旧: 0.6875rem → +64% UP */
+      font-weight: 600;            /* 旧: 400 */
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-transform: none;        /* uppercase解除 */
+      margin-top: 0;
+      margin-bottom: 24px;         /* 旧: 32px → 見出し直後は少し詰める */
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border); /* subtle なアンダーライン */
     }
+
     .concept__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -126,7 +150,7 @@
     .concept__item-title {
       font-size: 0.8125rem;
       font-weight: 500;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--text);
       margin-bottom: 10px;
       padding-bottom: 10px;
@@ -135,12 +159,12 @@
     .concept__item-body {
       font-size: 0.875rem;
       font-weight: 400;
-      line-height: 1.9;
+      line-height: 1.75;           /* ④ 統一 */
       color: var(--muted);
     }
     .concept__item-body p + p { margin-top: 8px; }
     .concept__item-body ul { list-style: none; margin-top: 8px; }
-    .concept__item-body li { padding: 2px 0; }
+    .concept__item-body li { padding: 3px 0; }
     .concept__item-body li::before {
       content: '—';
       margin-right: 8px;
@@ -186,96 +210,70 @@
       border-bottom: 1px solid var(--border);
       margin-bottom: var(--gap-section);
     }
+
+    /* ② Expansion: h2として階層を明確に */
     .expansion__label {
-      font-size: 0.6875rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      color: var(--faint);
-      text-transform: uppercase;
+      font-size: 1.125rem;         /* 旧: 0.6875rem */
+      font-weight: 600;            /* 旧: 400 */
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-transform: none;
+      margin-top: 0;
       margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
     }
+
     .expansion__lead {
       font-size: 0.9375rem;
       font-weight: 400;
-      line-height: 1.9;
+      line-height: 1.75;           /* ④ 統一 */
       color: var(--muted);
       max-width: 50ch;
       margin-bottom: 16px;
     }
     .expansion__tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
-    /* ── Elsewhere ── */
-    .elsewhere { margin-bottom: var(--gap-section); }
-    .elsewhere__label {
-      font-size: 0.6875rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      color: var(--faint);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    .elsewhere__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 24px 36px;
-    }
-    .elsewhere__group-name {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: var(--text);
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-    .elsewhere__group ul { list-style: none; }
-    .elsewhere__group li + li { margin-top: 8px; }
-    .elsewhere__group a {
-      font-size: 0.8125rem;
-      font-weight: 400;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      transition: opacity 0.2s;
-    }
-    .elsewhere__group a:hover { opacity: 0.55; }
-    .elsewhere__group a::after { content: '↗'; font-size: 0.58rem; opacity: 0.4; }
-
     /* ── Closing ── */
     .closing {
-      padding: 72px 0 56px;
+      padding: 64px 0 56px;        /* ④ 統一感 */
       border-top: 1px solid var(--border);
       text-align: center;
     }
     .closing__text {
-      font-size: clamp(0.9375rem, 2.2vw, 1.25rem);
+      font-size: clamp(0.9375rem, 2.2vw, 1.125rem);
       font-weight: 400;
-      line-height: 2.1;
+      line-height: 1.9;
       color: var(--muted);
       margin-bottom: 32px;
     }
     .closing__text strong {
       display: block;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text);
       font-size: 1.15em;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    /* ── Footer with links ── */
+    /* ③ Footer: padding拡張 + footer-inner コンテナ化 */
     .site-footer {
       margin-top: 0;
-      display: block;          /* 共通CSSのflexを上書き */
-      padding: 48px 0 36px;
+      display: block;
+      padding: 48px 0 40px;        /* 旧: 48px 0 36px → 下余白を増やす */
       border-top: 1px solid var(--border);
       background: var(--surface);
+    }
+    /* ③ footer内のコンテンツを中央寄せコンテナで管理 */
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;             /* 左右に十分な余白を確保 */
     }
     .footer__links {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 24px 36px;
-      margin-bottom: 36px;
+      gap: 24px 40px;              /* 旧: gap: 24px 36px → 横間隔を広く */
+      margin-bottom: 40px;         /* 旧: 36px */
     }
     .footer__copy {
       font-size: 0.6875rem;
@@ -284,7 +282,6 @@
       padding-top: 20px;
       border-top: 1px solid var(--border);
     }
-    /* reuse elsewhere__group styles inside footer */
     .site-footer .elsewhere__group-name {
       font-size: 0.6875rem;
       font-weight: 500;
@@ -296,7 +293,7 @@
       text-transform: uppercase;
     }
     .site-footer .elsewhere__group ul { list-style: none; }
-    .site-footer .elsewhere__group li + li { margin-top: 7px; }
+    .site-footer .elsewhere__group li + li { margin-top: 8px; }
     .site-footer .elsewhere__group a {
       font-size: 0.8125rem;
       font-weight: 400;
@@ -320,6 +317,7 @@
       .concept__grid { grid-template-columns: 1fr; gap: 28px; }
       .slow-watching__lead { max-width: 100%; }
       .closing { padding: 48px 0 40px; }
+      .footer-inner { padding: 0 20px; } /* ③ スマホ左右余白 */
     }
     @media (max-width: 400px) {
       .hero__cta { flex-direction: column; align-items: flex-start; }
@@ -373,7 +371,7 @@
 
     <!-- Concept -->
     <section class="concept" id="what">
-      <p class="concept__label">What is Animals</p>
+      <h2 class="concept__label">What is Animals</h2>
       <div class="concept__grid">
 
         <div class="concept__item">
@@ -442,7 +440,7 @@
 
     <!-- Expansion -->
     <section class="expansion">
-      <p class="expansion__label">Expansion</p>
+      <h2 class="expansion__label">Expansion</h2>
       <p class="expansion__lead">
         Beginning as hand-drawn sketches, Animals expand into many forms.
       </p>
@@ -470,7 +468,8 @@
 
   <!-- Footer with external links -->
   <footer class="site-footer" id="elsewhere">
-    <div class="footer__links">
+    <div class="footer-inner">
+      <div class="footer__links">
       <div class="elsewhere__group">
         <p class="elsewhere__group-name">animals</p>
         <ul>
@@ -496,8 +495,9 @@
           <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
         </ul>
       </div>
-    </div>
+    </div><!-- /footer__links -->
     <p class="footer__copy">© haruo records &nbsp;·&nbsp; animals 1998 —</p>
+    </div><!-- /footer-inner -->
   </footer>
 
 </div>
