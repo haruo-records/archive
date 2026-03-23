@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://haruo-records.github.io/archive/sitemap.xml
