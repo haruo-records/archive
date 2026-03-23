@@ -40,6 +40,59 @@ async function fetchWorks() {
   return res.json();
 }
 
+/* ── fetchAllWorks ──
+ * data/works.json（手動管理）と
+ * test-tube/index.json（organize_animals.py で自動生成）を
+ * 両方読み込んで統合して返す。
+ * test-tube/index.json が存在しなくても動作する。
+ */
+async function fetchAllWorks() {
+  const dir = location.pathname.replace(/\/[^\/]*$/, '');
+  const segs = dir.split('/').filter(Boolean);
+  const depth = Math.max(0, segs.length - 1);
+  const up = depth > 0 ? '../'.repeat(depth) : '';
+
+  // 1. data/works.json（必須）
+  let base = [];
+  try {
+    const r = await fetch(up + 'data/works.json');
+    if (r.ok) base = await r.json();
+  } catch(e) {}
+
+  // 2. test-tube/index.json（任意 — organize_animals.py 生成物）
+  let testtube = [];
+  try {
+    const r = await fetch(up + 'test-tube/index.json');
+    if (r.ok) {
+      const raw = await r.json();
+      testtube = raw.map(item => {
+        const slug   = item.slug;
+        const folder = item.folder || ('items/' + slug);
+        const files  = item.sourceFiles || [];
+        const thumbFile = (item.thumbnail || '').split('/').pop() || files[0] || '';
+        return {
+          id:          slug,
+          title:       item.title || slug,
+          series:      'test-tube',
+          observed:    item.date || '',
+          tags:        ['test-tube animals'],
+          thumbnail:   thumbFile ? ('test-tube/' + folder + '/' + thumbFile) : '',
+          images:      files.map(f => 'test-tube/' + folder + '/' + f),
+          description: '',
+          links:       [],
+        };
+      });
+    }
+  } catch(e) {}
+
+  // 3. マージ（id重複は data/works.json を優先）
+  const map = {};
+  testtube.forEach(w => { map[w.id] = w; });
+  base.forEach(w => { map[w.id] = w; });
+
+  return Object.values(map);
+}
+
 /* ── URL param ── */
 function getParam(key) {
   return new URLSearchParams(location.search).get(key);

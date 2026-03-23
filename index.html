@@ -502,7 +502,7 @@
   let activeTag = getParam("tag") || "all";
 
   try {
-    works = await fetchWorks();
+    works = await fetchAllWorks();
   } catch(e) {
     grid.innerHTML = "<p class=\"empty-state\">\u2014</p>";
     return;

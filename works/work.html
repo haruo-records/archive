@@ -331,7 +331,7 @@
 
   let works, work, idx;
   try {
-    works = await fetchWorks();
+    works = await fetchAllWorks();
     works.sort((a, b) =>
       (b.observed || b.date || "").localeCompare(a.observed || a.date || ""));
     idx  = works.findIndex(w => w.id === id);
@@ -375,10 +375,11 @@
 
   images.forEach((src, i) => {
     const img = document.createElement("img");
-    img.src = src;
     img.alt = work.title + (n > 1 ? " " + (i + 1) : "");
     img.loading = i === 0 ? "eager" : "lazy";
     img.onerror = () => { img.style.display = "none"; };
+    // リポジトリルート基準パスに rootUp() を付加
+    img.src = (src && !src.startsWith('/') && !src.startsWith('http')) ? rootUp() + src : src;
     row.appendChild(img);
   });
 
