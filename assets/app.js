@@ -41,54 +41,76 @@ async function fetchWorks() {
 }
 
 /* ── fetchAllWorks ──
- * data/works.json（手動管理）と
- * test-tube/index.json（organize_animals.py で自動生成）を
- * 両方読み込んで統合して返す。
- * test-tube/index.json が存在しなくても動作する。
+ *
+ * データソース（優先順位順）:
+ *   1. animals/test-tube/index.json  — organize_animals.py の出力物（過去作品群）
+ *   2. data/works.json               — 手動管理分（voltfoot など）
+ *
+ * どちらか一方しかなくても動作する。
+ * id が重複した場合は data/works.json を優先（手動管理側が上書き）。
+ *
+ * パス基準:
+ *   organize_animals.py は Github_Site/animals/test-tube/ に出力する。
+ *   GitHub Pages では /archive/animals/test-tube/ に対応する。
+ *   画像パスも animals/test-tube/items/<slug>/<file> で解決する。
  */
 async function fetchAllWorks() {
-  const dir = location.pathname.replace(/\/[^\/]*$/, '');
+  const dir  = location.pathname.replace(/\/[^\/]*$/, '');
   const segs = dir.split('/').filter(Boolean);
   const depth = Math.max(0, segs.length - 1);
-  const up = depth > 0 ? '../'.repeat(depth) : '';
+  const up   = depth > 0 ? '../'.repeat(depth) : '';
 
-  // 1. data/works.json（必須）
-  let base = [];
-  try {
-    const r = await fetch(up + 'data/works.json');
-    if (r.ok) base = await r.json();
-  } catch(e) {}
-
-  // 2. test-tube/index.json（任意 — organize_animals.py 生成物）
+  // 1. animals/test-tube/index.json（organize_animals.py 生成 — 過去作品群）
   let testtube = [];
   try {
-    const r = await fetch(up + 'test-tube/index.json');
+    const r = await fetch(up + 'animals/test-tube/index.json');
     if (r.ok) {
       const raw = await r.json();
       testtube = raw.map(item => {
         const slug   = item.slug;
+        // folder は "items/slug" 形式で格納されている
         const folder = item.folder || ('items/' + slug);
         const files  = item.sourceFiles || [];
+        // thumbnail フィールドは "items/slug/filename" 形式
         const thumbFile = (item.thumbnail || '').split('/').pop() || files[0] || '';
         return {
           id:          slug,
           title:       item.title || slug,
           series:      'test-tube',
           observed:    item.date || '',
-          tags:        ['test-tube animals'],
-          thumbnail:   thumbFile ? ('test-tube/' + folder + '/' + thumbFile) : '',
-          images:      files.map(f => 'test-tube/' + folder + '/' + f),
-          description: '',
-          links:       [],
+          tags:        item.tags || ['test-tube animals'],
+          // 画像パスは "animals/test-tube/items/slug/filename" — rootUp() が付加される
+          thumbnail:   thumbFile ? ('animals/test-tube/' + folder + '/' + thumbFile) : '',
+          images:      files.map(f => 'animals/test-tube/' + folder + '/' + f),
+          description: item.description || '',
+          links:       item.links || [],
+          pageType:    item.pageType || 'single',
+          mediaType:   item.mediaType || 'image',
         };
       });
     }
-  } catch(e) {}
+  } catch(e) {
+    console.warn('animals/test-tube/index.json not found:', e.message);
+  }
 
-  // 3. マージ（id重複は data/works.json を優先）
+  // 2. data/works.json（手動管理 — 優先）
+  let manual = [];
+  try {
+    const r = await fetch(up + 'data/works.json');
+    if (r.ok) manual = await r.json();
+  } catch(e) {
+    console.warn('data/works.json not found:', e.message);
+  }
+
+  // 3. マージ: test-tube を base に、manual で上書き
   const map = {};
   testtube.forEach(w => { map[w.id] = w; });
-  base.forEach(w => { map[w.id] = w; });
+  manual.forEach(w => {
+    // data/works.json の voltfoot は animals/test-tube/items/ 側があれば不要
+    // ただし意図的に手動管理しているものは優先する
+    if (!map[w.id] || w._manual) map[w.id] = w;
+    else map[w.id] = w;  // 常に manual 優先
+  });
 
   return Object.values(map);
 }
