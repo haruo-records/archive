@@ -339,16 +339,15 @@
       <p class="hero__tags-line">
         speculative biology &nbsp;&middot;&nbsp; observation over explanation
       </p>
-      <a class="btn-primary" href="works/">View Archive</a>
+      <a class="btn-primary" href="works/">View All</a>
     </section>
 
-    <!-- 2. Recent Works -->
+    <!-- 2. Pick Up Works -->
     <section class="works-section fade-in">
       <div class="section-head">
-        <h2 class="section-heading">Recent Works</h2>
-        <a class="see-all" href="works/">View all &rarr;</a>
+        <h2 class="section-heading">Pick Up Works</h2>
+        <button class="btn-random" id="top-btn-random" type="button">&#8635; &nbsp;Random</button>
       </div>
-      <div class="filter-bar" id="top-filter"></div>
       <p class="count-label" id="top-count"></p>
       <div class="works-grid" id="top-grid"></div>
     </section>
@@ -444,7 +443,7 @@
 
     <!-- 8. Final CTA -->
     <div class="fade-in" style="text-align:center; margin-bottom:var(--gap);">
-      <a class="btn-primary" href="works/">View Archive</a>
+      <a class="btn-primary" href="works/">View All</a>
     </div>
 
     <!-- 9. Expansion teaser -->
@@ -495,11 +494,15 @@
 <script>
 (async () => {
   const grid    = document.getElementById("top-grid");
-  const filter  = document.getElementById("top-filter");
   const countEl = document.getElementById("top-count");
+  const btnRandom = document.getElementById("top-btn-random");
+
+  // トップページの表示件数: PC=3件、スマホ=4件
+  function getLimit() {
+    return window.innerWidth < 600 ? 4 : 3;
+  }
 
   let works = [];
-  let activeTag = getParam("tag") || "all";
 
   try {
     works = await fetchAllWorks();
@@ -508,30 +511,28 @@
     return;
   }
 
-  const allTags = ["all", ...new Set(works.flatMap(w => w.tags || []))]
-    .sort((a, b) => a === "all" ? -1 : b === "all" ? 1 : a.localeCompare(b));
+  if (!works.length) {
+    grid.innerHTML = "<p class=\"empty-state\">\u2014 no records \u2014</p>";
+    return;
+  }
 
-  allTags.forEach(tag => {
-    const btn = makeTagButton(tag, () => {
-      activeTag = tag;
-      history.replaceState(null, "",
-        tag === "all" ? location.pathname : "?tag=" + encodeURIComponent(tag));
-      render();
-      syncFilter();
-    });
-    btn.setAttribute("aria-pressed", tag === activeTag ? "true" : "false");
-    if (tag === activeTag) btn.classList.add("active");
-    filter.appendChild(btn);
+  // Randomボタン: 全作品からランダムで1件の詳細ページへ遷移
+  btnRandom.addEventListener("click", () => {
+    const w = works[Math.floor(Math.random() * works.length)];
+    location.href = "works/work.html?id=" + encodeURIComponent(w.id);
   });
 
   function render() {
     grid.innerHTML = "";
-    const list = activeTag === "all"
-      ? works
-      : works.filter(w => (w.tags || []).includes(activeTag));
-    list.sort((a, b) => (b.observed || b.date || "").localeCompare(a.observed || a.date || ""));
-    countEl.textContent = list.length + " work" + (list.length !== 1 ? "s" : "");
-    if (!list.length) { grid.innerHTML = "<p class=\"empty-state\">\u2014 no records \u2014</p>"; return; }
+    const limit = getLimit();
+
+    // 日付降順ソート後、先頭から limit 件を抽出
+    const sorted = [...works].sort((a, b) =>
+      (b.observed || b.date || "").localeCompare(a.observed || a.date || "")
+    );
+    const list = sorted.slice(0, limit);
+
+    countEl.textContent = "";  // トップページではカウント表示なし
 
     list.forEach((w, i) => {
       const card = document.createElement("a");
@@ -575,15 +576,14 @@
     });
   }
 
-  function syncFilter() {
-    filter.querySelectorAll(".tag").forEach(btn => {
-      const on = btn.textContent === activeTag;
-      btn.classList.toggle("active", on);
-      btn.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-  }
-
   render();
+
+  // リサイズ時も件数を再適用
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(render, 200);
+  });
 })();
 </script>
 </body>

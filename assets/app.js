@@ -68,20 +68,31 @@ async function fetchAllWorks() {
       const raw = await r.json();
       testtube = raw.map(item => {
         const slug   = item.slug;
-        // folder は "items/slug" 形式で格納されている
-        const folder = item.folder || ('items/' + slug);
-        const files  = item.sourceFiles || [];
-        // thumbnail フィールドは "items/slug/filename" 形式
-        const thumbFile = (item.thumbnail || '').split('/').pop() || files[0] || '';
+        const folder = item.folder || ('items/' + slug);  // "items/slug"
+        const base   = 'animals/test-tube/' + folder + '/'; // 画像フォルダの基準パス
+
+        // sourceFiles: organize_animals.py が生成する全画像リスト
+        // 旧版の index.json には含まれていない場合があるため以下でフォールバック
+        let files = item.sourceFiles || [];
+
+        // sourceFiles がない場合: thumbnail のファイル名を1件セットにする
+        if (!files.length && item.thumbnail) {
+          files = [ item.thumbnail.split('/').pop() ];
+        }
+
+        // thumbnail: index.json の thumbnail フィールドからファイル名だけ取得
+        const thumbFile = (item.thumbnail || '').split('/').pop() || (files[0] || '');
+
+        // 画像パスはすべて base + filename の形式
+        // rootUp() が呼び出し元で付加されるため、ここではリポジトリルート相対のまま
         return {
           id:          slug,
           title:       item.title || slug,
           series:      'test-tube',
           observed:    item.date || '',
           tags:        item.tags || ['test-tube animals'],
-          // 画像パスは "animals/test-tube/items/slug/filename" — rootUp() が付加される
-          thumbnail:   thumbFile ? ('animals/test-tube/' + folder + '/' + thumbFile) : '',
-          images:      files.map(f => 'animals/test-tube/' + folder + '/' + f),
+          thumbnail:   thumbFile ? (base + thumbFile) : '',
+          images:      files.map(f => base + f),        // ← 全画像を展開
           description: item.description || '',
           links:       item.links || [],
           pageType:    item.pageType || 'single',

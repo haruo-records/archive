@@ -348,7 +348,56 @@
 
   document.title = work.title + " \u2014 Animals";
 
-  const images = work.images && work.images.length ? work.images : (work.thumbnail ? [work.thumbnail] : []);
+  /* ── 全画像リストを確定する ──
+   *
+   * 優先順位:
+   *   1. work.images が2件以上あればそのまま使う（fetchAllWorks 側で展開済みの場合）
+   *   2. 1件以下の場合は meta.json を fetch して sourceFiles を取得する
+   *      meta.json パス例: animals/test-tube/items/pianotrio/meta.json
+   *   3. meta.json も取れなければ thumbnail 1枚にフォールバック
+   *
+   * 背景: animals/test-tube/index.json の旧版には sourceFiles がないため
+   *       fetchAllWorks() が thumbnail 1枚しか images に入れられない問題がある。
+   *       meta.json には必ず sourceFiles が含まれているのでそちらを正本とする。
+   */
+  let images = work.images && work.images.length >= 2
+    ? work.images
+    : null;
+
+  // meta.json から sourceFiles を取得して images を上書き
+  if (!images || images.length <= 1) {
+    try {
+      // work.series と work.id からパスを推定
+      // 例: animals/test-tube/items/pianotrio/meta.json
+      const series  = work.series || 'test-tube';
+      const metaUrl = rootUp() + 'animals/' + series + '/items/' + work.id + '/meta.json';
+      const mr = await fetch(metaUrl);
+      if (mr.ok) {
+        const meta = await mr.json();
+        if (meta.sourceFiles && meta.sourceFiles.length) {
+          // meta.json の sourceFiles はファイル名のみ → フルパスに変換
+          const base = 'animals/' + series + '/items/' + work.id + '/';
+          // ファイル名を自然順ソート（1,2,3...10,11 の順）
+          const sorted = [...meta.sourceFiles].sort((a, b) =>
+            a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+          );
+          images = sorted.map(f => base + f);
+          // thumbnail も更新
+          if (!work.thumbnail && sorted.length) {
+            work.thumbnail = base + sorted[0];
+          }
+        }
+      }
+    } catch(e) {
+      // meta.json 取得失敗は無視してフォールバックへ
+    }
+  }
+
+  // 最終フォールバック: thumbnail 1枚
+  if (!images || !images.length) {
+    images = work.thumbnail ? [work.thumbnail] : [];
+  }
+
   const n = images.length;
 
   /* ── determine layout class ── */
