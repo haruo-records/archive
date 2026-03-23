@@ -3,17 +3,40 @@
   shared utilities v4
 */
 
-/* ── works.json fetch ── */
+/* ── works.json fetch ──
+ *
+ * GitHub Pages project site では URL に /archive/ プレフィックスが付く:
+ *   https://haruo-records.github.io/archive/
+ *   https://haruo-records.github.io/archive/works/
+ *
+ * data/works.json は常に「サイトのルートディレクトリ（=リポジトリルート）」にある。
+ * つまり /archive/data/works.json に相当する。
+ *
+ * どのページからでも確実に解決するため、
+ * 「このページのディレクトリ」から「リポジトリルート」への相対パスを計算する。
+ *
+ * アルゴリズム:
+ *   1. location.pathname からディレクトリ部分を取り出す
+ *   2. そこから "1段目（リポジトリ名）" を除いたページ固有の深さを数える
+ *   3. その分だけ ../ で上がると /archive/ に戻れる
+ *   4. そこから data/works.json を参照する
+ *
+ * 例:
+ *   /archive/         → parts=[] depth=0 → fetch("data/works.json")
+ *   /archive/works/   → parts=['works'] depth=1 → fetch("../data/works.json")
+ *   /archive/works/work.html → 同上
+ */
 async function fetchWorks() {
-  // data/works.json はサイトルート直下に固定。
-  // どのページ深度からでも正確に解決する。
-  // 例: /works/        → segments=['works']        → up='../'
-  // 例: /works/work.html → segments=['works','work.html'] → up='../../' (※ただし ../data/ でOK)
-  // 正確な計算: ファイル名を除いたディレクトリ階層数だけ上がる
-  const parts = location.pathname.replace(/\/[^\/]*$/, '').split('/').filter(Boolean);
-  const up = parts.length > 0 ? '../'.repeat(parts.length) : '';
-  const res = await fetch(up + 'data/works.json');
-  if (!res.ok) throw new Error('fetch failed: ' + res.status + ' (' + up + 'data/works.json)');
+  // ディレクトリ部分のみ取り出す（末尾のファイル名を除去）
+  const dir = location.pathname.replace(/\/[^\/]*$/, ''); // 例: /archive/works
+  // / で分割して空文字と先頭のリポジトリ名('archive')を除いたページ固有部分
+  const segments = dir.split('/').filter(Boolean); // 例: ['archive', 'works']
+  // segments[0] がリポジトリ名なので除外、残りが実際の階層深さ
+  const depth = Math.max(0, segments.length - 1);  // 例: 1
+  const up = depth > 0 ? '../'.repeat(depth) : '';  // 例: '../'
+  const url = up + 'data/works.json';               // 例: '../data/works.json'
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('fetchWorks failed: HTTP ' + res.status + ' for ' + url);
   return res.json();
 }
 
@@ -41,13 +64,25 @@ function makeTagLink(label, href) {
   return a;
 }
 
+/* ── rootUp: リポジトリルートへの相対プレフィックスを返す ──
+ * works.json の画像パスは "animals/test-tube/..." のようにリポジトリルート基準。
+ * 各ページから正しく解決するため、ページ深度に応じた ../ を返す。
+ */
+function rootUp() {
+  const dir = location.pathname.replace(/\/[^\/]*$/, '');
+  const segments = dir.split('/').filter(Boolean);
+  const depth = Math.max(0, segments.length - 1);
+  return depth > 0 ? '../'.repeat(depth) : '';
+}
+
 /* ── Image with fallback ── */
 function makeImg(src, alt) {
   const img = document.createElement('img');
   img.alt = alt || '';
   img.loading = 'lazy';
   img.onerror = () => { img.style.display = 'none'; };
-  img.src = src;
+  // リポジトリルート基準パス（先頭が / でも http でもない）にプレフィックスを付加
+  img.src = (src && !src.startsWith('/') && !src.startsWith('http')) ? rootUp() + src : src;
   return img;
 }
 
@@ -73,9 +108,7 @@ function setActiveNav() {
     const href = a.getAttribute('href') || '';
     const isWorksPage = path.includes('/works');
     const isWorksLink = href.includes('works');
-    const isHome     = path.endsWith('/') && !path.includes('/works');
-    const isHomeLink = href === './' || href === '../' || href.endsWith('/animals/');
-    a.classList.toggle('active', (isWorksPage && isWorksLink) || (isHome && isHomeLink));
+    a.classList.toggle('active', isWorksPage && isWorksLink);
   });
 }
 
