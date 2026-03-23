@@ -5,8 +5,15 @@
 
 /* ── works.json fetch ── */
 async function fetchWorks() {
-  const res = await fetch('/animals/data/works.json');
-  if (!res.ok) throw new Error('fetch failed');
+  // data/works.json はサイトルート直下に固定。
+  // どのページ深度からでも正確に解決する。
+  // 例: /works/        → segments=['works']        → up='../'
+  // 例: /works/work.html → segments=['works','work.html'] → up='../../' (※ただし ../data/ でOK)
+  // 正確な計算: ファイル名を除いたディレクトリ階層数だけ上がる
+  const parts = location.pathname.replace(/\/[^\/]*$/, '').split('/').filter(Boolean);
+  const up = parts.length > 0 ? '../'.repeat(parts.length) : '';
+  const res = await fetch(up + 'data/works.json');
+  if (!res.ok) throw new Error('fetch failed: ' + res.status + ' (' + up + 'data/works.json)');
   return res.json();
 }
 
@@ -64,10 +71,11 @@ function setActiveNav() {
   const path = location.pathname;
   document.querySelectorAll('.site-nav a').forEach(a => {
     const href = a.getAttribute('href') || '';
-    a.classList.toggle('active',
-      path.includes('/works') && href.includes('works') ||
-      path === '/animals/' && href === '/animals/'
-    );
+    const isWorksPage = path.includes('/works');
+    const isWorksLink = href.includes('works');
+    const isHome     = path.endsWith('/') && !path.includes('/works');
+    const isHomeLink = href === './' || href === '../' || href.endsWith('/animals/');
+    a.classList.toggle('active', (isWorksPage && isWorksLink) || (isHome && isHomeLink));
   });
 }
 
