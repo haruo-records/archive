@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — Animals / haruo records</title>
+  <meta name="description" content="Profile — haruo records">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .pg-header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+    .pg-header__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+      margin-bottom: 36px;
+      transition: color 0.18s;
+    }
+    .pg-header__back:hover { color: var(--text); }
+    .pg-header__label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 14px;
+    }
+    .pg-header__title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .pg-body {
+      max-width: 600px;
+      margin-bottom: 80px;
+    }
+
+    .pg-section {
+      margin-bottom: 48px;
+    }
+    .pg-section__heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pg-section__body {
+      font-size: 0.9375rem;
+      line-height: 1.85;
+      color: var(--sub);
+    }
+    .pg-section__body p + p {
+      margin-top: 14px;
+    }
+
+    .pg-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--border-d);
+      margin: 40px 0;
+    }
+
+    .pg-links {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pg-links a {
+      font-size: 0.875rem;
+      color: var(--sub);
+      letter-spacing: 0.04em;
+      transition: color 0.18s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pg-links a:hover { color: var(--text); }
+    .pg-links a::before { content: "↗"; font-size: 0.65rem; color: var(--faint); }
+
+    @media (max-width: 600px) {
+      .pg-header { padding: 48px 0 36px; margin-bottom: 48px; }
+      .pg-body { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <p class="site-logo">
+        <a href="/animals/">haruo / records</a>
+      </p>
+      <nav class="site-nav">
+        <a href="/animals/works/">works</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="pg-header">
+      <a class="pg-header__back" href="/animals/">&larr; animals</a>
+      <p class="pg-header__label">profile</p>
+      <h1 class="pg-header__title">Haruo</h1>
+    </div>
+
+    <div class="pg-body">
+
+      <div class="pg-section">
+        <p class="pg-section__heading">About</p>
+        <div class="pg-section__body">
+          <p>Haruo is an independent observer based in Japan.</p>
+          <p>Working across drawing, observation, and perception — recording forms that exist before they are named.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <div class="pg-section">
+        <p class="pg-section__heading">Projects</p>
+        <div class="pg-section__body">
+          <p><strong style="font-weight:500;color:var(--text);">Animals</strong> — Field Notes on Unknown Forms. A long-term archive of speculative organisms. 1998–ongoing.</p>
+          <p><strong style="font-weight:500;color:var(--text);">HARMONEER</strong> — Designing harmony between self, others, and the world.</p>
+          <p><strong style="font-weight:500;color:var(--text);">Rebooting Dad</strong> — A narrator connecting this world to daily life.</p>
+        </div>
+      </div>
+
+      <div class="pg-divider"></div>
+
+      <div class="pg-section">
+        <p class="pg-section__heading">Elsewhere</p>
+        <div class="pg-links">
+          <a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a>
+          <a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a>
+          <a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a>
+          <a href="https://github.com/haruo-records" target="_blank" rel="noopener">github</a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <div class="footer-group">
+          <p class="footer-group__name">Animals</p>
+          <ul>
+            <li><a href="/animals/works/">archive</a></li>
+            <li><a href="/animals/support/">support</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">HARMONEER</p>
+          <ul>
+            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">Rebooting Dad</p>
+          <ul>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">&copy; haruo records</p>
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+</body>
+</html>

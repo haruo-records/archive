@@ -269,6 +269,19 @@
       max-width: 40ch;
     }
 
+    /* Support CTA */
+    .support-cta {
+      margin-bottom: var(--gap);
+      padding-top: 4px;
+    }
+    .support-cta a {
+      font-size: 0.8125rem;
+      color: var(--sub);
+      letter-spacing: 0.04em;
+      transition: color 0.18s;
+    }
+    .support-cta a:hover { color: var(--text); }
+
     /* RESPONSIVE */
     @media (max-width: 760px) {
       .concept__grid { grid-template-columns: 1fr 1fr; gap: 24px 32px; }
@@ -293,7 +306,7 @@
     <div class="site-header__bar">
       <p class="site-logo">haruo / records</p>
       <nav class="site-nav">
-        <a href="/portal/works/">works</a>
+        <a href="/animals/works/">works</a>
       </nav>
     </div>
   </header>
@@ -326,6 +339,11 @@
       <p class="count-label" id="top-count"></p>
       <div class="works-grid" id="top-grid"></div>
     </section>
+
+    <!-- Support CTA -->
+    <div class="support-cta fade-in">
+      <a href="/animals/support/">&rarr; Support animals</a>
+    </div>
 
     <!-- 3. What is Animals -->
     <section class="concept fade-in" id="what">
@@ -379,7 +397,7 @@
     </section>
 
     <!-- 5. Slow Watching card -->
-    <a class="concept-card fade-in" href="/portal/slow-watching/">
+    <a class="concept-card fade-in" href="/animals/slow-watching/">
       <div class="concept-card__inner">
         <div>
           <p class="concept-card__label">concept</p>
@@ -391,7 +409,7 @@
     </a>
 
     <!-- 6. Phantom Graph card -->
-    <a class="concept-card fade-in" href="/portal/phantom-graph/">
+    <a class="concept-card fade-in" href="/animals/phantom-graph/">
       <div class="concept-card__inner">
         <div>
           <p class="concept-card__label">concept</p>
@@ -434,7 +452,8 @@
         <div class="footer-group">
           <p class="footer-group__name">Animals</p>
           <ul>
-            <li><a href="/portal/works/">archive</a></li>
+            <li><a href="/animals/works/">archive</a></li>
+            <li><a href="/animals/support/">support</a></li>
           </ul>
         </div>
         <div class="footer-group">

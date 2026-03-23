@@ -5,7 +5,7 @@
 
 /* ── works.json fetch ── */
 async function fetchWorks() {
-  const res = await fetch('/portal/data/works.json');
+  const res = await fetch('/animals/data/works.json');
   if (!res.ok) throw new Error('fetch failed');
   return res.json();
 }
@@ -66,7 +66,7 @@ function setActiveNav() {
     const href = a.getAttribute('href') || '';
     a.classList.toggle('active',
       path.includes('/works') && href.includes('works') ||
-      path === '/portal/' && href === '/portal/'
+      path === '/animals/' && href === '/animals/'
     );
   });
 }
