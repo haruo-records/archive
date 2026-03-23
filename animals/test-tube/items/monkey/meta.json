@@ -1,0 +1,14 @@
+{
+  "title": "monkey",
+  "slug": "monkey",
+  "year": 2016,
+  "month": 3,
+  "date": "2016-03",
+  "pageType": "sequence",
+  "mediaType": "image",
+  "count": 2,
+  "sourceFiles": [
+    "2016-03-monkey-1.jpeg",
+    "2016-03-monkey-2.jpeg"
+  ]
+}
