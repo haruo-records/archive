@@ -132,13 +132,36 @@
 <script src="../assets/app.js"></script>
 <script>
 (async () => {
-  const grid     = document.getElementById('works-grid');
+  const grid      = document.getElementById('works-grid');
   const filterBar = document.getElementById('filter-bar');
-  const countEl  = document.getElementById('count-label');
+  const countEl   = document.getElementById('count-label');
   const btnRandom = document.getElementById('btn-random');
 
   let works = [];
-  let activeTag = getParam('tag') || 'all';
+
+  /* ── URLから初期選択タグを取得（?tag=x または ?tags=x,y,z）── */
+  function getInitialTags() {
+    const p = new URLSearchParams(location.search);
+    const multi = p.get('tags');
+    const single = p.get('tag');
+    if (multi) return multi.split(',').map(t => t.trim()).filter(Boolean);
+    if (single) return [single.trim()];
+    return [];
+  }
+
+  let activeTags = new Set(getInitialTags()); // 複数選択 — AND条件
+
+  /* ── URLを選択タグに同期 ── */
+  function syncURL() {
+    const arr = [...activeTags];
+    if (!arr.length) {
+      history.replaceState(null, '', location.pathname);
+    } else if (arr.length === 1) {
+      history.replaceState(null, '', '?tag=' + encodeURIComponent(arr[0]));
+    } else {
+      history.replaceState(null, '', '?tags=' + arr.map(encodeURIComponent).join(','));
+    }
+  }
 
   /* ── load data ── */
   try {
@@ -148,20 +171,44 @@
     return;
   }
 
-  /* ── build tag list ── */
-  const allTags = ['all', ...new Set(works.flatMap(w => w.tags || []))]
-    .sort((a, b) => a === 'all' ? -1 : b === 'all' ? 1 : a.localeCompare(b));
+  /* ── タグ一覧を収集（使用頻度順）── */
+  const tagCount = {};
+  works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
+  const allTags = Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a] || a.localeCompare(b));
 
+  /* ── フィルターUI構築 ── */
+  // 「すべて解除」ボタン
+  const clearBtn = document.createElement('button');
+  clearBtn.className = 'tag tag--clear';
+  clearBtn.type = 'button';
+  clearBtn.textContent = 'all';
+  clearBtn.setAttribute('aria-label', 'すべてのフィルターを解除');
+  clearBtn.addEventListener('click', () => {
+    activeTags.clear();
+    syncURL();
+    renderGrid();
+    syncFilter();
+  });
+  filterBar.appendChild(clearBtn);
+
+  // 各タグボタン
   allTags.forEach(tag => {
-    const btn = makeTagButton(tag, () => {
-      activeTag = tag;
-      history.replaceState(null, '',
-        tag === 'all' ? location.pathname : '?tag=' + encodeURIComponent(tag));
+    const btn = document.createElement('button');
+    btn.className = 'tag';
+    btn.type = 'button';
+    btn.textContent = tag;
+    btn.setAttribute('aria-pressed', activeTags.has(tag) ? 'true' : 'false');
+    if (activeTags.has(tag)) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      if (activeTags.has(tag)) {
+        activeTags.delete(tag);
+      } else {
+        activeTags.add(tag);
+      }
+      syncURL();
       renderGrid();
       syncFilter();
     });
-    btn.setAttribute('aria-pressed', tag === activeTag ? 'true' : 'false');
-    if (tag === activeTag) btn.classList.add('active');
     filterBar.appendChild(btn);
   });
 
@@ -172,17 +219,19 @@
     location.href = 'work.html?id=' + encodeURIComponent(w.id);
   });
 
-  /* ── render grid ── */
+  /* ── グリッド描画 ── */
   function renderGrid() {
     grid.innerHTML = '';
-    const list = activeTag === 'all'
-      ? works
-      : works.filter(w => (w.tags || []).includes(activeTag));
+
+    // AND絞り込み: すべての activeTags を持つ作品のみ
+    const list = activeTags.size === 0
+      ? [...works]
+      : works.filter(w => [...activeTags].every(t => (w.tags || []).includes(t)));
 
     list.sort((a, b) =>
       (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
 
-    countEl.textContent = list.length + ' record' + (list.length !== 1 ? 's' : '');
+    countEl.textContent = list.length + ' work' + (list.length !== 1 ? 's' : '');
 
     if (!list.length) {
       grid.innerHTML = '<p class="empty-state">— no records —</p>';
@@ -194,10 +243,8 @@
       card.className = 'work-card fade-in';
       card.href = 'work.html?id=' + encodeURIComponent(w.id);
       card.setAttribute('role', 'listitem');
-      /* staggered fade */
       card.style.transitionDelay = (i * 0.04) + 's';
 
-      /* thumbnail */
       const thumb = document.createElement('div');
       thumb.className = 'work-card__thumb';
       if (w.thumbnail) {
@@ -209,9 +256,11 @@
         thumb.appendChild(ph);
       }
 
-      /* body */
-      const tagPills = (w.tags || []).slice(0, 3)
-        .map(t => '<span class="tag">' + t + '</span>').join('');
+      /* カードのタグはクリックで絞り込み追加 */
+      const tagPills = (w.tags || []).slice(0, 3).map(t => {
+        const active = activeTags.has(t) ? ' active' : '';
+        return '<span class="tag tag--card' + active + '" data-tag="' + t + '">' + t + '</span>';
+      }).join('');
 
       const body = document.createElement('div');
       body.className = 'work-card__body';
@@ -222,20 +271,29 @@
         '</p>' +
         '<div class="work-card__tags">' + tagPills + '</div>';
 
+      /* カード内タグクリックでフィルター追加（カード遷移を止める）*/
+      body.querySelectorAll('.tag--card').forEach(pill => {
+        pill.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          const t = pill.dataset.tag;
+          if (activeTags.has(t)) activeTags.delete(t); else activeTags.add(t);
+          syncURL();
+          renderGrid();
+          syncFilter();
+        });
+      });
+
       card.appendChild(thumb);
       card.appendChild(body);
       grid.appendChild(card);
     });
 
-    /* trigger fade-in for newly added cards */
     requestAnimationFrame(() => {
       document.querySelectorAll('.work-card.fade-in').forEach(el => {
         const obs = new IntersectionObserver(entries => {
           entries.forEach(e => {
-            if (e.isIntersecting) {
-              e.target.classList.add('visible');
-              obs.unobserve(e.target);
-            }
+            if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
           });
         }, { threshold: 0.05 });
         obs.observe(el);
@@ -244,13 +302,17 @@
   }
 
   function syncFilter() {
-    filterBar.querySelectorAll('.tag').forEach(btn => {
-      const on = btn.textContent === activeTag;
+    // クリアボタン: activeTags が空なら active
+    clearBtn.classList.toggle('active', activeTags.size === 0);
+    // 各タグボタン
+    filterBar.querySelectorAll('.tag:not(.tag--clear)').forEach(btn => {
+      const on = activeTags.has(btn.textContent);
       btn.classList.toggle('active', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   }
 
+  syncFilter(); // 初期状態を反映
   renderGrid();
 })();
 </script>

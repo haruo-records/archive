@@ -153,11 +153,35 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
 }
 button.tag { cursor: pointer; }
+a.tag      { text-decoration: none; cursor: pointer; }
 .tag:hover,
 .tag.active {
   background: var(--text);
   color: var(--white);
   border-color: var(--text);
+}
+
+/* ── 複数タグ選択中インジケーター ──
+   activeTags が1件以上あるとき filter-bar に下線を表示 */
+.filter-bar.has-filter {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+/* all（クリア）ボタン: 何も選んでいないときだけ active 相当の見た目 */
+.tag--clear {
+  color: var(--faint);
+  border-color: var(--border);
+}
+.tag--clear.active,
+.tag--clear:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border-d);
+}
+/* カード内タグ: クリック可能だが主張を抑える */
+.tag--card {
+  cursor: pointer;
 }
 
 /* ─────────────────────────────

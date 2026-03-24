@@ -467,7 +467,12 @@
     const tagsDiv = document.createElement("div");
     tagsDiv.className = "work-meta-block__tags";
     (work.tags || []).forEach(t => {
-      tagsDiv.appendChild(makeTagLink(t, "index.html?tag=" + encodeURIComponent(t)));
+      const a = document.createElement("a");
+      a.className = "tag";
+      a.textContent = t;
+      // ../works/ に ?tag=xxx で遷移（一覧でその1タグが選択された状態）
+      a.href = "../works/?tag=" + encodeURIComponent(t);
+      tagsDiv.appendChild(a);
     });
     metaBlock.appendChild(tagsDiv);
   }
