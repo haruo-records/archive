@@ -526,11 +526,14 @@
     grid.innerHTML = "";
     const limit = getLimit();
 
-    // 日付降順ソート後、先頭から limit 件を抽出
-    const sorted = [...works].sort((a, b) =>
-      (b.observed || b.date || "").localeCompare(a.observed || a.date || "")
-    );
-    const list = sorted.slice(0, limit);
+    // Fisher-Yates シャッフル（偏りなし）で全候補をランダム化し、先頭 limit 件を表示
+    // 元配列 works は破壊しない
+    const pool = [...works];
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    const list = pool.slice(0, limit);
 
     countEl.textContent = "";  // トップページではカウント表示なし
 
