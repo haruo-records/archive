@@ -330,7 +330,7 @@
     <div class="site-header__bar">
       <p class="site-logo">HARUO</p>
       <nav class="site-nav">
-        <a href="works/">archive</a>
+        <a href="archive/">archive</a>
       </nav>
     </div>
   </header>
@@ -350,7 +350,7 @@
       <p class="hero__tags-line">
         speculative biology &nbsp;&middot;&nbsp; observation over explanation
       </p>
-      <a class="btn-primary" href="works/">View Archive</a>
+      <a class="btn-primary" href="archive/">View Archive</a>
     </section>
 
     <!-- 2. Pick Up Works -->
@@ -454,7 +454,7 @@
 
     <!-- 8. Final CTA -->
     <div class="fade-in" style="text-align:center; margin-bottom:var(--gap);">
-      <a class="btn-primary" href="works/">View Archive</a>
+      <a class="btn-primary" href="archive/">View Archive</a>
     </div>
 
     <!-- 9. Expansion teaser -->
@@ -475,7 +475,7 @@
         <div class="footer-group">
           <p class="footer-group__name">Animals</p>
           <ul>
-            <li><a href="works/">archive</a></li>
+            <li><a href="archive/">archive</a></li>
             <li><a href="support/">support</a></li>
           </ul>
         </div>
@@ -530,7 +530,7 @@
   // Randomボタン: 全作品からランダムで1件の詳細ページへ遷移
   btnRandom.addEventListener("click", () => {
     const w = works[Math.floor(Math.random() * works.length)];
-    location.href = "works/work.html?id=" + encodeURIComponent(w.id);
+    location.href = "archive/work.html?id=" + encodeURIComponent(w.id);
   });
 
   function render() {
@@ -551,7 +551,7 @@
     list.forEach((w, i) => {
       const card = document.createElement("a");
       card.className = "work-card fade-in";
-      card.href = "works/work.html?id=" + encodeURIComponent(w.id);
+      card.href = "archive/work.html?id=" + encodeURIComponent(w.id);
       card.style.transitionDelay = (i * 0.04) + "s";
 
       const thumb = document.createElement("div");

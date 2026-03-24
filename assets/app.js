@@ -7,7 +7,7 @@
  *
  * GitHub Pages project site では URL に /archive/ プレフィックスが付く:
  *   https://haruo-records.github.io/archive/
- *   https://haruo-records.github.io/archive/works/
+ *   https://haruo-records.github.io/archive/archive/
  *
  * data/works.json は常に「サイトのルートディレクトリ（=リポジトリルート）」にある。
  * つまり /archive/data/works.json に相当する。
@@ -23,14 +23,14 @@
  *
  * 例:
  *   /archive/         → parts=[] depth=0 → fetch("data/works.json")
- *   /archive/works/   → parts=['works'] depth=1 → fetch("../data/works.json")
- *   /archive/works/work.html → 同上
+ *   /archive/archive/   → parts=['archive'] depth=1 → fetch("../data/works.json")
+ *   /archive/archive/work.html → 同上
  */
 async function fetchWorks() {
   // ディレクトリ部分のみ取り出す（末尾のファイル名を除去）
-  const dir = location.pathname.replace(/\/[^\/]*$/, ''); // 例: /archive/works
+  const dir = location.pathname.replace(/\/[^\/]*$/, ''); // 例: /archive/archive
   // / で分割して空文字と先頭のリポジトリ名('archive')を除いたページ固有部分
-  const segments = dir.split('/').filter(Boolean); // 例: ['archive', 'works']
+  const segments = dir.split('/').filter(Boolean); // 例: ['archive', 'archive']
   // segments[0] がリポジトリ名なので除外、残りが実際の階層深さ
   const depth = Math.max(0, segments.length - 1);  // 例: 1
   const up = depth > 0 ? '../'.repeat(depth) : '';  // 例: '../'
@@ -192,8 +192,8 @@ function setActiveNav() {
   const path = location.pathname;
   document.querySelectorAll('.site-nav a').forEach(a => {
     const href = a.getAttribute('href') || '';
-    const isWorksPage = path.includes('/works');
-    const isWorksLink = href.includes('works');
+    const isWorksPage = path.includes('/archive');
+    const isWorksLink = href.includes('archive');
     a.classList.toggle('active', isWorksPage && isWorksLink);
   });
 }

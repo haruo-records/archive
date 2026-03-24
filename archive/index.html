@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-54F4NP2W');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animals — Archive</title>
+  <meta name="description" content="A field notes archive of speculative organisms.">
+  <link rel="canonical" href="https://haruo-records.github.io/archive/archive/">
+  <!-- OGP -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://haruo-records.github.io/archive/archive/">
+  <meta property="og:title"       content="Archive — Animals">
+  <meta property="og:description" content="A field notes archive of speculative organisms.">
+  <meta property="og:image"       content="https://haruo-records.github.io/archive/img/og-animals.png">
+  <meta property="og:site_name"   content="Animals — haruo records">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Archive — Animals">
+  <meta name="twitter:description" content="A field notes archive of speculative organisms.">
+  <meta name="twitter:image"       content="https://haruo-records.github.io/archive/img/og-animals.png">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    /* ── page header ── */
+    .page-header {
+      padding: 48px 0 36px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .page-header__top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .page-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.125rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .page-sub {
+      font-size: 0.875rem;
+      color: var(--faint);
+      letter-spacing: 0.04em;
+      margin-top: 6px;
+    }
+    /* controls: filter + random */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54F4NP2W"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="site-header__bar">
+      <p class="site-logo">
+        <a href="../">HARUO</a>
+      </p>
+      <nav class="site-nav">
+        <a href="../archive/" class="active">archive</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header fade-in">
+      <div class="page-header__top">
+        <h1 class="page-title">Animals</h1>
+        <button class="btn-random" id="btn-random" type="button">
+          ↻ &nbsp;Random
+        </button>
+      </div>
+      <p class="page-sub">A field notes archive of speculative organisms.</p>
+    </div>
+
+    <div class="controls fade-in">
+      <div class="filter-bar" id="filter-bar">
+        <span class="filter-bar__label">filter —</span>
+      </div>
+      <p class="count-label" id="count-label"></p>
+    </div>
+
+    <div class="works-grid" id="works-grid" role="list"></div>
+
+    <div style="margin-top:40px;">
+      <a href="../support/" style="font-size:0.8125rem;color:var(--sub);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--sub)'">&rarr; Support animals</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <div class="footer-group">
+          <p class="footer-group__name">Animals</p>
+          <ul>
+            <li><a href="../archive/">archive</a></li>
+            <li><a href="../support/">support</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">HARMONEER</p>
+          <ul>
+            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group__name">Rebooting Dad</p>
+          <ul>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">&copy; HARUO All rights reserved.</p>
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script src="../assets/app.js"></script>
+<script>
+(async () => {
+  const grid      = document.getElementById('works-grid');
+  const filterBar = document.getElementById('filter-bar');
+  const countEl   = document.getElementById('count-label');
+  const btnRandom = document.getElementById('btn-random');
+
+  let works = [];
+
+  /* ── URLから初期選択タグを取得（?tag=x または ?tags=x,y,z）── */
+  function getInitialTags() {
+    const p = new URLSearchParams(location.search);
+    const multi = p.get('tags');
+    const single = p.get('tag');
+    if (multi) return multi.split(',').map(t => t.trim()).filter(Boolean);
+    if (single) return [single.trim()];
+    return [];
+  }
+
+  let activeTags = new Set(getInitialTags()); // 複数選択 — AND条件
+
+  /* ── URLを選択タグに同期 ── */
+  function syncURL() {
+    const arr = [...activeTags];
+    if (!arr.length) {
+      history.replaceState(null, '', location.pathname);
+    } else if (arr.length === 1) {
+      history.replaceState(null, '', '?tag=' + encodeURIComponent(arr[0]));
+    } else {
+      history.replaceState(null, '', '?tags=' + arr.map(encodeURIComponent).join(','));
+    }
+  }
+
+  /* ── load data ── */
+  try {
+    works = await fetchAllWorks();
+  } catch(e) {
+    grid.innerHTML = '<p class="empty-state">— data unavailable —</p>';
+    return;
+  }
+
+  /* ── タグ一覧を収集（使用頻度順）── */
+  const tagCount = {};
+  works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
+  const allTags = Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a] || a.localeCompare(b));
+
+  /* ── フィルターUI構築 ── */
+  // 「すべて解除」ボタン
+  const clearBtn = document.createElement('button');
+  clearBtn.className = 'tag tag--clear';
+  clearBtn.type = 'button';
+  clearBtn.textContent = 'all';
+  clearBtn.setAttribute('aria-label', 'すべてのフィルターを解除');
+  clearBtn.addEventListener('click', () => {
+    activeTags.clear();
+    syncURL();
+    renderGrid();
+    syncFilter();
+  });
+  filterBar.appendChild(clearBtn);
+
+  // 各タグボタン
+  allTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'tag';
+    btn.type = 'button';
+    btn.textContent = tag;
+    btn.setAttribute('aria-pressed', activeTags.has(tag) ? 'true' : 'false');
+    if (activeTags.has(tag)) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      if (activeTags.has(tag)) {
+        activeTags.delete(tag);
+      } else {
+        activeTags.add(tag);
+      }
+      syncURL();
+      renderGrid();
+      syncFilter();
+    });
+    filterBar.appendChild(btn);
+  });
+
+  /* ── random button ── */
+  btnRandom.addEventListener('click', () => {
+    if (!works.length) return;
+    const w = works[Math.floor(Math.random() * works.length)];
+    location.href = 'work.html?id=' + encodeURIComponent(w.id);
+  });
+
+  /* ── グリッド描画 ── */
+  function renderGrid() {
+    grid.innerHTML = '';
+
+    // AND絞り込み: すべての activeTags を持つ作品のみ
+    const list = activeTags.size === 0
+      ? [...works]
+      : works.filter(w => [...activeTags].every(t => (w.tags || []).includes(t)));
+
+    list.sort((a, b) =>
+      (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
+
+    countEl.textContent = list.length + ' work' + (list.length !== 1 ? 's' : '');
+
+    if (!list.length) {
+      grid.innerHTML = '<p class="empty-state">— no records —</p>';
+      return;
+    }
+
+    list.forEach((w, i) => {
+      const card = document.createElement('a');
+      card.className = 'work-card fade-in';
+      card.href = 'work.html?id=' + encodeURIComponent(w.id);
+      card.setAttribute('role', 'listitem');
+      card.style.transitionDelay = (i * 0.04) + 's';
+
+      const thumb = document.createElement('div');
+      thumb.className = 'work-card__thumb';
+      if (w.thumbnail) {
+        thumb.appendChild(makeImg(w.thumbnail, w.title));
+      } else {
+        const ph = document.createElement('span');
+        ph.className = 'work-card__no-img';
+        ph.textContent = '—';
+        thumb.appendChild(ph);
+      }
+
+      /* カードのタグはクリックで絞り込み追加 */
+      const tagPills = (w.tags || []).slice(0, 3).map(t => {
+        const active = activeTags.has(t) ? ' active' : '';
+        return '<span class="tag tag--card' + active + '" data-tag="' + t + '">' + t + '</span>';
+      }).join('');
+
+      const body = document.createElement('div');
+      body.className = 'work-card__body';
+      body.innerHTML =
+        '<p class="work-card__title">' + w.title + '</p>' +
+        '<p class="work-card__meta">' +
+          [w.series, w.observed || w.date].filter(Boolean).join(' · ') +
+        '</p>' +
+        '<div class="work-card__tags">' + tagPills + '</div>';
+
+      /* カード内タグクリックでフィルター追加（カード遷移を止める）*/
+      body.querySelectorAll('.tag--card').forEach(pill => {
+        pill.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          const t = pill.dataset.tag;
+          if (activeTags.has(t)) activeTags.delete(t); else activeTags.add(t);
+          syncURL();
+          renderGrid();
+          syncFilter();
+        });
+      });
+
+      card.appendChild(thumb);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.work-card.fade-in').forEach(el => {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.05 });
+        obs.observe(el);
+      });
+    });
+  }
+
+  function syncFilter() {
+    // クリアボタン: activeTags が空なら active
+    clearBtn.classList.toggle('active', activeTags.size === 0);
+    // 各タグボタン
+    filterBar.querySelectorAll('.tag:not(.tag--clear)').forEach(btn => {
+      const on = activeTags.has(btn.textContent);
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  syncFilter(); // 初期状態を反映
+  renderGrid();
+})();
+</script>
+<script src="../assets/gtm-events.js"></script>
+</body>
+</html>
