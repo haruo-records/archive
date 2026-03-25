@@ -95,10 +95,9 @@
     </div>
 
     <div class="controls fade-in">
-      <div class="filter-bar" id="filter-bar">
-        <span class="filter-bar__label">filter —</span>
-      </div>
-      <p class="count-label" id="count-label"></p>
+      <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 12px;">Explore by tag</p>
+      <div class="filter-bar" id="filter-bar"></div>
+      <p class="count-label" id="count-label" style="margin-top: 16px;"></p>
     </div>
 
     <div class="works-grid" id="works-grid" role="list"></div>
@@ -188,14 +187,26 @@
     return;
   }
 
-  /* ── タグ一覧を収集（使用頻度順）── */
+  /* ── タグ一覧を収集（主力タグは意味順、補助タグは頻度順）── */
   const tagCount = {};
   works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
   console.log('[Archive] Tag count:', tagCount);
+  // 主力タグ（視覚的に理解しやすい意味順）
+  const primaryTags = ['curved', 'tubular', 'angular', 'spherical', 'linear', 'clustered', 'transforming'];
   const allTags = Object.keys(tagCount)
     .filter(t => t !== 'test-tube animals') // test-tube animals は表示から除外
-    .sort((a, b) => tagCount[b] - tagCount[a] || a.localeCompare(b));
-  console.log('[Archive] All tags (filtered):', allTags);
+    .sort((a, b) => {
+      const aIdx = primaryTags.indexOf(a);
+      const bIdx = primaryTags.indexOf(b);
+      // 主力タグは意味順（primaryTagsの配列順）
+      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+      // 主力タグを優先
+      if (aIdx !== -1) return -1;
+      if (bIdx !== -1) return 1;
+      // 補助タグは頻度順
+      return tagCount[b] - tagCount[a];
+    });
+  console.log('[Archive] All tags (meaning-ordered primary, frequency-ordered secondary):', allTags);
 
   /* ── フィルターUI構築 ── */
   // 「すべて解除」ボタン
@@ -236,7 +247,12 @@
   /* ── random button ── */
   btnRandom.addEventListener('click', () => {
     if (!works.length) return;
-    const w = works[Math.floor(Math.random() * works.length)];
+    // タグ選択時: そのタグ内でランダム、未選択時: 全作品からランダム
+    const pool = activeTags.size === 0
+      ? works
+      : works.filter(w => [...activeTags].every(t => (w.tags || []).includes(t)));
+    if (!pool.length) return;
+    const w = pool[Math.floor(Math.random() * pool.length)];
     location.href = 'work.html?id=' + encodeURIComponent(w.id);
   });
 
@@ -252,7 +268,13 @@
     list.sort((a, b) =>
       (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
 
-    countEl.textContent = list.length + ' work' + (list.length !== 1 ? 's' : '');
+    // 状態表示
+    if (activeTags.size === 0) {
+      countEl.textContent = 'Latest Works — ' + list.length + ' work' + (list.length !== 1 ? 's' : '');
+    } else {
+      const tagsList = [...activeTags].join(', ');
+      countEl.textContent = 'Showing: ' + tagsList + ' — ' + list.length + ' work' + (list.length !== 1 ? 's' : '');
+    }
 
     if (!list.length) {
       grid.innerHTML = '<p class="empty-state">— no records —</p>';

@@ -10,5 +10,9 @@
   "sourceFiles": [
     "2003-08-thunder-2.jpg",
     "2003-08-thunder-3.jpg"
+  ],
+  "tags": [
+    "linear",
+    "angular"
   ]
 }

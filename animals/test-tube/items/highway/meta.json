@@ -10,5 +10,9 @@
   "sourceFiles": [
     "2016-07-highway-1.jpeg",
     "2016-07-highway-2.jpeg"
+  ],
+  "tags": [
+    "linear",
+    "connected"
   ]
 }

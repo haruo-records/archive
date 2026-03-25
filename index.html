@@ -354,7 +354,10 @@
     </section>
 
     <!-- 2. Tag Filter (Top Page) -->
-    <div class="tag-filter fade-in" id="top-tag-filter" style="margin-bottom: 2rem;"></div>
+    <div class="fade-in" style="margin-bottom: 2rem;">
+      <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 12px;">Explore by tag</p>
+      <div class="tag-filter" id="top-tag-filter"></div>
+    </div>
 
     <!-- 3. Pick Up Works -->
     <section class="works-section fade-in">
@@ -543,15 +546,19 @@
   const tagCount = {};
   works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
 
-  // form系タグを優先、次にstate/motion、頻度順でソート
-  const formTags = ['clustered', 'angular', 'curved', 'tubular', 'branching', 'linear', 'coiled'];
-  const stateTags = ['floating', 'grounded', 'connected', 'shifting', 'elastic'];
+  // 主力タグ（視覚的に理解しやすい意味順）
+  const primaryTags = ['curved', 'tubular', 'angular', 'spherical', 'linear', 'clustered', 'transforming'];
   const allTags = Object.keys(tagCount)
     .filter(t => t !== 'test-tube animals')
     .sort((a, b) => {
-      const aForm = formTags.includes(a) ? 1 : 0;
-      const bForm = formTags.includes(b) ? 1 : 0;
-      if (aForm !== bForm) return bForm - aForm;
+      const aIdx = primaryTags.indexOf(a);
+      const bIdx = primaryTags.indexOf(b);
+      // 主力タグは意味順（primaryTagsの配列順）
+      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
+      // 主力タグを優先
+      if (aIdx !== -1) return -1;
+      if (bIdx !== -1) return 1;
+      // 補助タグは頻度順
       return tagCount[b] - tagCount[a];
     });
 
@@ -581,9 +588,14 @@
     tagFilter.appendChild(btn);
   });
 
-  // Randomボタン: 全作品からランダムで1件の詳細ページへ遷移
+  // Randomボタン: タグ選択時はそのタグ内から、未選択時は全作品からランダム選択
   btnRandom.addEventListener("click", () => {
-    const w = works[Math.floor(Math.random() * works.length)];
+    if (!works.length) return;
+    const pool = activeTag
+      ? works.filter(w => (w.tags || []).includes(activeTag))
+      : works;
+    if (!pool.length) return;
+    const w = pool[Math.floor(Math.random() * pool.length)];
     location.href = "archive/work.html?id=" + encodeURIComponent(w.id);
   });
 

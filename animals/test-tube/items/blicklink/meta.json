@@ -9,5 +9,10 @@
   "count": 1,
   "sourceFiles": [
     "2005-08-blicklink.jpg"
+  ],
+  "tags": [
+    "linear",
+    "connected",
+    "angular"
   ]
 }

@@ -10,5 +10,8 @@
   "sourceFiles": [
     "1998-04-voltfoot.jpg"
   ],
-  "tags": ["angular", "grounded", "mechanical"]
+  "tags": [
+    "angular",
+    "mechanical"
+  ]
 }

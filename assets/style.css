@@ -167,11 +167,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 button.tag { cursor: pointer; }
 a.tag      { text-decoration: none; cursor: pointer; }
-.tag:hover,
-.tag.active {
+.tag:hover {
   background: var(--text);
   color: var(--white);
   border-color: var(--text);
+}
+.tag.active {
+  border-color: var(--text);
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--text);
 }
 
 /* ── 複数タグ選択中インジケーター ──
@@ -195,6 +199,11 @@ a.tag      { text-decoration: none; cursor: pointer; }
 /* カード内タグ: クリック可能だが主張を抑える */
 .tag--card {
   cursor: pointer;
+}
+.tag--card.active {
+  border-color: var(--text);
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--text);
 }
 
 /* ─────────────────────────────
@@ -539,7 +548,7 @@ a.tag      { text-decoration: none; cursor: pointer; }
   letter-spacing: 0.06em;
   color: var(--sub);
   background: var(--white);
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  transition: transform 0.12s ease, opacity 0.12s ease, background 0.18s, color 0.18s, border-color 0.18s;
   cursor: pointer;
   font-family: var(--font);
 }
@@ -547,6 +556,10 @@ a.tag      { text-decoration: none; cursor: pointer; }
   background: var(--text);
   color: var(--white);
   border-color: var(--text);
+}
+.btn-random:active {
+  opacity: 0.6;
+  transform: scale(0.98);
 }
 
 /* ─────────────────────────────
