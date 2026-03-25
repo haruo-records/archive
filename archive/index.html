@@ -119,18 +119,24 @@
           </ul>
         </div>
         <div class="footer-group">
+          <p class="footer-group__name">CONCEPT</p>
+          <ul>
+            <li><a href="https://haruo-records.github.io/slow-watching-site/" class="external" target="_blank" rel="noopener noreferrer">Slow Watching</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
           <p class="footer-group__name">HARMONEER</p>
           <ul>
-            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
-            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
-            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+            <li><a href="https://harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">selfdesign</a></li>
           </ul>
         </div>
         <div class="footer-group">
           <p class="footer-group__name">Rebooting Dad</p>
           <ul>
-            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
-            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" class="external" target="_blank" rel="noopener noreferrer">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" class="external" target="_blank" rel="noopener noreferrer">x.com</a></li>
           </ul>
         </div>
       </div>
@@ -185,7 +191,9 @@
   /* ── タグ一覧を収集（使用頻度順）── */
   const tagCount = {};
   works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
-  const allTags = Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a] || a.localeCompare(b));
+  const allTags = Object.keys(tagCount)
+    .filter(t => t !== 'test-tube animals') // test-tube animals は表示から除外
+    .sort((a, b) => tagCount[b] - tagCount[a] || a.localeCompare(b));
 
   /* ── フィルターUI構築 ── */
   // 「すべて解除」ボタン
@@ -268,10 +276,13 @@
       }
 
       /* カードのタグはクリックで絞り込み追加 */
-      const tagPills = (w.tags || []).slice(0, 3).map(t => {
-        const active = activeTags.has(t) ? ' active' : '';
-        return '<span class="tag tag--card' + active + '" data-tag="' + t + '">' + t + '</span>';
-      }).join('');
+      const tagPills = (w.tags || [])
+        .filter(t => t !== 'test-tube animals') // test-tube animals は表示から除外
+        .slice(0, 3)
+        .map(t => {
+          const active = activeTags.has(t) ? ' active' : '';
+          return '<span class="tag tag--card' + active + '" data-tag="' + t + '">' + t + '</span>';
+        }).join('');
 
       const body = document.createElement('div');
       body.className = 'work-card__body';

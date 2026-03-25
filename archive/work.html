@@ -334,18 +334,24 @@
           </ul>
         </div>
         <div class="footer-group">
+          <p class="footer-group__name">CONCEPT</p>
+          <ul>
+            <li><a href="https://haruo-records.github.io/slow-watching-site/" class="external" target="_blank" rel="noopener noreferrer">Slow Watching</a></li>
+          </ul>
+        </div>
+        <div class="footer-group">
           <p class="footer-group__name">HARMONEER</p>
           <ul>
-            <li><a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a></li>
-            <li><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">knowledge</a></li>
-            <li><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">selfdesign</a></li>
+            <li><a href="https://harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">harmoneer.net</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">knowledge</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">selfdesign</a></li>
           </ul>
         </div>
         <div class="footer-group">
           <p class="footer-group__name">Rebooting Dad</p>
           <ul>
-            <li><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a></li>
-            <li><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a></li>
+            <li><a href="https://www.instagram.com/haruo_harmoneer/" class="external" target="_blank" rel="noopener noreferrer">instagram</a></li>
+            <li><a href="https://x.com/haruo_harmoneer" class="external" target="_blank" rel="noopener noreferrer">x.com</a></li>
           </ul>
         </div>
       </div>
@@ -478,14 +484,17 @@
     dlBtn.download = src.split("/").pop(); // ファイル名
     dlBtn.textContent = "Download";
     dlBtn.setAttribute("data-file", src.split("/").pop());
+    dlBtn.setAttribute("data-index", i.toString());
     dlBtn.addEventListener("click", function() {
       window.dataLayer = window.dataLayer || [];
       dataLayer.push({
-        event: "download",
-        file_name: this.getAttribute("data-file"),
-        work_title: work.title,
-        work_id: work.id,
-        page_path: location.pathname
+        event: "animals_download",
+        work_id: work.id || '',
+        work_title: work.title || '',
+        category: work.series || work.category || '',
+        image_index: parseInt(this.getAttribute("data-index"), 10),
+        file_name: this.getAttribute("data-file") || '',
+        page_type: 'work_detail'
       });
     });
 
@@ -525,10 +534,11 @@
   }
 
   /* tags */
-  if ((work.tags || []).length) {
+  const displayTags = (work.tags || []).filter(t => t !== 'test-tube animals'); // test-tube animals は表示から除外
+  if (displayTags.length) {
     const tagsDiv = document.createElement("div");
     tagsDiv.className = "work-meta-block__tags";
-    (work.tags || []).forEach(t => {
+    displayTags.forEach(t => {
       const a = document.createElement("a");
       a.className = "tag";
       a.textContent = t;
