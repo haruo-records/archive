@@ -66,6 +66,7 @@ async function fetchAllWorks() {
     const r = await fetch(up + 'animals/test-tube/index.json');
     if (r.ok) {
       const raw = await r.json();
+      // まず基本データを map
       testtube = raw.map(item => {
         const slug   = item.slug;
         const folder = item.folder || ('items/' + slug);  // "items/slug"
@@ -90,7 +91,7 @@ async function fetchAllWorks() {
           title:       item.title || slug,
           series:      'test-tube',
           observed:    item.date || '',
-          tags:        item.tags || ['test-tube animals'],
+          tags:        item.tags || ['test-tube animals'], // meta.json から後で上書き
           thumbnail:   thumbFile ? (base + thumbFile) : '',
           images:      files.map(f => base + f),        // ← 全画像を展開
           description: item.description || '',
@@ -99,6 +100,22 @@ async function fetchAllWorks() {
           mediaType:   item.mediaType || 'image',
         };
       });
+
+      // meta.json から tags を読み込んで上書き（並列fetch）
+      await Promise.all(testtube.map(async (work) => {
+        try {
+          const metaUrl = up + 'animals/test-tube/items/' + work.id + '/meta.json';
+          const mr = await fetch(metaUrl);
+          if (mr.ok) {
+            const meta = await mr.json();
+            if (meta.tags && Array.isArray(meta.tags)) {
+              work.tags = meta.tags; // meta.json の tags で上書き
+            }
+          }
+        } catch(e) {
+          // meta.json がない場合はデフォルト値を使用
+        }
+      }));
     }
   } catch(e) {
     console.warn('animals/test-tube/index.json not found:', e.message);
