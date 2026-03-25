@@ -121,13 +121,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 10px;
 }
 .footer-group ul { list-style: none; }
-.footer-group li + li { margin-top: 6px; }
+.footer-group li { line-height: 1.5; }
+.footer-group li + li { margin-top: 8px; }
 .footer-group a {
   font-size: 0.8125rem;
   color: var(--faint);
   transition: color 0.18s;
 }
 .footer-group a:hover { color: var(--text); }
+.footer-group a.external::after {
+  content: "↗";
+  font-size: 0.7em;
+  margin-left: 3px;
+  color: var(--sub);
+  opacity: 0.7;
+  transition: opacity 0.18s, color 0.18s;
+}
+.footer-group a.external:hover::after {
+  opacity: 1;
+  color: var(--text);
+}
 .footer-copy {
   font-size: 0.75rem;
   color: var(--faint);
