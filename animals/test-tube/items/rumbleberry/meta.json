@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2006-01-rumbleberry.jpg"
   ],
-  "tags": [
-    "spherical",
-    "composite"
+  "tags": {
+    "form": "composite",
+    "motion": "expanding",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2006-01-rumbleberry.jpg"
   ]
 }

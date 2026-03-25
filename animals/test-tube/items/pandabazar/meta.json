@@ -13,9 +13,16 @@
     "2016-12-pandabazar-3.png",
     "2016-12-pandabazar-4.png"
   ],
-  "tags": [
-    "spherical",
-    "clustered",
-    "linear"
+  "tags": {
+    "form": "tubular",
+    "motion": "static",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "2016-12-pandabazar-1.png",
+    "2016-12-pandabazar-2.png",
+    "2016-12-pandabazar-3.png",
+    "2016-12-pandabazar-4.png"
   ]
 }

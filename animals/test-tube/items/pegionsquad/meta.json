@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2005-08-pegionsquad.jpg"
   ],
-  "tags": [
-    "spherical",
-    "clustered"
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "2005-08-pegionsquad.jpg"
   ]
 }

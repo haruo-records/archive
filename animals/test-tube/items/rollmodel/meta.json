@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1999-11-rollmodel.jpg"
   ],
-  "tags": [
-    "tubular",
-    "coiled"
+  "tags": {
+    "form": "composite",
+    "motion": "rotating",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1999-11-rollmodel.jpg"
   ]
 }

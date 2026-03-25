@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1999-04-lovem.jpg"
   ],
-  "tags": [
-    "curved",
-    "tubular"
+  "tags": {
+    "form": "tubular",
+    "motion": "static",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1999-04-lovem.jpg"
   ]
 }

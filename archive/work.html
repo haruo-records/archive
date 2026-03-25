@@ -356,6 +356,7 @@
           </ul>
         </div>
       </div>
+      <p style="font-size:0.78rem;color:var(--faint);font-style:italic;line-height:1.8;margin-bottom:1rem;">Observation reveals relationships.<br>Relationships create meaning.</p>
       <p class="footer-copy">&copy; HARUO All rights reserved.</p>
     </div>
   </footer>
@@ -546,6 +547,12 @@
     });
     metaBlock.appendChild(tagsDiv);
   }
+
+  /* relation note */
+  const relNote = document.createElement("p");
+  relNote.className = "work-archive-context";
+  relNote.innerHTML = "This piece exists within a set of relationships.<br>Explore similar conditions.";
+  metaBlock.appendChild(relNote);
 
   /* external links */
   if (work.links && work.links.length) {

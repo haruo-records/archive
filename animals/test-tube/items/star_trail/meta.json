@@ -10,9 +10,13 @@
   "sourceFiles": [
     "1999-11-star_trail.jpg"
   ],
-  "tags": [
-    "linear",
-    "curved",
-    "floating"
+  "tags": {
+    "form": "tubular",
+    "motion": "drifting",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1999-11-star_trail.jpg"
   ]
 }

@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1999-04-tender.jpg"
   ],
-  "tags": [
-    "curved",
-    "tubular"
+  "tags": {
+    "form": "tubular",
+    "motion": "drifting",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1999-04-tender.jpg"
   ]
 }

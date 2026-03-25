@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2005-08-moody_box.jpg"
   ],
-  "tags": [
-    "angular",
-    "composite"
+  "tags": {
+    "form": "composite",
+    "motion": "static",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "2005-08-moody_box.jpg"
   ]
 }

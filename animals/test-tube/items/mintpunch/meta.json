@@ -1,0 +1,22 @@
+{
+  "title": "mintpunch",
+  "slug": "mintpunch",
+  "year": 1998,
+  "month": 4,
+  "date": "1998-04",
+  "pageType": "single",
+  "mediaType": "image",
+  "count": 1,
+  "sourceFiles": [
+    "1998-04-mintpunch.jpg"
+  ],
+  "tags": {
+    "form": "rounded",
+    "motion": "expanding",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1998-04-mintpunch.jpg"
+  ]
+}

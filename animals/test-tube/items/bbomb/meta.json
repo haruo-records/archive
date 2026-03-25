@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2002-05-bbomb.jpg"
   ],
-  "tags": [
-    "spherical",
-    "curved",
-    "transforming"
+  "tags": {
+    "form": "rounded",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2002-05-bbomb.jpg"
   ]
 }

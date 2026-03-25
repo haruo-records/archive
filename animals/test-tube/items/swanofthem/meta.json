@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2005-08-swanofthem.jpg"
   ],
-  "tags": [
-    "curved",
-    "tubular"
+  "tags": {
+    "form": "tubular",
+    "motion": "static",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2005-08-swanofthem.jpg"
   ]
 }

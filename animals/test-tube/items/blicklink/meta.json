@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2005-08-blicklink.jpg"
   ],
-  "tags": [
-    "linear",
-    "connected",
-    "angular"
+  "tags": {
+    "form": "spiky",
+    "motion": "static",
+    "state": "connected",
+    "structure": "single"
+  },
+  "images": [
+    "2005-08-blicklink.jpg"
   ]
 }

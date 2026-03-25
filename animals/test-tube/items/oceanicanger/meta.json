@@ -10,9 +10,13 @@
   "sourceFiles": [
     "1998-07-oceanicanger.jpg"
   ],
-  "tags": [
-    "tubular",
-    "linear",
-    "mechanical"
+  "tags": {
+    "form": "tubular",
+    "motion": "static",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1998-07-oceanicanger.jpg"
   ]
 }

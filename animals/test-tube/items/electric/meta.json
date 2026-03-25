@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2003-08-electric.jpg"
   ],
-  "tags": [
-    "curved",
-    "linear",
-    "floating"
+  "tags": {
+    "form": "tubular",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2003-08-electric.jpg"
   ]
 }

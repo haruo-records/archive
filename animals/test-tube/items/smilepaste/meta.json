@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1999-11-smilepaste.jpg"
   ],
-  "tags": [
-    "tubular",
-    "curved"
+  "tags": {
+    "form": "tubular",
+    "motion": "static",
+    "state": "grounded",
+    "structure": "single"
+  },
+  "images": [
+    "1999-11-smilepaste.jpg"
   ]
 }

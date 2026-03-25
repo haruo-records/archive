@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2002-05-shellshade.jpg"
   ],
-  "tags": [
-    "curved",
-    "spherical"
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "floating",
+    "structure": "dense"
+  },
+  "images": [
+    "2002-05-shellshade.jpg"
   ]
 }

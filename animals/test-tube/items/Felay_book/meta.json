@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2007-05-Felay_book.jpg"
   ],
-  "tags": [
-    "angular",
-    "layered"
+  "tags": {
+    "form": "composite",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2007-05-Felay_book.jpg"
   ]
 }

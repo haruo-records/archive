@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2005-08-bitterbeans.jpg"
   ],
-  "tags": [
-    "spherical",
-    "clustered",
-    "connected"
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "connected",
+    "structure": "cluster"
+  },
+  "images": [
+    "2005-08-bitterbeans.jpg"
   ]
 }

@@ -239,6 +239,165 @@
     }
 
     /* ─────────────────────────────
+       STICKY FILTER STATUS
+       タグ選択中のみ表示
+    ───────────────────────────── */
+    .filter-sticky {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #f7f7f6;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      margin-bottom: 0;
+    }
+    .filter-sticky.is-active {
+      display: flex;
+    }
+    .filter-sticky__text {
+      font-size: 0.6875rem;
+      color: var(--faint);
+      letter-spacing: 0.08em;
+      font-style: italic;
+    }
+    .filter-sticky__clear {
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      background: transparent;
+      border: 1px solid var(--border-d);
+      border-radius: 2px;
+      padding: 0.22em 0.75em;
+      cursor: pointer;
+      font-family: var(--font);
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .filter-sticky__clear:hover {
+      color: var(--text);
+      border-color: var(--sub);
+    }
+
+    /* ─────────────────────────────
+       TAG PREVIEW ROW
+       初期表示: 代表タグのみ
+    ───────────────────────────── */
+    .tag-preview {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 32px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .tag-preview::-webkit-scrollbar { display: none; }
+    .tag-expand-btn {
+      display: inline-block;
+      padding: 0.22em 0.85em;
+      border: 1px solid var(--border-d);
+      border-radius: 2px;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tag-expand-btn:hover {
+      color: var(--text);
+      border-color: var(--sub);
+    }
+
+    /* ─────────────────────────────
+       TAG FILTER (expanded)
+    ───────────────────────────── */
+    .tag-filter {
+      margin-bottom: 12px;
+    }
+    .tag-filter__row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .tag-filter__label {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      width: 52px;
+      flex-shrink: 0;
+    }
+    .tag-filter__btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .tag-btn {
+      display: inline-block;
+      padding: 0.25em 0.75em;
+      border: 1px solid var(--border-d);
+      border-radius: 2px;
+      font-size: 0.625rem;
+      letter-spacing: 0.05em;
+      color: var(--sub);
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .tag-btn:hover {
+      border-color: var(--sub);
+    }
+    .tag-btn.active {
+      background: var(--text);
+      color: var(--white);
+      border-color: var(--text);
+    }
+
+    /* ─────────────────────────────
+       FILTER BAR (expanded時のみ)
+    ───────────────────────────── */
+    .filter-bar {
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 32px;
+      min-height: 20px;
+    }
+    .filter-actions {
+      display: flex;
+      gap: 6px;
+    }
+    .filter-btn {
+      display: inline-block;
+      padding: 0.2em 0.7em;
+      border: 1px solid var(--border-d);
+      border-radius: 2px;
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--sub);
+    }
+
+    /* ─────────────────────────────
        RESPONSIVE
     ───────────────────────────── */
     @media (max-width: 600px) {
@@ -281,6 +440,12 @@
 
   <main>
 
+    <!-- Sticky filter status (タグ選択中のみ表示) -->
+    <div class="filter-sticky" id="filter-sticky">
+      <span class="filter-sticky__text" id="filter-sticky-text"></span>
+      <button class="filter-sticky__clear" id="filter-sticky-clear" type="button">clear</button>
+    </div>
+
     <div class="page-header">
       <p class="page-header__eyebrow">series</p>
       <h1 class="page-header__title">test-tube</h1>
@@ -292,6 +457,36 @@
         <span class="year-filter__label">year —</span>
       </div>
       <span class="count-note" id="count-note"></span>
+    </div>
+
+    <!-- Tag preview row (初期表示: 代表タグ4つ + expand) -->
+    <div class="tag-preview" id="tag-preview"></div>
+
+    <!-- Tag filter full (expanded時のみ表示) -->
+    <div class="tag-filter" id="tag-filter">
+      <div class="tag-filter__row">
+        <span class="tag-filter__label">form</span>
+        <div class="tag-filter__btns" data-cat="form"></div>
+      </div>
+      <div class="tag-filter__row">
+        <span class="tag-filter__label">motion</span>
+        <div class="tag-filter__btns" data-cat="motion"></div>
+      </div>
+      <div class="tag-filter__row">
+        <span class="tag-filter__label">state</span>
+        <div class="tag-filter__btns" data-cat="state"></div>
+      </div>
+      <div class="tag-filter__row">
+        <span class="tag-filter__label">structure</span>
+        <div class="tag-filter__btns" data-cat="structure"></div>
+      </div>
+    </div>
+
+    <!-- Filter bar: random (expanded時のみ) -->
+    <div class="filter-bar" id="filter-bar">
+      <span class="filter-actions">
+        <button class="filter-btn" id="btn-random" type="button">random</button>
+      </span>
     </div>
 
     <div class="archive-feed" id="archive-feed">
@@ -335,19 +530,40 @@
 <script>
 (async () => {
 
-  const feed      = document.getElementById('archive-feed');
-  const yearFilter = document.getElementById('year-filter');
-  const countNote  = document.getElementById('count-note');
+  const feed         = document.getElementById('archive-feed');
+  const yearFilter   = document.getElementById('year-filter');
+  const countNote    = document.getElementById('count-note');
+  const tagFilter    = document.getElementById('tag-filter');
+  const tagPreview   = document.getElementById('tag-preview');
+  const filterSticky = document.getElementById('filter-sticky');
+  const stickyText   = document.getElementById('filter-sticky-text');
+  const filterBar    = document.getElementById('filter-bar');
 
   /* ── URL param ── */
   function getParam(k) {
     return new URLSearchParams(location.search).get(k);
   }
 
-  let allWorks = [];
-  let activeYear = getParam('year') || 'all';
+  const TAG_CATS = ['form', 'motion', 'state', 'structure'];
+  const TAG_VALUES = {
+    form:      ['rounded', 'tubular', 'spiky', 'asymmetric', 'composite'],
+    motion:    ['static', 'rotating', 'expanding', 'drifting', 'transforming'],
+    state:     ['floating', 'grounded', 'connected', 'contained'],
+    structure: ['single', 'paired', 'cluster', 'dense'],
+  };
+  /* 初期表示の代表タグ（1カテゴリ1つ） */
+  const PREVIEW_TAGS = { form: 'rounded', motion: 'drifting', state: 'floating', structure: 'single' };
 
-  /* ── fetch index.json (このファイルと同階層) ── */
+  let allWorks   = [];
+  let activeYear = getParam('year') || 'all';
+  let isExpanded = false;
+  const activeTags = { form: new Set(), motion: new Set(), state: new Set(), structure: new Set() };
+
+  /* ── 初期UI状態: 全タググリッドとfilter-barは非表示 ── */
+  tagFilter.style.display = 'none';
+  filterBar.style.display = 'none';
+
+  /* ── fetch index.json ── */
   try {
     const res = await fetch('index.json');
     if (!res.ok) throw new Error('fetch failed');
@@ -376,15 +592,101 @@
     yearFilter.appendChild(btn);
   });
 
+  /* ── 全タグフィルタを生成（展開時に表示） ── */
+  TAG_CATS.forEach(cat => {
+    const container = document.querySelector(`.tag-filter__btns[data-cat="${cat}"]`);
+    TAG_VALUES[cat].forEach(val => {
+      const btn = document.createElement('button');
+      btn.className = 'tag-btn';
+      btn.type = 'button';
+      btn.textContent = val;
+      btn.dataset.cat = cat;
+      btn.dataset.val = val;
+      btn.addEventListener('click', () => toggleTag(cat, val));
+      container.appendChild(btn);
+    });
+  });
+
+  /* ── プレビュー行を生成（初期表示） ── */
+  TAG_CATS.forEach(cat => {
+    const val = PREVIEW_TAGS[cat];
+    const btn = document.createElement('button');
+    btn.className = 'tag-btn';
+    btn.type = 'button';
+    btn.textContent = val;
+    btn.dataset.cat = cat;
+    btn.dataset.val = val;
+    btn.dataset.preview = 'true';
+    btn.addEventListener('click', () => toggleTag(cat, val));
+    tagPreview.appendChild(btn);
+  });
+
+  /* "+ more" 展開ボタン */
+  const expandBtn = document.createElement('button');
+  expandBtn.className = 'tag-expand-btn';
+  expandBtn.type = 'button';
+  expandBtn.id = 'btn-expand';
+  expandBtn.textContent = '+ more';
+  expandBtn.addEventListener('click', () => {
+    isExpanded = !isExpanded;
+    tagFilter.style.display  = isExpanded ? '' : 'none';
+    filterBar.style.display  = isExpanded ? 'flex' : 'none';
+    expandBtn.textContent    = isExpanded ? '× less' : '+ more';
+    tagPreview.style.marginBottom = isExpanded ? '12px' : '32px';
+  });
+  tagPreview.appendChild(expandBtn);
+
+  /* ── タグ切り替え共通 ── */
+  function toggleTag(cat, val) {
+    if (activeTags[cat].has(val)) {
+      activeTags[cat].delete(val);
+    } else {
+      activeTags[cat].add(val);
+    }
+    render();
+    syncFilter();
+  }
+
+  /* ── Clear（sticky bar） ── */
+  document.getElementById('filter-sticky-clear').addEventListener('click', () => {
+    TAG_CATS.forEach(cat => activeTags[cat].clear());
+    render();
+    syncFilter();
+  });
+
+  /* ── Random ── */
+  document.getElementById('btn-random').addEventListener('click', () => {
+    const list = filteredList();
+    if (!list.length) return;
+    const pick = list[Math.floor(Math.random() * list.length)];
+    const el = feed.querySelector(`[data-slug="${pick.slug}"]`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  /* ── フィルタ適用リスト ── */
+  function filteredList() {
+    let list = activeYear === 'all'
+      ? allWorks
+      : allWorks.filter(w => String(w.year) === activeYear);
+
+    list = list.filter(w => {
+      for (const cat of TAG_CATS) {
+        if (activeTags[cat].size === 0) continue;
+        const wTag = w.tags ? w.tags[cat] : null;
+        if (!activeTags[cat].has(wTag)) return false;
+      }
+      return true;
+    });
+
+    return list;
+  }
+
   /* ── render ── */
   function render() {
     feed.innerHTML = '';
 
-    const list = activeYear === 'all'
-      ? allWorks
-      : allWorks.filter(w => String(w.year) === activeYear);
+    const list = filteredList();
 
-    /* date昇順 */
     list.sort((a, b) =>
       a.year !== b.year ? a.year - b.year :
       a.month !== b.month ? a.month - b.month :
@@ -398,11 +700,9 @@
       return;
     }
 
-    /* 年ごとにグループ化して区切りを挿入 */
     let currentYear = null;
 
     list.forEach((work, i) => {
-      /* 年区切り */
       if (work.year !== currentYear) {
         currentYear = work.year;
         const div = document.createElement('p');
@@ -411,13 +711,11 @@
         feed.appendChild(div);
       }
 
-      /* 作品ブロック */
       const block = buildWorkBlock(work);
       block.style.transitionDelay = (i % 8 * 0.05) + 's';
       feed.appendChild(block);
     });
 
-    /* Intersection Observer で fade-in */
     requestAnimationFrame(() => {
       const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -435,12 +733,12 @@
   function buildWorkBlock(work) {
     const block = document.createElement('div');
     block.className = 'work-block';
+    block.dataset.slug = work.slug;
 
     const files  = work.sourceFiles || [];
     const folder = work.folder || ('items/' + work.slug);
     const n      = files.length;
 
-    /* 複数画像の場合のみ observation note */
     if (n > 1) {
       const note = document.createElement('p');
       note.className = 'obs-note';
@@ -448,7 +746,6 @@
       block.appendChild(note);
     }
 
-    /* image row */
     const row = document.createElement('div');
     let rowClass = 'image-row';
     if      (n === 1) rowClass += ' image-row--single';
@@ -464,13 +761,8 @@
       const img = document.createElement('img');
       img.alt     = work.slug;
       img.loading = 'lazy';
-      /* GIF はデコードを eager に */
       const isGif = fname.toLowerCase().endsWith('.gif');
-      if (isGif) {
-        img.dataset.gif = 'true';
-        img.decoding = 'auto';
-      }
-      /* パス: index.json の folder フィールドを使う */
+      if (isGif) { img.dataset.gif = 'true'; img.decoding = 'auto'; }
       img.src = folder + '/' + fname;
       img.onerror = () => { cell.style.display = 'none'; };
 
@@ -480,7 +772,6 @@
 
     block.appendChild(row);
 
-    /* メタ情報 */
     const meta = document.createElement('div');
     meta.className = 'work-meta';
 
@@ -510,9 +801,20 @@
   function syncFilter() {
     yearFilter.querySelectorAll('.year-btn').forEach(btn => {
       const y = btn.textContent;
-      const on = y === activeYear || (y === 'all' && activeYear === 'all');
-      btn.classList.toggle('active', on);
+      btn.classList.toggle('active', y === activeYear || (y === 'all' && activeYear === 'all'));
     });
+
+    /* プレビュー行 + 全タググリッド: 両方を同時に同期 */
+    document.querySelectorAll('.tag-btn').forEach(btn => {
+      btn.classList.toggle('active', activeTags[btn.dataset.cat].has(btn.dataset.val));
+    });
+
+    /* sticky bar: タグ選択中のみ表示 */
+    const parts = [];
+    TAG_CATS.forEach(cat => activeTags[cat].forEach(v => parts.push(v)));
+    const hasActive = parts.length > 0;
+    stickyText.textContent = hasActive ? 'Viewing: ' + parts.join(' × ') : '';
+    filterSticky.classList.toggle('is-active', hasActive);
   }
 
   render();

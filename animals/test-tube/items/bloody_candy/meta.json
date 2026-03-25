@@ -10,9 +10,13 @@
   "sourceFiles": [
     "1999-11-bloody_candy.jpg"
   ],
-  "tags": [
-    "spherical",
-    "clustered",
-    "transforming"
+  "tags": {
+    "form": "rounded",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "1999-11-bloody_candy.jpg"
   ]
 }

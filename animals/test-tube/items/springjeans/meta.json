@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2005-01-springjeans.jpg"
   ],
-  "tags": [
-    "tubular",
-    "angular"
+  "tags": {
+    "form": "spiky",
+    "motion": "expanding",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "2005-01-springjeans.jpg"
   ]
 }

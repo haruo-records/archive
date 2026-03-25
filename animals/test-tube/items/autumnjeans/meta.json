@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2005-01-autumnjeans.jpg"
   ],
-  "tags": [
-    "tubular",
-    "angular",
-    "transforming"
+  "tags": {
+    "form": "spiky",
+    "motion": "transforming",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "2005-01-autumnjeans.jpg"
   ]
 }

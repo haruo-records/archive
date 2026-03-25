@@ -1,0 +1,22 @@
+{
+  "title": "popularhell",
+  "slug": "popularhell",
+  "year": 1998,
+  "month": 7,
+  "date": "1998-07",
+  "pageType": "single",
+  "mediaType": "image",
+  "count": 1,
+  "sourceFiles": [
+    "1998-07-popularhell.jpg"
+  ],
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "floating",
+    "structure": "dense"
+  },
+  "images": [
+    "1998-07-popularhell.jpg"
+  ]
+}

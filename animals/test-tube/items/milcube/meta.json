@@ -10,9 +10,13 @@
   "sourceFiles": [
     "1998-04-milcube.jpg"
   ],
-  "tags": [
-    "spherical",
-    "clustered",
-    "transforming"
+  "tags": {
+    "form": "rounded",
+    "motion": "transforming",
+    "state": "contained",
+    "structure": "cluster"
+  },
+  "images": [
+    "1998-04-milcube.jpg"
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "title": "popularhell_1999",
+  "slug": "popularhell_1999",
+  "year": 1999,
+  "month": 11,
+  "date": "1999-11",
+  "pageType": "single",
+  "mediaType": "image",
+  "count": 1,
+  "sourceFiles": [
+    "1999-11-popularhell.jpg"
+  ],
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "floating",
+    "structure": "dense"
+  },
+  "images": [
+    "1999-11-popularhell.jpg"
+  ]
+}

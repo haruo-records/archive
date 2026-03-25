@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2005-08-smokestak.jpg"
   ],
-  "tags": [
-    "tubular",
-    "linear"
+  "tags": {
+    "form": "tubular",
+    "motion": "drifting",
+    "state": "grounded",
+    "structure": "single"
+  },
+  "images": [
+    "2005-08-smokestak.jpg"
   ]
 }

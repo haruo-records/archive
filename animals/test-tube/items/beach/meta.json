@@ -11,8 +11,14 @@
     "2003-08-beach-1.jpg",
     "2003-08-beach-2.jpg"
   ],
-  "tags": [
-    "curved",
-    "layered"
+  "tags": {
+    "form": "composite",
+    "motion": "static",
+    "state": "floating",
+    "structure": "paired"
+  },
+  "images": [
+    "2003-08-beach-1.jpg",
+    "2003-08-beach-2.jpg"
   ]
 }

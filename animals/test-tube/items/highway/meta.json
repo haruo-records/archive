@@ -11,8 +11,14 @@
     "2016-07-highway-1.jpeg",
     "2016-07-highway-2.jpeg"
   ],
-  "tags": [
-    "linear",
-    "connected"
+  "tags": {
+    "form": "tubular",
+    "motion": "static",
+    "state": "connected",
+    "structure": "paired"
+  },
+  "images": [
+    "2016-07-highway-1.jpeg",
+    "2016-07-highway-2.jpeg"
   ]
 }

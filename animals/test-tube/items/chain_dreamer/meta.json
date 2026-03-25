@@ -10,9 +10,13 @@
   "sourceFiles": [
     "1998-11-chain_dreamer.jpg"
   ],
-  "tags": [
-    "tubular",
-    "curved",
-    "connected"
+  "tags": {
+    "form": "tubular",
+    "motion": "drifting",
+    "state": "connected",
+    "structure": "single"
+  },
+  "images": [
+    "1998-11-chain_dreamer.jpg"
   ]
 }

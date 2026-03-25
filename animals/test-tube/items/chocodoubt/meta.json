@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2007-01-chocodoubt.gif"
   ],
-  "tags": [
-    "angular",
-    "transforming"
+  "tags": {
+    "form": "spiky",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2007-01-chocodoubt.gif"
   ]
 }

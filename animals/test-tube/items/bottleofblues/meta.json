@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2005-08-bottleofblues.jpg"
   ],
-  "tags": [
-    "angular",
-    "tubular"
+  "tags": {
+    "form": "spiky",
+    "motion": "static",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "2005-08-bottleofblues.jpg"
   ]
 }

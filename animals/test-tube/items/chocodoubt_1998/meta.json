@@ -1,0 +1,22 @@
+{
+  "title": "chocodoubt_1998",
+  "slug": "chocodoubt_1998",
+  "year": 1998,
+  "month": 6,
+  "date": "1998-06",
+  "pageType": "single",
+  "mediaType": "image",
+  "count": 1,
+  "sourceFiles": [
+    "1998-06-chocodoubt.jpg"
+  ],
+  "tags": {
+    "form": "rounded",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "paired"
+  },
+  "images": [
+    "1998-06-chocodoubt.jpg"
+  ]
+}

@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1999-11-jamspot.jpg"
   ],
-  "tags": [
-    "spherical",
-    "clustered"
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "1999-11-jamspot.jpg"
   ]
 }

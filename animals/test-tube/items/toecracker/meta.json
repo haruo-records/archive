@@ -14,9 +14,17 @@
     "2016-11-toecracker-3.png",
     "2016-11-toecracker-4.png"
   ],
-  "tags": [
-    "angular",
-    "transforming",
-    "mechanical"
+  "tags": {
+    "form": "spiky",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "2016-11-toecracker.gif",
+    "2016-11-toecracker-1.png",
+    "2016-11-toecracker-2.png",
+    "2016-11-toecracker-3.png",
+    "2016-11-toecracker-4.png"
   ]
 }

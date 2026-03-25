@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2016-07-losthighway.jpeg"
   ],
-  "tags": [
-    "linear",
-    "curved"
+  "tags": {
+    "form": "tubular",
+    "motion": "drifting",
+    "state": "connected",
+    "structure": "single"
+  },
+  "images": [
+    "2016-07-losthighway.jpeg"
   ]
 }

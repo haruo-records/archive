@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2005-08-extrabounce.jpg"
   ],
-  "tags": [
-    "spherical",
-    "curved",
-    "elastic"
+  "tags": {
+    "form": "asymmetric",
+    "motion": "expanding",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2005-08-extrabounce.jpg"
   ]
 }

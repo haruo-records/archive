@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1999-11-freshpack.jpg"
   ],
-  "tags": [
-    "angular",
-    "composite"
+  "tags": {
+    "form": "composite",
+    "motion": "static",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "1999-11-freshpack.jpg"
   ]
 }

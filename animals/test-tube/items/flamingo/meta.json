@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2005-10-flamingo.jpg"
   ],
-  "tags": [
-    "linear",
-    "curved",
-    "transforming"
+  "tags": {
+    "form": "tubular",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2005-10-flamingo.jpg"
   ]
 }

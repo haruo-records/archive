@@ -11,5 +11,14 @@
     "2003-08-spring-1.jpg",
     "2003-08-spring-2.jpg"
   ],
-  "tags": ["coiled", "tubular", "elastic"]
+  "tags": {
+    "form": "composite",
+    "motion": "expanding",
+    "state": "floating",
+    "structure": "paired"
+  },
+  "images": [
+    "2003-08-spring-1.jpg",
+    "2003-08-spring-2.jpg"
+  ]
 }

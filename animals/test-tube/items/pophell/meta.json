@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1998-11-pophell.jpg"
   ],
-  "tags": [
-    "spherical",
-    "clustered"
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "1998-11-pophell.jpg"
   ]
 }

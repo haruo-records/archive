@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2007-05-Felay_box.jpg"
   ],
-  "tags": [
-    "angular",
-    "composite"
+  "tags": {
+    "form": "composite",
+    "motion": "transforming",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "2007-05-Felay_box.jpg"
   ]
 }

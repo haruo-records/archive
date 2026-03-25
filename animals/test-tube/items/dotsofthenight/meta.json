@@ -10,9 +10,13 @@
   "sourceFiles": [
     "2002-05-dotsofthenight.jpg"
   ],
-  "tags": [
-    "spherical",
-    "clustered",
-    "floating"
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "2002-05-dotsofthenight.jpg"
   ]
 }

@@ -11,8 +11,14 @@
     "2016-03-thiskiss-1.jpeg",
     "2016-03-thiskiss-2.jpeg"
   ],
-  "tags": [
-    "curved",
-    "angular"
+  "tags": {
+    "form": "spiky",
+    "motion": "static",
+    "state": "connected",
+    "structure": "paired"
+  },
+  "images": [
+    "2016-03-thiskiss-1.jpeg",
+    "2016-03-thiskiss-2.jpeg"
   ]
 }

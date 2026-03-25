@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2005-01-summerjeans.jpg"
   ],
-  "tags": [
-    "tubular",
-    "angular"
+  "tags": {
+    "form": "spiky",
+    "motion": "static",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "2005-01-summerjeans.jpg"
   ]
 }

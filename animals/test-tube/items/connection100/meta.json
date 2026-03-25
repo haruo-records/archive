@@ -10,9 +10,13 @@
   "sourceFiles": [
     "1998-06-connection100.jpg"
   ],
-  "tags": [
-    "linear",
-    "branching",
-    "connected"
+  "tags": {
+    "form": "composite",
+    "motion": "static",
+    "state": "connected",
+    "structure": "single"
+  },
+  "images": [
+    "1998-06-connection100.jpg"
   ]
 }

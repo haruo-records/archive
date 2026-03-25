@@ -13,8 +13,16 @@
     "2016-09-toiletcrisis-3.jpeg",
     "2016-09-toiletcrisis-4.jpeg"
   ],
-  "tags": [
-    "angular",
-    "tubular"
+  "tags": {
+    "form": "spiky",
+    "motion": "static",
+    "state": "contained",
+    "structure": "cluster"
+  },
+  "images": [
+    "2016-09-toiletcrisis-1.jpeg",
+    "2016-09-toiletcrisis-2.jpeg",
+    "2016-09-toiletcrisis-3.jpeg",
+    "2016-09-toiletcrisis-4.jpeg"
   ]
 }

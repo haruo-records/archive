@@ -11,5 +11,14 @@
     "2003-08-shadow-1.jpg",
     "2003-08-shadow-2.jpg"
   ],
-  "tags": ["stretching", "curved", "shifting"]
+  "tags": {
+    "form": "rounded",
+    "motion": "expanding",
+    "state": "grounded",
+    "structure": "paired"
+  },
+  "images": [
+    "2003-08-shadow-1.jpg",
+    "2003-08-shadow-2.jpg"
+  ]
 }

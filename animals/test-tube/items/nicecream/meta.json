@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1999-11-nicecream.jpg"
   ],
-  "tags": [
-    "spherical",
-    "layered"
+  "tags": {
+    "form": "composite",
+    "motion": "static",
+    "state": "contained",
+    "structure": "single"
+  },
+  "images": [
+    "1999-11-nicecream.jpg"
   ]
 }

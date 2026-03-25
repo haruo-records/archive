@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2002-05-beatlebomb.jpg"
   ],
-  "tags": [
-    "spherical",
-    "curved"
+  "tags": {
+    "form": "rounded",
+    "motion": "expanding",
+    "state": "grounded",
+    "structure": "single"
+  },
+  "images": [
+    "2002-05-beatlebomb.jpg"
   ]
 }

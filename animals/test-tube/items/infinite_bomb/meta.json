@@ -10,9 +10,13 @@
   "sourceFiles": [
     "1999-11-infinite_bomb.jpg"
   ],
-  "tags": [
-    "spherical",
-    "coiled",
-    "transforming"
+  "tags": {
+    "form": "composite",
+    "motion": "transforming",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1999-11-infinite_bomb.jpg"
   ]
 }

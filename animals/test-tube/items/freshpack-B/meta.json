@@ -1,0 +1,22 @@
+{
+  "title": "freshpack-B",
+  "slug": "freshpack-B",
+  "year": 1999,
+  "month": 11,
+  "date": "1999-11",
+  "pageType": "single",
+  "mediaType": "image",
+  "count": 1,
+  "sourceFiles": [
+    "1999-11-freshpack-B.jpg"
+  ],
+  "tags": {
+    "form": "rounded",
+    "motion": "static",
+    "state": "contained",
+    "structure": "paired"
+  },
+  "images": [
+    "1999-11-freshpack-B.jpg"
+  ]
+}

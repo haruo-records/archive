@@ -12,9 +12,15 @@
     "2016-06-breaker-2.jpeg",
     "2016-06-breaker-3.jpeg"
   ],
-  "tags": [
-    "tubular",
-    "angular",
-    "mechanical"
+  "tags": {
+    "form": "spiky",
+    "motion": "static",
+    "state": "floating",
+    "structure": "cluster"
+  },
+  "images": [
+    "2016-06-breaker-1.jpeg",
+    "2016-06-breaker-2.jpeg",
+    "2016-06-breaker-3.jpeg"
   ]
 }

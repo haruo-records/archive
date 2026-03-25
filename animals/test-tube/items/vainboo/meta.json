@@ -10,8 +10,13 @@
   "sourceFiles": [
     "2002-05-vainboo.jpg"
   ],
-  "tags": [
-    "spherical",
-    "layered"
+  "tags": {
+    "form": "composite",
+    "motion": "static",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "2002-05-vainboo.jpg"
   ]
 }

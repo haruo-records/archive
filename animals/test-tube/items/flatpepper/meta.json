@@ -10,8 +10,13 @@
   "sourceFiles": [
     "1998-04-flatpepper.jpg"
   ],
-  "tags": [
-    "curved",
-    "tubular"
+  "tags": {
+    "form": "tubular",
+    "motion": "static",
+    "state": "floating",
+    "structure": "single"
+  },
+  "images": [
+    "1998-04-flatpepper.jpg"
   ]
 }

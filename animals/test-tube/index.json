@@ -9,7 +9,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/flatpepper",
-    "thumbnail": "items/flatpepper/1998-04-flatpepper.jpg"
+    "thumbnail": "items/flatpepper/1998-04-flatpepper.jpg",
+    "sourceFiles": [
+      "1998-04-flatpepper.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "milcube",
@@ -21,7 +30,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/milcube",
-    "thumbnail": "items/milcube/1998-04-milcube.jpg"
+    "thumbnail": "items/milcube/1998-04-milcube.jpg",
+    "sourceFiles": [
+      "1998-04-milcube.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "transforming",
+      "state": "contained",
+      "structure": "cluster"
+    }
+  },
+  {
+    "title": "mintpunch",
+    "slug": "mintpunch",
+    "year": 1998,
+    "month": 4,
+    "date": "1998-04",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/mintpunch",
+    "thumbnail": "items/mintpunch/1998-04-mintpunch.jpg",
+    "sourceFiles": [
+      "1998-04-mintpunch.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "expanding",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "voltfoot",
@@ -33,7 +72,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/voltfoot",
-    "thumbnail": "items/voltfoot/1998-04-voltfoot.jpg"
+    "thumbnail": "items/voltfoot/1998-04-voltfoot.jpg",
+    "sourceFiles": [
+      "1998-04-voltfoot.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "transforming",
+      "state": "grounded",
+      "structure": "single"
+    }
+  },
+  {
+    "title": "chocodoubt_1998",
+    "slug": "chocodoubt_1998",
+    "year": 1998,
+    "month": 6,
+    "date": "1998-06",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/chocodoubt_1998",
+    "thumbnail": "items/chocodoubt_1998/1998-06-chocodoubt.jpg",
+    "sourceFiles": [
+      "1998-06-chocodoubt.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "connection",
@@ -45,7 +114,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/connection",
-    "thumbnail": "items/connection/1998-06-connection.jpg"
+    "thumbnail": "items/connection/1998-06-connection.jpg",
+    "sourceFiles": [
+      "1998-06-connection.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "connected",
+      "structure": "single"
+    }
   },
   {
     "title": "connection100",
@@ -57,7 +135,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/connection100",
-    "thumbnail": "items/connection100/1998-06-connection100.jpg"
+    "thumbnail": "items/connection100/1998-06-connection100.jpg",
+    "sourceFiles": [
+      "1998-06-connection100.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "connected",
+      "structure": "single"
+    }
   },
   {
     "title": "oceanicanger",
@@ -69,7 +156,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/oceanicanger",
-    "thumbnail": "items/oceanicanger/1998-07-oceanicanger.jpg"
+    "thumbnail": "items/oceanicanger/1998-07-oceanicanger.jpg",
+    "sourceFiles": [
+      "1998-07-oceanicanger.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
+  },
+  {
+    "title": "popularhell",
+    "slug": "popularhell",
+    "year": 1998,
+    "month": 7,
+    "date": "1998-07",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/popularhell",
+    "thumbnail": "items/popularhell/1998-07-popularhell.jpg",
+    "sourceFiles": [
+      "1998-07-popularhell.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "dense"
+    }
   },
   {
     "title": "suncap",
@@ -81,7 +198,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/suncap",
-    "thumbnail": "items/suncap/1998-07-suncap.jpg"
+    "thumbnail": "items/suncap/1998-07-suncap.jpg",
+    "sourceFiles": [
+      "1998-07-suncap.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "chain_dreamer",
@@ -93,7 +219,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/chain_dreamer",
-    "thumbnail": "items/chain_dreamer/1998-11-chain_dreamer.jpg"
+    "thumbnail": "items/chain_dreamer/1998-11-chain_dreamer.jpg",
+    "sourceFiles": [
+      "1998-11-chain_dreamer.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "drifting",
+      "state": "connected",
+      "structure": "single"
+    }
   },
   {
     "title": "king_muscle",
@@ -105,7 +240,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/king_muscle",
-    "thumbnail": "items/king_muscle/1998-11-king_muscle.jpg"
+    "thumbnail": "items/king_muscle/1998-11-king_muscle.jpg",
+    "sourceFiles": [
+      "1998-11-king_muscle.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "pophell",
@@ -117,7 +261,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/pophell",
-    "thumbnail": "items/pophell/1998-11-pophell.jpg"
+    "thumbnail": "items/pophell/1998-11-pophell.jpg",
+    "sourceFiles": [
+      "1998-11-pophell.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
+  },
+  {
+    "title": "sigh-spin",
+    "slug": "sigh-spin",
+    "year": 1998,
+    "month": 11,
+    "date": "1998-11",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/sigh-spin",
+    "thumbnail": "items/sigh-spin/1998-11-sigh-spin.jpg",
+    "sourceFiles": [
+      "1998-11-sigh-spin.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "rotating",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "lovem",
@@ -129,7 +303,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/lovem",
-    "thumbnail": "items/lovem/1999-04-lovem.jpg"
+    "thumbnail": "items/lovem/1999-04-lovem.jpg",
+    "sourceFiles": [
+      "1999-04-lovem.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "tender",
@@ -141,7 +324,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/tender",
-    "thumbnail": "items/tender/1999-04-tender.jpg"
+    "thumbnail": "items/tender/1999-04-tender.jpg",
+    "sourceFiles": [
+      "1999-04-tender.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "drifting",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "bloody_candy",
@@ -153,7 +345,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/bloody_candy",
-    "thumbnail": "items/bloody_candy/1999-11-bloody_candy.jpg"
+    "thumbnail": "items/bloody_candy/1999-11-bloody_candy.jpg",
+    "sourceFiles": [
+      "1999-11-bloody_candy.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "freshpack",
@@ -165,7 +366,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/freshpack",
-    "thumbnail": "items/freshpack/1999-11-freshpack.jpg"
+    "thumbnail": "items/freshpack/1999-11-freshpack.jpg",
+    "sourceFiles": [
+      "1999-11-freshpack.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "contained",
+      "structure": "single"
+    }
+  },
+  {
+    "title": "freshpack-B",
+    "slug": "freshpack-B",
+    "year": 1999,
+    "month": 11,
+    "date": "1999-11",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/freshpack-B",
+    "thumbnail": "items/freshpack-B/1999-11-freshpack-B.jpg",
+    "sourceFiles": [
+      "1999-11-freshpack-B.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "contained",
+      "structure": "paired"
+    }
   },
   {
     "title": "infinite_bomb",
@@ -177,7 +408,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/infinite_bomb",
-    "thumbnail": "items/infinite_bomb/1999-11-infinite_bomb.jpg"
+    "thumbnail": "items/infinite_bomb/1999-11-infinite_bomb.jpg",
+    "sourceFiles": [
+      "1999-11-infinite_bomb.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "jamspot",
@@ -189,7 +429,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/jamspot",
-    "thumbnail": "items/jamspot/1999-11-jamspot.jpg"
+    "thumbnail": "items/jamspot/1999-11-jamspot.jpg",
+    "sourceFiles": [
+      "1999-11-jamspot.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "nicecream",
@@ -201,7 +450,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/nicecream",
-    "thumbnail": "items/nicecream/1999-11-nicecream.jpg"
+    "thumbnail": "items/nicecream/1999-11-nicecream.jpg",
+    "sourceFiles": [
+      "1999-11-nicecream.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "contained",
+      "structure": "single"
+    }
+  },
+  {
+    "title": "popularhell_1999",
+    "slug": "popularhell_1999",
+    "year": 1999,
+    "month": 11,
+    "date": "1999-11",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/popularhell_1999",
+    "thumbnail": "items/popularhell_1999/1999-11-popularhell.jpg",
+    "sourceFiles": [
+      "1999-11-popularhell.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "dense"
+    }
   },
   {
     "title": "rollmodel",
@@ -213,7 +492,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/rollmodel",
-    "thumbnail": "items/rollmodel/1999-11-rollmodel.jpg"
+    "thumbnail": "items/rollmodel/1999-11-rollmodel.jpg",
+    "sourceFiles": [
+      "1999-11-rollmodel.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "rotating",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "smilepaste",
@@ -225,7 +513,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/smilepaste",
-    "thumbnail": "items/smilepaste/1999-11-smilepaste.jpg"
+    "thumbnail": "items/smilepaste/1999-11-smilepaste.jpg",
+    "sourceFiles": [
+      "1999-11-smilepaste.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "grounded",
+      "structure": "single"
+    }
   },
   {
     "title": "spiral",
@@ -237,7 +534,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/spiral",
-    "thumbnail": "items/spiral/1999-11-spiral.jpg"
+    "thumbnail": "items/spiral/1999-11-spiral.jpg",
+    "sourceFiles": [
+      "1999-11-spiral.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "star_trail",
@@ -249,7 +555,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/star_trail",
-    "thumbnail": "items/star_trail/1999-11-star_trail.jpg"
+    "thumbnail": "items/star_trail/1999-11-star_trail.jpg",
+    "sourceFiles": [
+      "1999-11-star_trail.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "drifting",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "vacantlove",
@@ -261,7 +576,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/vacantlove",
-    "thumbnail": "items/vacantlove/1999-11-vacantlove.jpg"
+    "thumbnail": "items/vacantlove/1999-11-vacantlove.jpg",
+    "sourceFiles": [
+      "1999-11-vacantlove.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "bbomb",
@@ -273,7 +597,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/bbomb",
-    "thumbnail": "items/bbomb/2002-05-bbomb.jpg"
+    "thumbnail": "items/bbomb/2002-05-bbomb.jpg",
+    "sourceFiles": [
+      "2002-05-bbomb.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "beatlebomb",
@@ -285,7 +618,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/beatlebomb",
-    "thumbnail": "items/beatlebomb/2002-05-beatlebomb.jpg"
+    "thumbnail": "items/beatlebomb/2002-05-beatlebomb.jpg",
+    "sourceFiles": [
+      "2002-05-beatlebomb.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "expanding",
+      "state": "grounded",
+      "structure": "single"
+    }
   },
   {
     "title": "dotsofthenight",
@@ -297,7 +639,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/dotsofthenight",
-    "thumbnail": "items/dotsofthenight/2002-05-dotsofthenight.jpg"
+    "thumbnail": "items/dotsofthenight/2002-05-dotsofthenight.jpg",
+    "sourceFiles": [
+      "2002-05-dotsofthenight.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
+  },
+  {
+    "title": "shell-P",
+    "slug": "shell-P",
+    "year": 2002,
+    "month": 5,
+    "date": "2002-05",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/shell-P",
+    "thumbnail": "items/shell-P/2002-05-shell-P.jpg",
+    "sourceFiles": [
+      "2002-05-shell-P.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "dense"
+    }
   },
   {
     "title": "shellshade",
@@ -309,7 +681,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/shellshade",
-    "thumbnail": "items/shellshade/2002-05-shellshade.jpg"
+    "thumbnail": "items/shellshade/2002-05-shellshade.jpg",
+    "sourceFiles": [
+      "2002-05-shellshade.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "dense"
+    }
+  },
+  {
+    "title": "vain-P",
+    "slug": "vain-P",
+    "year": 2002,
+    "month": 5,
+    "date": "2002-05",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/vain-P",
+    "thumbnail": "items/vain-P/2002-05-vain-P.jpg",
+    "sourceFiles": [
+      "2002-05-vain-P.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "vainboo",
@@ -321,7 +723,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/vainboo",
-    "thumbnail": "items/vainboo/2002-05-vainboo.jpg"
+    "thumbnail": "items/vainboo/2002-05-vainboo.jpg",
+    "sourceFiles": [
+      "2002-05-vainboo.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "TD",
@@ -333,7 +744,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/TD",
-    "thumbnail": "items/TD/2003-08-TD-1.jpg"
+    "thumbnail": "items/TD/2003-08-TD-1.jpg",
+    "sourceFiles": [
+      "2003-08-TD-1.jpg",
+      "2003-08-TD-2.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "attic",
@@ -345,7 +766,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/attic",
-    "thumbnail": "items/attic/2003-08-attic-1.jpg"
+    "thumbnail": "items/attic/2003-08-attic-1.jpg",
+    "sourceFiles": [
+      "2003-08-attic-1.jpg",
+      "2003-08-attic-2.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "beach",
@@ -357,7 +788,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/beach",
-    "thumbnail": "items/beach/2003-08-beach-1.jpg"
+    "thumbnail": "items/beach/2003-08-beach-1.jpg",
+    "sourceFiles": [
+      "2003-08-beach-1.jpg",
+      "2003-08-beach-2.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "buzz",
@@ -369,7 +810,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/buzz",
-    "thumbnail": "items/buzz/2003-08-buzz-1.jpg"
+    "thumbnail": "items/buzz/2003-08-buzz-1.jpg",
+    "sourceFiles": [
+      "2003-08-buzz-1.jpg",
+      "2003-08-buzz-2.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "cherry",
@@ -381,7 +832,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/cherry",
-    "thumbnail": "items/cherry/2003-08-cherry-1.jpg"
+    "thumbnail": "items/cherry/2003-08-cherry-1.jpg",
+    "sourceFiles": [
+      "2003-08-cherry-1.jpg",
+      "2003-08-cherry-2.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "electric",
@@ -393,7 +854,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/electric",
-    "thumbnail": "items/electric/2003-08-electric.jpg"
+    "thumbnail": "items/electric/2003-08-electric.jpg",
+    "sourceFiles": [
+      "2003-08-electric.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "gooderer",
@@ -405,7 +875,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/gooderer",
-    "thumbnail": "items/gooderer/2003-08-gooderer-1.jpg"
+    "thumbnail": "items/gooderer/2003-08-gooderer-1.jpg",
+    "sourceFiles": [
+      "2003-08-gooderer-1.jpg",
+      "2003-08-gooderer-2.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "nuf",
@@ -417,7 +897,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/nuf",
-    "thumbnail": "items/nuf/2003-08-nuf-1.jpg"
+    "thumbnail": "items/nuf/2003-08-nuf-1.jpg",
+    "sourceFiles": [
+      "2003-08-nuf-1.jpg",
+      "2003-08-nuf-2.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "pegion",
@@ -429,7 +919,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/pegion",
-    "thumbnail": "items/pegion/2003-08-pegion-1.jpg"
+    "thumbnail": "items/pegion/2003-08-pegion-1.jpg",
+    "sourceFiles": [
+      "2003-08-pegion-1.jpg",
+      "2003-08-pegion-2.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "peter",
@@ -441,7 +941,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/peter",
-    "thumbnail": "items/peter/2003-08-peter-1.jpg"
+    "thumbnail": "items/peter/2003-08-peter-1.jpg",
+    "sourceFiles": [
+      "2003-08-peter-1.jpg",
+      "2003-08-peter-2.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "shadow",
@@ -453,7 +963,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/shadow",
-    "thumbnail": "items/shadow/2003-08-shadow-1.jpg"
+    "thumbnail": "items/shadow/2003-08-shadow-1.jpg",
+    "sourceFiles": [
+      "2003-08-shadow-1.jpg",
+      "2003-08-shadow-2.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "expanding",
+      "state": "grounded",
+      "structure": "paired"
+    }
   },
   {
     "title": "spring",
@@ -465,7 +985,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/spring",
-    "thumbnail": "items/spring/2003-08-spring-1.jpg"
+    "thumbnail": "items/spring/2003-08-spring-1.jpg",
+    "sourceFiles": [
+      "2003-08-spring-1.jpg",
+      "2003-08-spring-2.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "expanding",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "thunder",
@@ -477,7 +1007,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/thunder",
-    "thumbnail": "items/thunder/2003-08-thunder-2.jpg"
+    "thumbnail": "items/thunder/2003-08-thunder-2.jpg",
+    "sourceFiles": [
+      "2003-08-thunder-2.jpg",
+      "2003-08-thunder-3.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "expanding",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "autumnjeans",
@@ -489,7 +1029,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/autumnjeans",
-    "thumbnail": "items/autumnjeans/2005-01-autumnjeans.jpg"
+    "thumbnail": "items/autumnjeans/2005-01-autumnjeans.jpg",
+    "sourceFiles": [
+      "2005-01-autumnjeans.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "transforming",
+      "state": "contained",
+      "structure": "single"
+    }
   },
   {
     "title": "springjeans",
@@ -501,7 +1050,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/springjeans",
-    "thumbnail": "items/springjeans/2005-01-springjeans.jpg"
+    "thumbnail": "items/springjeans/2005-01-springjeans.jpg",
+    "sourceFiles": [
+      "2005-01-springjeans.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "expanding",
+      "state": "contained",
+      "structure": "single"
+    }
   },
   {
     "title": "summerjeans",
@@ -513,7 +1071,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/summerjeans",
-    "thumbnail": "items/summerjeans/2005-01-summerjeans.jpg"
+    "thumbnail": "items/summerjeans/2005-01-summerjeans.jpg",
+    "sourceFiles": [
+      "2005-01-summerjeans.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "contained",
+      "structure": "single"
+    }
   },
   {
     "title": "winterjeans",
@@ -525,7 +1092,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/winterjeans",
-    "thumbnail": "items/winterjeans/2005-01-winterjeans.jpg"
+    "thumbnail": "items/winterjeans/2005-01-winterjeans.jpg",
+    "sourceFiles": [
+      "2005-01-winterjeans.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "contained",
+      "structure": "single"
+    }
   },
   {
     "title": "autumnron",
@@ -537,7 +1113,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/autumnron",
-    "thumbnail": "items/autumnron/2005-08-autumnron.jpg"
+    "thumbnail": "items/autumnron/2005-08-autumnron.jpg",
+    "sourceFiles": [
+      "2005-08-autumnron.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "awakenlog",
@@ -549,7 +1134,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/awakenlog",
-    "thumbnail": "items/awakenlog/2005-08-awakenlog.jpg"
+    "thumbnail": "items/awakenlog/2005-08-awakenlog.jpg",
+    "sourceFiles": [
+      "2005-08-awakenlog.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "bitterbeans",
@@ -561,7 +1155,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/bitterbeans",
-    "thumbnail": "items/bitterbeans/2005-08-bitterbeans.jpg"
+    "thumbnail": "items/bitterbeans/2005-08-bitterbeans.jpg",
+    "sourceFiles": [
+      "2005-08-bitterbeans.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "connected",
+      "structure": "cluster"
+    }
   },
   {
     "title": "blicklink",
@@ -573,7 +1176,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/blicklink",
-    "thumbnail": "items/blicklink/2005-08-blicklink.jpg"
+    "thumbnail": "items/blicklink/2005-08-blicklink.jpg",
+    "sourceFiles": [
+      "2005-08-blicklink.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "connected",
+      "structure": "single"
+    }
   },
   {
     "title": "blindred",
@@ -585,7 +1197,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/blindred",
-    "thumbnail": "items/blindred/2005-08-blindred.jpg"
+    "thumbnail": "items/blindred/2005-08-blindred.jpg",
+    "sourceFiles": [
+      "2005-08-blindred.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "bottleofblues",
@@ -597,7 +1218,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/bottleofblues",
-    "thumbnail": "items/bottleofblues/2005-08-bottleofblues.jpg"
+    "thumbnail": "items/bottleofblues/2005-08-bottleofblues.jpg",
+    "sourceFiles": [
+      "2005-08-bottleofblues.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "contained",
+      "structure": "single"
+    }
   },
   {
     "title": "extrabounce",
@@ -609,7 +1239,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/extrabounce",
-    "thumbnail": "items/extrabounce/2005-08-extrabounce.jpg"
+    "thumbnail": "items/extrabounce/2005-08-extrabounce.jpg",
+    "sourceFiles": [
+      "2005-08-extrabounce.jpg"
+    ],
+    "tags": {
+      "form": "asymmetric",
+      "motion": "expanding",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "moody_box",
@@ -621,7 +1260,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/moody_box",
-    "thumbnail": "items/moody_box/2005-08-moody_box.jpg"
+    "thumbnail": "items/moody_box/2005-08-moody_box.jpg",
+    "sourceFiles": [
+      "2005-08-moody_box.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "contained",
+      "structure": "single"
+    }
   },
   {
     "title": "nicaf",
@@ -633,7 +1281,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/nicaf",
-    "thumbnail": "items/nicaf/2005-08-nicaf.jpg"
+    "thumbnail": "items/nicaf/2005-08-nicaf.jpg",
+    "sourceFiles": [
+      "2005-08-nicaf.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "pegionsquad",
@@ -645,7 +1302,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/pegionsquad",
-    "thumbnail": "items/pegionsquad/2005-08-pegionsquad.jpg"
+    "thumbnail": "items/pegionsquad/2005-08-pegionsquad.jpg",
+    "sourceFiles": [
+      "2005-08-pegionsquad.jpg"
+    ],
+    "tags": {
+      "form": "rounded",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "smokestak",
@@ -657,7 +1323,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/smokestak",
-    "thumbnail": "items/smokestak/2005-08-smokestak.jpg"
+    "thumbnail": "items/smokestak/2005-08-smokestak.jpg",
+    "sourceFiles": [
+      "2005-08-smokestak.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "drifting",
+      "state": "grounded",
+      "structure": "single"
+    }
   },
   {
     "title": "smulepaste_",
@@ -669,7 +1344,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/smulepaste_",
-    "thumbnail": "items/smulepaste_/2005-08-smulepaste_.jpg"
+    "thumbnail": "items/smulepaste_/2005-08-smulepaste_.jpg",
+    "sourceFiles": [
+      "2005-08-smulepaste_.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "grounded",
+      "structure": "single"
+    }
   },
   {
     "title": "swanofthem",
@@ -681,7 +1365,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/swanofthem",
-    "thumbnail": "items/swanofthem/2005-08-swanofthem.jpg"
+    "thumbnail": "items/swanofthem/2005-08-swanofthem.jpg",
+    "sourceFiles": [
+      "2005-08-swanofthem.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "yengarage",
@@ -693,7 +1386,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/yengarage",
-    "thumbnail": "items/yengarage/2005-08-yengarage.jpg"
+    "thumbnail": "items/yengarage/2005-08-yengarage.jpg",
+    "sourceFiles": [
+      "2005-08-yengarage.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "grounded",
+      "structure": "single"
+    }
   },
   {
     "title": "flamingo",
@@ -705,7 +1407,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/flamingo",
-    "thumbnail": "items/flamingo/2005-10-flamingo.jpg"
+    "thumbnail": "items/flamingo/2005-10-flamingo.jpg",
+    "sourceFiles": [
+      "2005-10-flamingo.jpg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "rumbleberry",
@@ -717,7 +1428,37 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/rumbleberry",
-    "thumbnail": "items/rumbleberry/2006-01-rumbleberry.jpg"
+    "thumbnail": "items/rumbleberry/2006-01-rumbleberry.jpg",
+    "sourceFiles": [
+      "2006-01-rumbleberry.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "expanding",
+      "state": "floating",
+      "structure": "single"
+    }
+  },
+  {
+    "title": "Felay_gif",
+    "slug": "Felay_gif",
+    "year": 2007,
+    "month": 1,
+    "date": "2007-01",
+    "pageType": "single",
+    "mediaType": "gif",
+    "count": 1,
+    "folder": "items/Felay_gif",
+    "thumbnail": "items/Felay_gif/2007-01-Felay.gif",
+    "sourceFiles": [
+      "2007-01-Felay.gif"
+    ],
+    "tags": {
+      "form": "asymmetric",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "chocodoubt",
@@ -729,7 +1470,37 @@
     "mediaType": "gif",
     "count": 1,
     "folder": "items/chocodoubt",
-    "thumbnail": "items/chocodoubt/2007-01-chocodoubt.gif"
+    "thumbnail": "items/chocodoubt/2007-01-chocodoubt.gif",
+    "sourceFiles": [
+      "2007-01-chocodoubt.gif"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
+  },
+  {
+    "title": "Felay",
+    "slug": "Felay",
+    "year": 2007,
+    "month": 5,
+    "date": "2007-05",
+    "pageType": "single",
+    "mediaType": "image",
+    "count": 1,
+    "folder": "items/Felay",
+    "thumbnail": "items/Felay/2007-05-Felay.jpg",
+    "sourceFiles": [
+      "2007-05-Felay.jpg"
+    ],
+    "tags": {
+      "form": "asymmetric",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "Felay_book",
@@ -741,7 +1512,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/Felay_book",
-    "thumbnail": "items/Felay_book/2007-05-Felay_book.jpg"
+    "thumbnail": "items/Felay_book/2007-05-Felay_book.jpg",
+    "sourceFiles": [
+      "2007-05-Felay_book.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "Felay_box",
@@ -753,7 +1533,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/Felay_box",
-    "thumbnail": "items/Felay_box/2007-05-Felay_box.jpg"
+    "thumbnail": "items/Felay_box/2007-05-Felay_box.jpg",
+    "sourceFiles": [
+      "2007-05-Felay_box.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "transforming",
+      "state": "contained",
+      "structure": "single"
+    }
   },
   {
     "title": "Felay_room",
@@ -765,7 +1554,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/Felay_room",
-    "thumbnail": "items/Felay_room/2007-05-Felay_room.jpg"
+    "thumbnail": "items/Felay_room/2007-05-Felay_room.jpg",
+    "sourceFiles": [
+      "2007-05-Felay_room.jpg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "single"
+    }
   },
   {
     "title": "monkey",
@@ -777,7 +1575,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/monkey",
-    "thumbnail": "items/monkey/2016-03-monkey-1.jpeg"
+    "thumbnail": "items/monkey/2016-03-monkey-1.jpeg",
+    "sourceFiles": [
+      "2016-03-monkey-1.jpeg",
+      "2016-03-monkey-2.jpeg"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "paired"
+    }
   },
   {
     "title": "thiskiss",
@@ -789,7 +1597,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/thiskiss",
-    "thumbnail": "items/thiskiss/2016-03-thiskiss-1.jpeg"
+    "thumbnail": "items/thiskiss/2016-03-thiskiss-1.jpeg",
+    "sourceFiles": [
+      "2016-03-thiskiss-1.jpeg",
+      "2016-03-thiskiss-2.jpeg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "connected",
+      "structure": "paired"
+    }
   },
   {
     "title": "breaker",
@@ -801,7 +1619,18 @@
     "mediaType": "image",
     "count": 3,
     "folder": "items/breaker",
-    "thumbnail": "items/breaker/2016-06-breaker-1.jpeg"
+    "thumbnail": "items/breaker/2016-06-breaker-1.jpeg",
+    "sourceFiles": [
+      "2016-06-breaker-1.jpeg",
+      "2016-06-breaker-2.jpeg",
+      "2016-06-breaker-3.jpeg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "byebird",
@@ -813,7 +1642,18 @@
     "mediaType": "image",
     "count": 3,
     "folder": "items/byebird",
-    "thumbnail": "items/byebird/2016-07-byebird-1.jpeg"
+    "thumbnail": "items/byebird/2016-07-byebird-1.jpeg",
+    "sourceFiles": [
+      "2016-07-byebird-1.jpeg",
+      "2016-07-byebird-2.jpeg",
+      "2016-07-byebird-3.jpeg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "highway",
@@ -825,7 +1665,17 @@
     "mediaType": "image",
     "count": 2,
     "folder": "items/highway",
-    "thumbnail": "items/highway/2016-07-highway-1.jpeg"
+    "thumbnail": "items/highway/2016-07-highway-1.jpeg",
+    "sourceFiles": [
+      "2016-07-highway-1.jpeg",
+      "2016-07-highway-2.jpeg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "connected",
+      "structure": "paired"
+    }
   },
   {
     "title": "losthighway",
@@ -837,7 +1687,16 @@
     "mediaType": "image",
     "count": 1,
     "folder": "items/losthighway",
-    "thumbnail": "items/losthighway/2016-07-losthighway.jpeg"
+    "thumbnail": "items/losthighway/2016-07-losthighway.jpeg",
+    "sourceFiles": [
+      "2016-07-losthighway.jpeg"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "drifting",
+      "state": "connected",
+      "structure": "single"
+    }
   },
   {
     "title": "fortepod",
@@ -849,7 +1708,18 @@
     "mediaType": "image",
     "count": 3,
     "folder": "items/fortepod",
-    "thumbnail": "items/fortepod/2016-08-fortepod-1.jpg"
+    "thumbnail": "items/fortepod/2016-08-fortepod-1.jpg",
+    "sourceFiles": [
+      "2016-08-fortepod-1.jpg",
+      "2016-08-fortepod-2.jpg",
+      "2016-08-fortepod-3.jpg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "toiletcrisis",
@@ -861,7 +1731,19 @@
     "mediaType": "image",
     "count": 4,
     "folder": "items/toiletcrisis",
-    "thumbnail": "items/toiletcrisis/2016-09-toiletcrisis-1.jpeg"
+    "thumbnail": "items/toiletcrisis/2016-09-toiletcrisis-1.jpeg",
+    "sourceFiles": [
+      "2016-09-toiletcrisis-1.jpeg",
+      "2016-09-toiletcrisis-2.jpeg",
+      "2016-09-toiletcrisis-3.jpeg",
+      "2016-09-toiletcrisis-4.jpeg"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "static",
+      "state": "contained",
+      "structure": "cluster"
+    }
   },
   {
     "title": "pianotrio",
@@ -873,7 +1755,18 @@
     "mediaType": "image",
     "count": 3,
     "folder": "items/pianotrio",
-    "thumbnail": "items/pianotrio/2016-11-pianotrio-1.png"
+    "thumbnail": "items/pianotrio/2016-11-pianotrio-1.png",
+    "sourceFiles": [
+      "2016-11-pianotrio-1.png",
+      "2016-11-pianotrio-2.png",
+      "2016-11-pianotrio-3.png"
+    ],
+    "tags": {
+      "form": "composite",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "toecracker",
@@ -885,7 +1778,20 @@
     "mediaType": "mixed",
     "count": 5,
     "folder": "items/toecracker",
-    "thumbnail": "items/toecracker/2016-11-toecracker.gif"
+    "thumbnail": "items/toecracker/2016-11-toecracker.gif",
+    "sourceFiles": [
+      "2016-11-toecracker.gif",
+      "2016-11-toecracker-1.png",
+      "2016-11-toecracker-2.png",
+      "2016-11-toecracker-3.png",
+      "2016-11-toecracker-4.png"
+    ],
+    "tags": {
+      "form": "spiky",
+      "motion": "transforming",
+      "state": "floating",
+      "structure": "cluster"
+    }
   },
   {
     "title": "pandabazar",
@@ -897,6 +1803,18 @@
     "mediaType": "image",
     "count": 4,
     "folder": "items/pandabazar",
-    "thumbnail": "items/pandabazar/2016-12-pandabazar-1.png"
+    "thumbnail": "items/pandabazar/2016-12-pandabazar-1.png",
+    "sourceFiles": [
+      "2016-12-pandabazar-1.png",
+      "2016-12-pandabazar-2.png",
+      "2016-12-pandabazar-3.png",
+      "2016-12-pandabazar-4.png"
+    ],
+    "tags": {
+      "form": "tubular",
+      "motion": "static",
+      "state": "floating",
+      "structure": "cluster"
+    }
   }
 ]
