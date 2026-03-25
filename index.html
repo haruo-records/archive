@@ -353,10 +353,13 @@
       <a class="btn-primary" href="archive/">View Archive</a>
     </section>
 
-    <!-- 2. Pick Up Works -->
+    <!-- 2. Tag Filter (Top Page) -->
+    <div class="tag-filter fade-in" id="top-tag-filter" style="margin-bottom: 2rem;"></div>
+
+    <!-- 3. Pick Up Works -->
     <section class="works-section fade-in">
       <div class="section-head">
-        <h2 class="section-heading">Pick Up Works</h2>
+        <h2 class="section-heading" id="top-section-heading">Pick Up Works</h2>
         <button class="btn-random" id="top-btn-random" type="button">&#8635; &nbsp;Random</button>
       </div>
       <p class="count-label" id="top-count"></p>
@@ -419,25 +422,25 @@
       </div>
     </section>
 
-    <!-- 5. Slow Watching card -->
-    <a class="concept-card fade-in" href="slow-watching/">
-      <div class="concept-card__inner">
-        <div>
-          <p class="concept-card__label">concept</p>
-          <p class="concept-card__title">Slow Watching</p>
-          <p class="concept-card__desc">A way of perceiving motion, change, and life without rushing.</p>
-        </div>
-        <span class="concept-card__cta">Read More &rarr;</span>
-      </div>
-    </a>
-
-    <!-- 6. Phantom Graph card -->
-    <a class="concept-card fade-in" href="phantom-graph/">
+    <!-- 5. Phantom Graph card -->
+    <a class="concept-card fade-in" href="https://haruo-records.github.io/phantom-graph-site/" target="_blank" rel="noopener noreferrer">
       <div class="concept-card__inner">
         <div>
           <p class="concept-card__label">concept</p>
           <p class="concept-card__title">Phantom Graph</p>
           <p class="concept-card__desc">A visual format where motion emerges from perception, not animation.</p>
+        </div>
+        <span class="concept-card__cta">Read More &rarr;</span>
+      </div>
+    </a>
+
+    <!-- 6. Slow Watching card -->
+    <a class="concept-card fade-in" href="https://haruo-records.github.io/slow-watching-site/" target="_blank" rel="noopener noreferrer">
+      <div class="concept-card__inner">
+        <div>
+          <p class="concept-card__label">concept</p>
+          <p class="concept-card__title">Slow Watching</p>
+          <p class="concept-card__desc">A way of perceiving motion, change, and life without rushing.</p>
         </div>
         <span class="concept-card__cta">Read More &rarr;</span>
       </div>
@@ -520,6 +523,7 @@
   }
 
   let works = [];
+  let activeTag = null; // 選択中のタグ
 
   try {
     works = await fetchAllWorks();
@@ -533,6 +537,50 @@
     return;
   }
 
+  // タグ一覧を収集（使用頻度順・form優先）
+  const tagFilter = document.getElementById("top-tag-filter");
+  const sectionHeading = document.getElementById("top-section-heading");
+  const tagCount = {};
+  works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
+
+  // form系タグを優先、次にstate/motion、頻度順でソート
+  const formTags = ['clustered', 'angular', 'curved', 'tubular', 'branching', 'linear', 'coiled'];
+  const stateTags = ['floating', 'grounded', 'connected', 'shifting', 'elastic'];
+  const allTags = Object.keys(tagCount)
+    .filter(t => t !== 'test-tube animals')
+    .sort((a, b) => {
+      const aForm = formTags.includes(a) ? 1 : 0;
+      const bForm = formTags.includes(b) ? 1 : 0;
+      if (aForm !== bForm) return bForm - aForm;
+      return tagCount[b] - tagCount[a];
+    });
+
+  // PC: 最大12個(2行)、スマホ: 最大8個(2行)
+  const maxTags = window.innerWidth < 600 ? 8 : 12;
+  const displayTags = allTags.slice(0, maxTags);
+
+  // タグボタンを生成
+  displayTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'tag';
+    btn.type = 'button';
+    btn.textContent = tag;
+    btn.addEventListener('click', () => {
+      if (activeTag === tag) {
+        activeTag = null;
+        btn.classList.remove('active');
+        sectionHeading.textContent = 'Pick Up Works';
+      } else {
+        activeTag = tag;
+        document.querySelectorAll('.tag').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        sectionHeading.textContent = tag;
+      }
+      render();
+    });
+    tagFilter.appendChild(btn);
+  });
+
   // Randomボタン: 全作品からランダムで1件の詳細ページへ遷移
   btnRandom.addEventListener("click", () => {
     const w = works[Math.floor(Math.random() * works.length)];
@@ -543,9 +591,12 @@
     grid.innerHTML = "";
     const limit = getLimit();
 
+    // activeTag でフィルタリング
+    let pool = activeTag
+      ? works.filter(w => (w.tags || []).includes(activeTag))
+      : [...works];
+
     // Fisher-Yates シャッフル（偏りなし）で全候補をランダム化し、先頭 limit 件を表示
-    // 元配列 works は破壊しない
-    const pool = [...works];
     for (let i = pool.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -571,13 +622,22 @@
         thumb.appendChild(ph);
       }
 
-      const tags = (w.tags || []).slice(0, 3).map(t => "<span class=\"tag\">" + t + "</span>").join("");
+      // test-tube animals を表示から除外
+      const displayCardTags = (w.tags || [])
+        .filter(t => t !== 'test-tube animals')
+        .slice(0, 3)
+        .map(t => "<span class=\"tag\">" + t + "</span>")
+        .join("");
+
+      // work.series (test-tube) を表示から除外
+      const metaParts = [w.observed || w.date].filter(Boolean);
+
       const body = document.createElement("div");
       body.className = "work-card__body";
       body.innerHTML =
         "<p class=\"work-card__title\">" + w.title + "</p>" +
-        "<p class=\"work-card__meta\">" + [w.series, w.observed || w.date].filter(Boolean).join(" \u00b7 ") + "</p>" +
-        "<div class=\"work-card__tags\">" + tags + "</div>";
+        (metaParts.length ? "<p class=\"work-card__meta\">" + metaParts.join(" \u00b7 ") + "</p>" : "") +
+        (displayCardTags ? "<div class=\"work-card__tags\">" + displayCardTags + "</div>" : "");
 
       card.appendChild(thumb);
       card.appendChild(body);

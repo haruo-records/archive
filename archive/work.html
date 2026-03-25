@@ -454,13 +454,7 @@
   const imageField = document.createElement("div");
   imageField.className = "image-field " + fieldClass + " fade-in";
 
-  /* quiet observation note for multi-image works */
-  if (n > 1) {
-    const note = document.createElement("p");
-    note.className = "image-field__note";
-    note.textContent = "Observe the space between images.";
-    imageField.appendChild(note);
-  }
+  /* quiet observation note for multi-image works — removed for minimal design */
 
   const row = document.createElement("div");
   row.className = "image-row";
@@ -517,7 +511,8 @@
   metaBlock.appendChild(titleEl);
 
   /* date / category line */
-  const lineParts = [work.series, work.observed || work.date].filter(Boolean);
+  // work.series (test-tube) は内部保持のみ、UIには表示しない
+  const lineParts = [work.observed || work.date].filter(Boolean);
   if (lineParts.length) {
     const line = document.createElement("p");
     line.className = "work-meta-block__line";
@@ -567,11 +562,7 @@
     metaBlock.appendChild(linksDiv);
   }
 
-  /* archive context */
-  const ctx = document.createElement("p");
-  ctx.className = "work-archive-context";
-  ctx.textContent = "Part of the Animals archive.";
-  metaBlock.appendChild(ctx);
+  /* archive context — removed for minimal design */
 
   /* ── prev / next nav ── */
   const prev = idx > 0 ? works[idx - 1] : null;
