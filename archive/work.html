@@ -314,6 +314,14 @@
         <a href="../archive/" class="active">archive</a>
       </nav>
     </div>
+    <div class="concept-nav">
+      <span class="concept-nav__sep">A field of observation</span>
+      <div class="concept-nav__links">
+        <span class="concept-nav__link current">animals</span>
+        <a href="https://haruo-records.github.io/phantom-graph-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Phantom Graph</a>
+        <a href="https://haruo-records.github.io/slow-watching-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Slow Watching</a>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -334,10 +342,10 @@
           </ul>
         </div>
         <div class="footer-group">
-          <p class="footer-group__name">CONCEPT</p>
+          <p class="footer-group__name">Related fields</p>
           <ul>
-            <li><a href="https://haruo-records.github.io/phantom-graph-site/" class="external" target="_blank" rel="noopener noreferrer">Phantom Graph</a></li>
-            <li><a href="https://haruo-records.github.io/slow-watching-site/" class="external" target="_blank" rel="noopener noreferrer">Slow Watching</a></li>
+            <li><a href="https://haruo-records.github.io/phantom-graph-site/" class="external" target="_blank" rel="noopener noreferrer">Phantom Graph</a><span class="footer-field-desc"> — Observed relations</span></li>
+            <li><a href="https://haruo-records.github.io/slow-watching-site/" class="external" target="_blank" rel="noopener noreferrer">Slow Watching</a><span class="footer-field-desc"> — Observed change</span></li>
           </ul>
         </div>
         <div class="footer-group">
@@ -530,28 +538,44 @@
     metaBlock.appendChild(note);
   }
 
-  /* tags */
-  console.log('[Work detail] work.tags:', work.tags);
-  const displayTags = (work.tags || []).filter(t => t !== 'test-tube animals'); // test-tube animals は表示から除外
-  console.log('[Work detail] displayTags:', displayTags);
-  if (displayTags.length) {
+  /* tags: 4-category layout using tagObj */
+  const CATS = ['form', 'motion', 'state', 'structure'];
+  const tagObj = work.tagObj;
+  const hasCatTags = tagObj && CATS.some(c => tagObj[c]);
+  if (hasCatTags) {
     const tagsDiv = document.createElement("div");
     tagsDiv.className = "work-meta-block__tags";
-    displayTags.forEach(t => {
+    CATS.forEach(cat => {
+      const val = tagObj[cat];
+      if (!val) return;
       const a = document.createElement("a");
       a.className = "tag";
-      a.textContent = t;
-      // ../works/ に ?tag=xxx で遷移（一覧でその1タグが選択された状態）
-      a.href = "../archive/?tag=" + encodeURIComponent(t);
+      a.textContent = val;
+      a.href = "../archive/?" + cat + "=" + encodeURIComponent(val);
       tagsDiv.appendChild(a);
     });
     metaBlock.appendChild(tagsDiv);
+  } else {
+    // fallback: flat tags for older works without tagObj
+    const displayTags = (work.tags || []).filter(t => t !== 'test-tube animals');
+    if (displayTags.length) {
+      const tagsDiv = document.createElement("div");
+      tagsDiv.className = "work-meta-block__tags";
+      displayTags.forEach(t => {
+        const a = document.createElement("a");
+        a.className = "tag";
+        a.textContent = t;
+        a.href = "../archive/?tag=" + encodeURIComponent(t);
+        tagsDiv.appendChild(a);
+      });
+      metaBlock.appendChild(tagsDiv);
+    }
   }
 
   /* relation note */
   const relNote = document.createElement("p");
   relNote.className = "work-archive-context";
-  relNote.innerHTML = "This piece exists within a set of relationships.<br>Explore similar conditions.";
+  relNote.innerHTML = "This piece exists within a set of relationships.<br>See related conditions.";
   metaBlock.appendChild(relNote);
 
   /* external links */

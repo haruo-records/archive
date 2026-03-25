@@ -53,15 +53,6 @@
       letter-spacing: 0.04em;
       margin-top: 6px;
     }
-    /* controls: filter + random */
-    .controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
   </style>
 </head>
 <body>
@@ -81,6 +72,14 @@
         <a href="../archive/" class="active">archive</a>
       </nav>
     </div>
+    <div class="concept-nav">
+      <span class="concept-nav__sep">A field of observation</span>
+      <div class="concept-nav__links">
+        <span class="concept-nav__link current">animals</span>
+        <a href="https://haruo-records.github.io/phantom-graph-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Phantom Graph</a>
+        <a href="https://haruo-records.github.io/slow-watching-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Slow Watching</a>
+      </div>
+    </div>
   </header>
 
   <main>
@@ -91,13 +90,31 @@
       <p class="page-sub">Forms appear. Relationships form.</p>
     </div>
 
-    <div class="controls fade-in">
-      <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; width: 100%;">
-        <p style="font-size:0.75rem;color:var(--faint);line-height:1.85;">These are not filters.<br>They are ways of observing.</p>
-        <button class="btn-random" id="btn-random" type="button">↻ &nbsp;Random</button>
+    <div class="obs-modes fade-in" id="obs-modes">
+      <p class="obs-modes__heading">Observation modes</p>
+      <div class="obs-modes__row">
+        <span class="obs-modes__label">Form</span>
+        <div class="obs-modes__tags" id="obs-tags-form"></div>
       </div>
-      <div class="filter-bar" id="filter-bar"></div>
-      <p class="count-label" id="count-label" style="margin-top: 16px;"></p>
+      <div class="obs-modes__row">
+        <span class="obs-modes__label">Motion</span>
+        <div class="obs-modes__tags" id="obs-tags-motion"></div>
+      </div>
+      <div class="obs-modes__row">
+        <span class="obs-modes__label">State</span>
+        <div class="obs-modes__tags" id="obs-tags-state"></div>
+      </div>
+      <div class="obs-modes__row">
+        <span class="obs-modes__label">Structure</span>
+        <div class="obs-modes__tags" id="obs-tags-structure"></div>
+      </div>
+      <div class="obs-modes__footer">
+        <p class="obs-modes__count" id="count-label"></p>
+        <div class="obs-modes__actions">
+          <button class="btn-clear" id="btn-clear" type="button">Clear observation</button>
+          <button class="btn-random" id="btn-random" type="button">↻ &nbsp;Random</button>
+        </div>
+      </div>
     </div>
 
     <p class="fade-in" style="font-size:0.875rem;line-height:1.85;color:var(--sub);margin-bottom:32px;">Each piece is a condition.<br>What you see depends on what you attend to.</p>
@@ -120,10 +137,10 @@
           </ul>
         </div>
         <div class="footer-group">
-          <p class="footer-group__name">CONCEPT</p>
+          <p class="footer-group__name">Related fields</p>
           <ul>
-            <li><a href="https://haruo-records.github.io/phantom-graph-site/" class="external" target="_blank" rel="noopener noreferrer">Phantom Graph</a></li>
-            <li><a href="https://haruo-records.github.io/slow-watching-site/" class="external" target="_blank" rel="noopener noreferrer">Slow Watching</a></li>
+            <li><a href="https://haruo-records.github.io/phantom-graph-site/" class="external" target="_blank" rel="noopener noreferrer">Phantom Graph</a><span class="footer-field-desc"> — Observed relations</span></li>
+            <li><a href="https://haruo-records.github.io/slow-watching-site/" class="external" target="_blank" rel="noopener noreferrer">Slow Watching</a><span class="footer-field-desc"> — Observed change</span></li>
           </ul>
         </div>
         <div class="footer-group">
@@ -153,37 +170,34 @@
 <script>
 (async () => {
   const grid      = document.getElementById('works-grid');
-  const filterBar = document.getElementById('filter-bar');
   const countEl   = document.getElementById('count-label');
   const btnRandom = document.getElementById('btn-random');
+  const btnClear  = document.getElementById('btn-clear');
+  const CATS = ['form', 'motion', 'state', 'structure'];
 
-  let works = [];
+  /* ── active filters: OR-within-category / AND-between-categories ── */
+  let activeFilters = { form: new Set(), motion: new Set(), state: new Set(), structure: new Set() };
 
-  /* ── URLから初期選択タグを取得（?tag=x または ?tags=x,y,z）── */
-  function getInitialTags() {
+  /* ── URL parsing: 新形式 ?form=x&motion=y + 旧形式 ?tag=x 後方互換 ── */
+  const pendingFlatTags = (() => {
     const p = new URLSearchParams(location.search);
+    CATS.forEach(cat => { const v = p.get(cat); if (v) activeFilters[cat].add(v.trim()); });
     const multi = p.get('tags');
     const single = p.get('tag');
     if (multi) return multi.split(',').map(t => t.trim()).filter(Boolean);
     if (single) return [single.trim()];
     return [];
-  }
+  })();
 
-  let activeTags = new Set(getInitialTags()); // 複数選択 — AND条件
-
-  /* ── URLを選択タグに同期 ── */
+  /* ── URL sync ── */
   function syncURL() {
-    const arr = [...activeTags];
-    if (!arr.length) {
-      history.replaceState(null, '', location.pathname);
-    } else if (arr.length === 1) {
-      history.replaceState(null, '', '?tag=' + encodeURIComponent(arr[0]));
-    } else {
-      history.replaceState(null, '', '?tags=' + arr.map(encodeURIComponent).join(','));
-    }
+    const p = new URLSearchParams();
+    CATS.forEach(cat => { if (activeFilters[cat].size) p.set(cat, [...activeFilters[cat]][0]); });
+    const str = p.toString();
+    history.replaceState(null, '', str ? '?' + str : location.pathname);
   }
 
-  /* ── load data ── */
+  let works = [];
   try {
     works = await fetchAllWorks();
   } catch(e) {
@@ -191,70 +205,69 @@
     return;
   }
 
-  /* ── タグ一覧を収集（主力タグは意味順、補助タグは頻度順）── */
-  const tagCount = {};
-  works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
-  console.log('[Archive] Tag count:', tagCount);
-  // 主力タグ（視覚的に理解しやすい意味順）
-  const primaryTags = ['curved', 'tubular', 'angular', 'spherical', 'linear', 'clustered', 'transforming'];
-  const allTags = Object.keys(tagCount)
-    .filter(t => t !== 'test-tube animals') // test-tube animals は表示から除外
-    .sort((a, b) => {
-      const aIdx = primaryTags.indexOf(a);
-      const bIdx = primaryTags.indexOf(b);
-      // 主力タグは意味順（primaryTagsの配列順）
-      if (aIdx !== -1 && bIdx !== -1) return aIdx - bIdx;
-      // 主力タグを優先
-      if (aIdx !== -1) return -1;
-      if (bIdx !== -1) return 1;
-      // 補助タグは頻度順
-      return tagCount[b] - tagCount[a];
+  /* ── 旧 ?tag= を category にマッピング ── */
+  if (pendingFlatTags.length) {
+    const flatToCat = {};
+    works.forEach(w => {
+      if (w.tagObj) CATS.forEach(cat => { const v = w.tagObj[cat]; if (v) flatToCat[v] = cat; });
     });
-  console.log('[Archive] All tags (meaning-ordered primary, frequency-ordered secondary):', allTags);
+    pendingFlatTags.forEach(tag => {
+      const cat = flatToCat[tag];
+      if (cat) activeFilters[cat].add(tag);
+    });
+  }
+
+  /* ── カテゴリ別タグ値を収集 ── */
+  const catValues = { form: new Set(), motion: new Set(), state: new Set(), structure: new Set() };
+  works.forEach(w => {
+    if (w.tagObj) CATS.forEach(cat => { const v = w.tagObj[cat]; if (v) catValues[cat].add(v); });
+  });
 
   /* ── フィルターUI構築 ── */
-  // 「すべて解除」ボタン
-  const clearBtn = document.createElement('button');
-  clearBtn.className = 'tag tag--clear';
-  clearBtn.type = 'button';
-  clearBtn.textContent = 'all';
-  clearBtn.setAttribute('aria-label', 'すべてのフィルターを解除');
-  clearBtn.addEventListener('click', () => {
-    activeTags.clear();
-    syncURL();
-    renderGrid();
-    syncFilter();
-  });
-  filterBar.appendChild(clearBtn);
-
-  // 各タグボタン
-  allTags.forEach(tag => {
-    const btn = document.createElement('button');
-    btn.className = 'tag';
-    btn.type = 'button';
-    btn.textContent = tag;
-    btn.setAttribute('aria-pressed', activeTags.has(tag) ? 'true' : 'false');
-    if (activeTags.has(tag)) btn.classList.add('active');
-    btn.addEventListener('click', () => {
-      if (activeTags.has(tag)) {
-        activeTags.delete(tag);
-      } else {
-        activeTags.add(tag);
-      }
-      syncURL();
-      renderGrid();
-      syncFilter();
+  CATS.forEach(cat => {
+    const container = document.getElementById('obs-tags-' + cat);
+    if (!container) return;
+    [...catValues[cat]].sort().forEach(val => {
+      const btn = document.createElement('button');
+      btn.className = 'tag';
+      btn.type = 'button';
+      btn.textContent = val;
+      btn.dataset.cat = cat;
+      btn.dataset.val = val;
+      if (activeFilters[cat].has(val)) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        if (activeFilters[cat].has(val)) activeFilters[cat].delete(val);
+        else activeFilters[cat].add(val);
+        syncURL(); renderGrid(); syncFilter();
+      });
+      container.appendChild(btn);
     });
-    filterBar.appendChild(btn);
   });
 
-  /* ── random button ── */
+  /* ── フィルター一致判定 ── */
+  function matchesFilters(work) {
+    return CATS.every(cat => {
+      const sel = activeFilters[cat];
+      if (!sel.size) return true;
+      const val = work.tagObj ? work.tagObj[cat] : null;
+      return val && sel.has(val);
+    });
+  }
+
+  function hasAnyFilter() {
+    return CATS.some(cat => activeFilters[cat].size > 0);
+  }
+
+  /* ── clear ── */
+  btnClear.addEventListener('click', () => {
+    CATS.forEach(cat => activeFilters[cat].clear());
+    syncURL(); renderGrid(); syncFilter();
+  });
+
+  /* ── random ── */
   btnRandom.addEventListener('click', () => {
     if (!works.length) return;
-    // タグ選択時: そのタグ内でランダム、未選択時: 全作品からランダム
-    const pool = activeTags.size === 0
-      ? works
-      : works.filter(w => [...activeTags].every(t => (w.tags || []).includes(t)));
+    const pool = hasAnyFilter() ? works.filter(matchesFilters) : works;
     if (!pool.length) return;
     const w = pool[Math.floor(Math.random() * pool.length)];
     location.href = 'work.html?id=' + encodeURIComponent(w.id);
@@ -263,21 +276,15 @@
   /* ── グリッド描画 ── */
   function renderGrid() {
     grid.innerHTML = '';
-
-    // AND絞り込み: すべての activeTags を持つ作品のみ
-    const list = activeTags.size === 0
-      ? [...works]
-      : works.filter(w => [...activeTags].every(t => (w.tags || []).includes(t)));
-
+    const list = hasAnyFilter() ? works.filter(matchesFilters) : [...works];
     list.sort((a, b) =>
       (b.observed || b.date || '').localeCompare(a.observed || a.date || ''));
 
-    // 状態表示
-    if (activeTags.size === 0) {
-      countEl.textContent = 'Latest Works — ' + list.length + ' work' + (list.length !== 1 ? 's' : '');
+    if (hasAnyFilter()) {
+      const parts = CATS.filter(c => activeFilters[c].size).map(c => [...activeFilters[c]].join('/'));
+      countEl.textContent = parts.join(' × ') + ' — ' + list.length + ' condition' + (list.length !== 1 ? 's' : '') + ' found';
     } else {
-      const tagsList = [...activeTags].join(', ');
-      countEl.textContent = 'Showing: ' + tagsList + ' — ' + list.length + ' work' + (list.length !== 1 ? 's' : '');
+      countEl.textContent = list.length + ' condition' + (list.length !== 1 ? 's' : '') + ' total';
     }
 
     if (!list.length) {
@@ -303,14 +310,14 @@
         thumb.appendChild(ph);
       }
 
-      /* カードのタグはクリックで絞り込み追加 */
-      const tagPills = (w.tags || [])
-        .filter(t => t !== 'test-tube animals') // test-tube animals は表示から除外
-        .slice(0, 3)
-        .map(t => {
-          const active = activeTags.has(t) ? ' active' : '';
-          return '<span class="tag tag--card' + active + '" data-tag="' + t + '">' + t + '</span>';
-        }).join('');
+      /* カードタグ: tagObj から4カテゴリ値 */
+      const tagVals = w.tagObj
+        ? CATS.map(c => w.tagObj[c]).filter(Boolean)
+        : (w.tags || []).filter(t => t !== 'test-tube animals').slice(0, 4);
+      const tagPills = tagVals.slice(0, 3).map(t => {
+        const isActive = w.tagObj && CATS.some(c => activeFilters[c].has(w.tagObj[c]) && w.tagObj[c] === t);
+        return '<span class="tag tag--card' + (isActive ? ' active' : '') + '">' + t + '</span>';
+      }).join('');
 
       const body = document.createElement('div');
       body.className = 'work-card__body';
@@ -320,19 +327,6 @@
           [w.series, w.observed || w.date].filter(Boolean).join(' · ') +
         '</p>' +
         '<div class="work-card__tags">' + tagPills + '</div>';
-
-      /* カード内タグクリックでフィルター追加（カード遷移を止める）*/
-      body.querySelectorAll('.tag--card').forEach(pill => {
-        pill.addEventListener('click', e => {
-          e.preventDefault();
-          e.stopPropagation();
-          const t = pill.dataset.tag;
-          if (activeTags.has(t)) activeTags.delete(t); else activeTags.add(t);
-          syncURL();
-          renderGrid();
-          syncFilter();
-        });
-      });
 
       card.appendChild(thumb);
       card.appendChild(body);
@@ -352,17 +346,17 @@
   }
 
   function syncFilter() {
-    // クリアボタン: activeTags が空なら active
-    clearBtn.classList.toggle('active', activeTags.size === 0);
-    // 各タグボタン
-    filterBar.querySelectorAll('.tag:not(.tag--clear)').forEach(btn => {
-      const on = activeTags.has(btn.textContent);
-      btn.classList.toggle('active', on);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    CATS.forEach(cat => {
+      const container = document.getElementById('obs-tags-' + cat);
+      if (!container) return;
+      container.querySelectorAll('.tag').forEach(btn => {
+        btn.classList.toggle('active', activeFilters[cat].has(btn.dataset.val));
+      });
     });
+    btnClear.classList.toggle('active', !hasAnyFilter());
   }
 
-  syncFilter(); // 初期状態を反映
+  syncFilter();
   renderGrid();
 })();
 </script>

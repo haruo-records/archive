@@ -535,6 +535,92 @@ a.tag      { text-decoration: none; cursor: pointer; }
 }
 
 /* ─────────────────────────────
+   CONCEPT NAV (cross-site strip)
+───────────────────────────── */
+.concept-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  flex-wrap: wrap;
+  color: var(--faint);
+}
+.concept-nav__sep { color: var(--border-d); }
+.concept-nav__links { display: flex; gap: 12px; flex-wrap: wrap; }
+.concept-nav__link {
+  color: var(--faint);
+  transition: color 0.18s;
+}
+.concept-nav__link:hover { color: var(--text); }
+.concept-nav__link.current { color: var(--sub); }
+
+/* ─────────────────────────────
+   OBSERVATION MODES UI
+───────────────────────────── */
+.obs-modes { margin-bottom: 32px; }
+.obs-modes__heading {
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 16px;
+}
+.obs-modes__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.obs-modes__label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  min-width: 68px;
+  padding-top: 5px;
+  flex-shrink: 0;
+}
+.obs-modes__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.obs-modes__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.obs-modes__count {
+  font-size: 0.75rem;
+  color: var(--faint);
+  letter-spacing: 0.04em;
+}
+.obs-modes__actions { display: flex; gap: 10px; align-items: center; }
+.btn-clear {
+  font-size: 0.75rem;
+  color: var(--faint);
+  background: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  padding: 0.4em 0.9em;
+  letter-spacing: 0.04em;
+  transition: color 0.18s, border-color 0.18s;
+  font-family: var(--font);
+}
+.btn-clear:hover { color: var(--text); border-color: var(--text); }
+
+/* footer description sub-text */
+.footer-field-desc {
+  font-size: 0.6875rem;
+  color: var(--faint);
+  letter-spacing: 0.04em;
+}
+
+/* ─────────────────────────────
    RANDOM BUTTON
 ───────────────────────────── */
 .btn-random {

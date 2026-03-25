@@ -88,9 +88,11 @@ async function fetchAllWorks() {
         // rootUp() が呼び出し元で付加されるため、ここではリポジトリルート相対のまま
         // tags: オブジェクト形式 {form,motion,state,structure} → 値の配列に正規化
         const rawTags = item.tags;
-        const normalizedTags = rawTags && !Array.isArray(rawTags) && typeof rawTags === 'object'
+        const isTagObj = rawTags && !Array.isArray(rawTags) && typeof rawTags === 'object';
+        const normalizedTags = isTagObj
           ? Object.values(rawTags).filter(Boolean)
           : (Array.isArray(rawTags) ? rawTags : ['test-tube animals']);
+        const tagObj = isTagObj ? rawTags : null;
 
         return {
           id:          slug,
@@ -98,6 +100,7 @@ async function fetchAllWorks() {
           series:      'test-tube',
           observed:    item.date || '',
           tags:        normalizedTags,
+          tagObj:      tagObj,
           thumbnail:   thumbFile ? (base + thumbFile) : '',
           images:      files.map(f => base + f),        // ← 全画像を展開
           description: item.description || '',
@@ -116,9 +119,12 @@ async function fetchAllWorks() {
             const meta = await mr.json();
             if (meta.tags) {
               // 配列形式（旧）もオブジェクト形式（新: {form,motion,state,structure}）も両対応
-              work.tags = Array.isArray(meta.tags)
-                ? meta.tags
-                : Object.values(meta.tags).filter(Boolean);
+              if (Array.isArray(meta.tags)) {
+                work.tags = meta.tags;
+              } else {
+                work.tags = Object.values(meta.tags).filter(Boolean);
+                work.tagObj = meta.tags;
+              }
             }
           }
         } catch(e) {
