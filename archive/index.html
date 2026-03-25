@@ -191,9 +191,11 @@
   /* ── タグ一覧を収集（使用頻度順）── */
   const tagCount = {};
   works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
+  console.log('[Archive] Tag count:', tagCount);
   const allTags = Object.keys(tagCount)
     .filter(t => t !== 'test-tube animals') // test-tube animals は表示から除外
     .sort((a, b) => tagCount[b] - tagCount[a] || a.localeCompare(b));
+  console.log('[Archive] All tags (filtered):', allTags);
 
   /* ── フィルターUI構築 ── */
   // 「すべて解除」ボタン

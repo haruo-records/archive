@@ -534,7 +534,9 @@
   }
 
   /* tags */
+  console.log('[Work detail] work.tags:', work.tags);
   const displayTags = (work.tags || []).filter(t => t !== 'test-tube animals'); // test-tube animals は表示から除外
+  console.log('[Work detail] displayTags:', displayTags);
   if (displayTags.length) {
     const tagsDiv = document.createElement("div");
     tagsDiv.className = "work-meta-block__tags";

@@ -110,10 +110,12 @@ async function fetchAllWorks() {
             const meta = await mr.json();
             if (meta.tags && Array.isArray(meta.tags)) {
               work.tags = meta.tags; // meta.json の tags で上書き
+              console.log('[Tag loaded]', work.id, '→', work.tags);
             }
           }
         } catch(e) {
           // meta.json がない場合はデフォルト値を使用
+          console.warn('[Tag fallback]', work.id, '→ using default tags');
         }
       }));
     }
