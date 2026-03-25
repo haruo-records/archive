@@ -542,7 +542,6 @@
 
   // タグ一覧を収集（使用頻度順・form優先）
   const tagFilter = document.getElementById("top-tag-filter");
-  const sectionHeading = document.getElementById("top-section-heading");
   const tagCount = {};
   works.forEach(w => (w.tags || []).forEach(t => { tagCount[t] = (tagCount[t] || 0) + 1; }));
 
@@ -576,12 +575,10 @@
       if (activeTag === tag) {
         activeTag = null;
         btn.classList.remove('active');
-        sectionHeading.textContent = 'Pick Up Works';
       } else {
         activeTag = tag;
         document.querySelectorAll('.tag').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        sectionHeading.textContent = tag;
       }
       render();
     });
@@ -615,7 +612,12 @@
     }
     const list = pool.slice(0, limit);
 
-    countEl.textContent = "";  // トップページではカウント表示なし
+    if (activeTag) {
+      const filtered = works.filter(w => (w.tags || []).includes(activeTag));
+      countEl.textContent = 'Showing: ' + activeTag + ' \u2014 ' + filtered.length + ' work' + (filtered.length !== 1 ? 's' : '');
+    } else {
+      countEl.textContent = '';
+    }
 
     list.forEach((w, i) => {
       const card = document.createElement("a");
@@ -670,9 +672,15 @@
 
   render();
 
-  // リサイズ時も件数を再適用
+  // リサイズ時も件数を再適用（幅のブレークポイント変化時のみ）
+  // スマホでのスクロール中、ブラウザのアドレスバーが出入りすると
+  // resize イベントが発火するが、その場合は幅が変わらないためスキップする
+  let lastWidthBp = window.innerWidth < 600;
   let resizeTimer;
   window.addEventListener("resize", () => {
+    const newBp = window.innerWidth < 600;
+    if (newBp === lastWidthBp) return; // 幅のブレークポイントが変化していなければ何もしない
+    lastWidthBp = newBp;
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(render, 200);
   });

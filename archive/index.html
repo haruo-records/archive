@@ -87,15 +87,15 @@
     <div class="page-header fade-in">
       <div class="page-header__top">
         <h1 class="page-title">Animals</h1>
-        <button class="btn-random" id="btn-random" type="button">
-          ↻ &nbsp;Random
-        </button>
       </div>
       <p class="page-sub">A field notes archive of speculative organisms.</p>
     </div>
 
     <div class="controls fade-in">
-      <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 12px;">Explore by tag</p>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px;">
+        <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--faint);">Explore by tag</p>
+        <button class="btn-random" id="btn-random" type="button">↻ &nbsp;Random</button>
+      </div>
       <div class="filter-bar" id="filter-bar"></div>
       <p class="count-label" id="count-label" style="margin-top: 16px;"></p>
     </div>
