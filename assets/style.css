@@ -356,7 +356,9 @@ a.tag      { text-decoration: none; cursor: pointer; }
 /* card hover: subtle lift */
 .work-card {
   transition: box-shadow 0.25s;
+  outline: none;
 }
+.work-card:focus { outline: none; }
 .work-card:hover {
   box-shadow: 0 6px 24px rgba(0,0,0,0.10);
   z-index: 1;
@@ -427,8 +429,6 @@ a.tag      { text-decoration: none; cursor: pointer; }
   width: 52px;
   height: 52px;
   object-fit: contain;
-  padding: 3px;
-  background: var(--surface);
   cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.2s;
@@ -551,7 +551,6 @@ a.tag      { text-decoration: none; cursor: pointer; }
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
-  box-shadow: 0 8px 48px rgba(0,0,0,0.12);
 }
 .modal__close {
   position: absolute;
