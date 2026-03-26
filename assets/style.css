@@ -45,7 +45,7 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; height: auto; }
+img { display: block; max-width: 100%; height: auto; border: none; outline: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
 
 /* ─────────────────────────────
@@ -429,15 +429,13 @@ a.tag      { text-decoration: none; cursor: pointer; }
   object-fit: contain;
   padding: 3px;
   background: var(--surface);
-  border: 1px solid var(--border);
   cursor: pointer;
   opacity: 0.5;
-  transition: opacity 0.2s, border-color 0.2s;
+  transition: opacity 0.2s;
 }
 .gallery__thumbs img.active,
 .gallery__thumbs img:hover {
   opacity: 1;
-  border-color: var(--text);
 }
 
 /* info panel */
