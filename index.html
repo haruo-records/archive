@@ -60,7 +60,7 @@
       font-size: 0.9375rem;
       line-height: 1.75;
       color: var(--sub);
-      max-width: 44ch;
+      max-width: 100%;
       margin-bottom: 18px;
     }
     .hero__tags-line {
@@ -333,14 +333,6 @@
         <a href="archive/">archive</a>
       </nav>
     </div>
-    <div class="concept-nav">
-      <span class="concept-nav__sep">A field of observation</span>
-      <div class="concept-nav__links">
-        <span class="concept-nav__link current">animals</span>
-        <a href="https://haruo-records.github.io/phantom-graph-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Phantom Graph</a>
-        <a href="https://haruo-records.github.io/slow-watching-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Slow Watching</a>
-      </div>
-    </div>
   </header>
 
   <main>
@@ -348,23 +340,11 @@
     <!-- 1. Hero -->
     <section class="hero fade-in">
       <h1 class="hero__series">Animals</h1>
-      <p class="hero__subtitle">A field of observation where forms, motions, and relationships quietly appear.</p>
-      <p class="hero__field-note">Observed by Haruo.</p>
+      <p class="hero__subtitle">Field notes on unknown forms.</p>
+      <p class="hero__catch">Each form is a way of living. No single shape is the only one.</p>
     </section>
 
-    <!-- Choose how to observe -->
-    <p class="fade-in" style="font-size:0.8125rem;color:var(--faint);letter-spacing:0.04em;margin-bottom:var(--gap);">Choose how to observe.</p>
-
-    <!-- 2. Tag Filter (Top Page) -->
-    <div class="fade-in" style="margin-bottom: 2rem;">
-      <p style="font-size:0.75rem;color:var(--faint);line-height:1.85;margin-bottom:12px;">These are not filters.<br>They are ways of observing.</p>
-      <div class="tag-filter" id="top-tag-filter"></div>
-    </div>
-
-    <!-- Observation framing -->
-    <p class="fade-in" style="font-size:0.875rem;line-height:1.85;color:var(--sub);margin-bottom:var(--gap);">Each piece is a condition.<br>What you see depends on what you attend to.</p>
-
-    <!-- 3. Pick Up Works -->
+    <!-- 2. Works -->
     <section class="works-section fade-in">
       <div class="section-head">
         <h2 class="section-heading" id="top-section-heading">Works</h2>
@@ -374,97 +354,54 @@
       <div class="works-grid" id="top-grid"></div>
     </section>
 
-    <!-- Support CTA -->
-    <div class="support-cta fade-in">
-      <a href="support/">&rarr; Support animals</a>
+    <!-- 3. Tag Filter -->
+    <div class="fade-in" style="margin-bottom: var(--gap);">
+      <div class="tag-filter" id="top-tag-filter"></div>
     </div>
 
-    <!-- 3. What is Animals -->
-    <section class="concept fade-in" id="what">
-      <div class="concept__grid">
-        <div class="concept__item">
-          <p class="concept__item-title">Form</p>
-          <div class="concept__item-body">
-            <p>Neither fully explained.<br>Not always moving.</p>
-          </div>
-        </div>
-        <div class="concept__item">
-          <p class="concept__item-title">Motion</p>
-          <div class="concept__item-body">
-            <p>Between states.<br>Between things.</p>
-          </div>
-        </div>
-        <div class="concept__item">
-          <p class="concept__item-title">Relation</p>
-          <div class="concept__item-body">
-            <p>Something appears<br>in the space between.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. How to begin -->
-    <section class="how-to-begin fade-in">
-      <p class="how-to-begin__label">Observation</p>
-      <div class="how-to-begin__text">
-        <p>
-          Look at multiple images.<br>
-          Notice the space between them.<br>
-          Something may begin to appear.
-        </p>
-      </div>
-    </section>
-
-    <!-- 5. Phantom Graph card -->
-    <a class="concept-card fade-in external" href="https://haruo-records.github.io/phantom-graph-site/" target="_blank" rel="noopener noreferrer">
-      <div class="concept-card__inner">
-        <div>
-          <p class="concept-card__label">concept</p>
-          <p class="concept-card__title">Phantom Graph</p>
-          <p class="concept-card__desc">Meaning appears between what is placed.</p>
-        </div>
-        <span class="concept-card__cta">Read More &rarr;</span>
-      </div>
-    </a>
-
-    <!-- 6. Slow Watching card -->
-    <a class="concept-card fade-in" href="https://haruo-records.github.io/slow-watching-site/" target="_blank" rel="noopener noreferrer">
-      <div class="concept-card__inner">
-        <div>
-          <p class="concept-card__label">concept</p>
-          <p class="concept-card__title">Slow Watching</p>
-          <p class="concept-card__desc">Perception unfolds without rushing.</p>
-        </div>
-        <span class="concept-card__cta">Read More &rarr;</span>
-      </div>
-    </a>
-
-    <!-- 7. Philosophical block -->
+    <!-- 5. Closing -->
     <section class="phil fade-in">
-      <p class="phil__text">
-        <strong>Some things appear before words.</strong>
-        <span class="phil__bridge">Nothing is forced.</span>
-        Something remains.
-      </p>
+      <p class="phil__text">There are many ways to be.<br>No single form is the only one.<br>What is seen becomes alive again.</p>
     </section>
 
-    <!-- 8. Final CTA -->
+    <!-- 6. View Archive CTA -->
     <div class="fade-in" style="text-align:center; margin-bottom:var(--gap);">
       <a class="btn-primary" href="archive/">View Archive</a>
     </div>
 
-    <!-- 9. Expansion teaser -->
-    <section class="expansion-teaser fade-in">
-      <p class="expansion-teaser__label">Expansion</p>
-      <p class="expansion-teaser__text">
-        The forms continue.<br>
-        Beyond drawings.
-      </p>
+    <!-- 7. Observation (bridge) -->
+    <section class="how-to-begin fade-in">
+      <p class="how-to-begin__label">Observation</p>
+      <div class="how-to-begin__text">
+        <p>Looking at multiple images,<br>something may begin to appear<br>in the space between them.</p>
+      </div>
     </section>
+
+    <!-- 8. Phantom Graph card -->
+    <a class="concept-card fade-in external" href="https://haruo-records.github.io/phantom-graph-site/" target="_blank" rel="noopener noreferrer">
+      <div class="concept-card__inner">
+        <div>
+          <p class="concept-card__label">concept site</p>
+          <p class="concept-card__title">Phantom Graph</p>
+          <p class="concept-card__desc">Meaning appears between what is placed.</p>
+        </div>
+      </div>
+    </a>
+
+    <!-- 9. Slow Watching card -->
+    <a class="concept-card fade-in" href="https://haruo-records.github.io/slow-watching-site/" target="_blank" rel="noopener noreferrer">
+      <div class="concept-card__inner">
+        <div>
+          <p class="concept-card__label">concept site</p>
+          <p class="concept-card__title">Slow Watching</p>
+          <p class="concept-card__desc">Perception unfolds without rushing.</p>
+        </div>
+      </div>
+    </a>
 
   </main>
 
-  <!-- 11. Footer -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-links">
@@ -475,31 +412,27 @@
             <li><a href="support/">support</a></li>
           </ul>
         </div>
-        <div class="footer-group">
-          <p class="footer-group__name">Related fields</p>
-          <ul>
-            <li><a href="https://haruo-records.github.io/phantom-graph-site/" class="external" target="_blank" rel="noopener noreferrer">Phantom Graph</a><span class="footer-field-desc"> — Observed relations</span></li>
-            <li><a href="https://haruo-records.github.io/slow-watching-site/" class="external" target="_blank" rel="noopener noreferrer">Slow Watching</a><span class="footer-field-desc"> — Observed change</span></li>
-          </ul>
-        </div>
-        <div class="footer-group">
-          <p class="footer-group__name">HARMONEER</p>
+      </div>
+      <div class="footer-cards">
+        <div class="footer-card">
+          <p class="footer-card__name">HARMONEER</p>
+          <p class="footer-card__desc">an attitude of creating harmony</p>
           <ul>
             <li><a href="https://harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">harmoneer.net</a></li>
             <li><a href="https://knowledge.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">knowledge</a></li>
             <li><a href="https://selfdesign.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">selfdesign</a></li>
           </ul>
         </div>
-        <div class="footer-group">
-          <p class="footer-group__name">Rebooting Dad</p>
+        <div class="footer-card">
+          <p class="footer-card__name">Rebooting Dad</p>
+          <p class="footer-card__desc">life as a father, observed</p>
           <ul>
             <li><a href="https://www.instagram.com/haruo_harmoneer/" class="external" target="_blank" rel="noopener noreferrer">instagram</a></li>
             <li><a href="https://x.com/haruo_harmoneer" class="external" target="_blank" rel="noopener noreferrer">x.com</a></li>
           </ul>
         </div>
       </div>
-      <p style="font-size:0.78rem;color:var(--faint);font-style:italic;line-height:1.8;margin-bottom:1rem;">Observation reveals relationships.<br>Relationships create meaning.</p>
-      <p class="footer-copy">&copy; HARUO All rights reserved.</p>
+      <p class="footer-copy">&copy; HARUO All rights reserved. &nbsp;·&nbsp; Observed by Haruo.</p>
     </div>
   </footer>
 

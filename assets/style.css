@@ -102,23 +102,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   max-width: var(--max-w);
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 32px;
+  flex-direction: column;
+  gap: 20px;
 }
 .footer-links {
   display: flex;
   gap: 48px;
   flex-wrap: wrap;
+  padding-bottom: 16px;
 }
 .footer-group__name {
-  font-size: 0.6875rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sub);
-  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  margin-bottom: 12px;
 }
 .footer-group ul { list-style: none; }
 .footer-group li { line-height: 1.5; }
@@ -146,6 +144,75 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--faint);
   letter-spacing: 0.06em;
   padding-top: 4px;
+}
+
+/* ─────────────────────────────
+   FOOTER CARDS
+───────────────────────────── */
+.footer-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.footer-card {
+  background: #f7f7f7;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 18px 20px;
+}
+
+.footer-card__name {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sub);
+  margin-bottom: 5px;
+}
+
+.footer-card__desc {
+  font-size: 0.6875rem;
+  color: var(--faint);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.footer-card ul {
+  list-style: none;
+}
+
+.footer-card li {
+  line-height: 1.5;
+}
+
+.footer-card li + li {
+  margin-top: 5px;
+}
+
+.footer-card a {
+  font-size: 0.8125rem;
+  color: var(--faint);
+  transition: color 0.18s;
+}
+
+.footer-card a:hover {
+  color: var(--text);
+}
+
+.footer-card a.external::after {
+  content: "↗";
+  font-size: 0.7em;
+  margin-left: 3px;
+  color: var(--sub);
+  opacity: 0.7;
+  transition: opacity 0.18s, color 0.18s;
+}
+
+.footer-card a.external:hover::after {
+  opacity: 1;
+  color: var(--text);
 }
 
 /* ─────────────────────────────
@@ -674,5 +741,6 @@ a.tag      { text-decoration: none; cursor: pointer; }
   .work-info__title { font-size: 1.5rem; }
   .footer-inner { flex-direction: column; gap: 24px; }
   .footer-links { gap: 28px; }
+  .footer-cards { grid-template-columns: 1fr; }
   .site-header__bar { flex-wrap: wrap; gap: 8px; }
 }
