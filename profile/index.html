@@ -81,6 +81,27 @@
       margin: 40px 0;
     }
 
+    .pg-project { margin-bottom: 28px; }
+    .pg-project:last-child { margin-bottom: 0; }
+    .pg-project__title {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .pg-project__links {
+      margin-top: 8px;
+      font-size: 0.8125rem;
+      color: var(--faint);
+      letter-spacing: 0.04em;
+      line-height: 2;
+    }
+    .pg-project__links a {
+      color: var(--faint);
+      transition: color 0.18s;
+      display: block;
+    }
+    .pg-project__links a:hover { color: var(--text); }
+
     @media (max-width: 600px) {
       .pg-header { padding: 20px 0 20px; margin-bottom: 36px; }
       .pg-body { max-width: 100%; }
@@ -140,9 +161,31 @@
       <div class="pg-section">
         <p class="pg-section__heading">Projects</p>
         <div class="pg-section__body">
-          <p><strong style="font-weight:500;color:var(--text);">Animals</strong> — Field Notes on Unknown Forms. A long-term archive of speculative organisms. 1998–ongoing.</p>
-          <p><strong style="font-weight:500;color:var(--text);">HARMONEER</strong> — Designing harmony between self, others, and the world.<br><a href="https://harmoneer.net/" target="_blank" rel="noopener" style="font-size:0.8125rem;color:var(--faint);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--faint)'">→ harmoneer.net</a><br><a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener" style="font-size:0.8125rem;color:var(--faint);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--faint)'">→ knowledge.harmoneer.net</a><br><a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener" style="font-size:0.8125rem;color:var(--faint);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--faint)'">→ selfdesign.harmoneer.net</a></p>
-          <p><strong style="font-weight:500;color:var(--text);">Rebooting Dad</strong> — A narrator connecting this world to daily life.<br><a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener" style="font-size:0.8125rem;color:var(--faint);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--faint)'">→ instagram</a><br><a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener" style="font-size:0.8125rem;color:var(--faint);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--faint)'">→ x.com</a></p>
+
+          <div class="pg-project">
+            <p class="pg-project__title">Animals</p>
+            <p>Field Notes on Unknown Forms. A long-term archive of speculative organisms. 1998–ongoing.</p>
+          </div>
+
+          <div class="pg-project">
+            <p class="pg-project__title">HARMONEER</p>
+            <p>Designing harmony between self, others, and the world.</p>
+            <p class="pg-project__links">
+              <a href="https://harmoneer.net/" target="_blank" rel="noopener">→ harmoneer.net</a>
+              <a href="https://knowledge.harmoneer.net/" target="_blank" rel="noopener">→ knowledge.harmoneer.net</a>
+              <a href="https://selfdesign.harmoneer.net/" target="_blank" rel="noopener">→ selfdesign.harmoneer.net</a>
+            </p>
+          </div>
+
+          <div class="pg-project">
+            <p class="pg-project__title">Rebooting Dad</p>
+            <p>A narrator connecting this world to daily life.</p>
+            <p class="pg-project__links">
+              <a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">→ instagram</a>
+              <a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">→ x.com</a>
+            </p>
+          </div>
+
         </div>
       </div>
 
@@ -168,8 +211,8 @@
           <p class="footer-card__desc">an attitude of creating harmony</p>
           <ul>
             <li><a href="https://harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">harmoneer.net</a></li>
-            <li><a href="https://knowledge.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">knowledge</a></li>
-            <li><a href="https://selfdesign.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">selfdesign</a></li>
+            <li><a href="https://knowledge.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">knowledge.harmoneer.net</a></li>
+            <li><a href="https://selfdesign.harmoneer.net/" class="external" target="_blank" rel="noopener noreferrer">selfdesign.harmoneer.net</a></li>
           </ul>
         </div>
         <div class="footer-card">
