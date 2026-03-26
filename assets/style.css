@@ -309,7 +309,7 @@ a.tag      { text-decoration: none; cursor: pointer; }
 }
 .work-card__thumb {
   aspect-ratio: 1 / 1;
-  background: var(--surface);
+  background: transparent;
   overflow: hidden;
   display: flex;
   align-items: center;
