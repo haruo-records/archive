@@ -302,7 +302,7 @@ a.tag      { text-decoration: none; cursor: pointer; }
 /* CARD */
 .work-card {
   display: block;
-  background: var(--white);
+  background: var(--bg);
   overflow: hidden;
   position: relative;
   cursor: pointer;
