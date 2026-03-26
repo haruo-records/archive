@@ -28,21 +28,10 @@
   <link rel="stylesheet" href="../assets/style.css">
   <style>
     .pg-header {
-      padding: 64px 0 48px;
+      padding: 28px 0 28px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 64px;
+      margin-bottom: 48px;
     }
-    .pg-header__back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8125rem;
-      color: var(--faint);
-      letter-spacing: 0.06em;
-      margin-bottom: 36px;
-      transition: color 0.18s;
-    }
-    .pg-header__back:hover { color: var(--text); }
     .pg-header__label {
       font-size: 0.6875rem;
       letter-spacing: 0.16em;
@@ -92,26 +81,8 @@
       margin: 40px 0;
     }
 
-    .pg-links {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .pg-links a {
-      font-size: 0.875rem;
-      color: var(--sub);
-      letter-spacing: 0.04em;
-      transition: color 0.18s;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .pg-links a:hover { color: var(--text); }
-    .pg-links a::before { content: "↗"; font-size: 0.65rem; color: var(--faint); }
-
     @media (max-width: 600px) {
-      .pg-header { padding: 48px 0 36px; margin-bottom: 48px; }
+      .pg-header { padding: 20px 0 20px; margin-bottom: 36px; }
       .pg-body { max-width: 100%; }
     }
   </style>
@@ -138,7 +109,6 @@
   <main>
 
     <div class="pg-header">
-      <a class="pg-header__back" href="../archive/">&larr; animals</a>
       <p class="pg-header__label">profile</p>
       <h1 class="pg-header__title">Haruo</h1>
     </div>
@@ -171,28 +141,10 @@
         <p class="pg-section__heading">Projects</p>
         <div class="pg-section__body">
           <p><strong style="font-weight:500;color:var(--text);">Animals</strong> — Field Notes on Unknown Forms. A long-term archive of speculative organisms. 1998–ongoing.</p>
-          <p><strong style="font-weight:500;color:var(--text);">HARMONEER</strong> — Designing harmony between self, others, and the world.</p>
+          <p><strong style="font-weight:500;color:var(--text);">HARMONEER</strong> — Designing harmony between self, others, and the world.<br><a href="https://harmoneer.net/" target="_blank" rel="noopener" style="font-size:0.8125rem;color:var(--faint);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--faint)'">→ harmoneer.net</a></p>
           <p><strong style="font-weight:500;color:var(--text);">Rebooting Dad</strong> — A narrator connecting this world to daily life.</p>
         </div>
       </div>
-
-      <div class="pg-divider"></div>
-
-      <div class="pg-section">
-        <p class="pg-section__heading">Elsewhere</p>
-        <div class="pg-links">
-          <a href="https://harmoneer.net/" target="_blank" rel="noopener">harmoneer.net</a>
-          <a href="https://www.instagram.com/haruo_harmoneer/" target="_blank" rel="noopener">instagram</a>
-          <a href="https://x.com/haruo_harmoneer" target="_blank" rel="noopener">x.com</a>
-          <a href="https://github.com/haruo-records" target="_blank" rel="noopener">github</a>
-        </div>
-      </div>
-
-      <div class="pg-divider"></div>
-
-      <p style="font-size:0.875rem;color:var(--sub);">
-        <a href="../support/" style="color:var(--sub);transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--sub)'">&rarr; Support this observation</a>
-      </p>
 
     </div>
 
