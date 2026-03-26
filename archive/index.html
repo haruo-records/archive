@@ -29,9 +29,9 @@
   <style>
     /* ── page header ── */
     .page-header {
-      padding: 48px 0 36px;
+      padding: 20px 0 12px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 40px;
+      margin-bottom: 16px;
     }
     .page-header__top {
       display: flex;
@@ -39,19 +39,13 @@
       justify-content: space-between;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 10px;
+      margin-bottom: 0;
     }
     .page-title {
-      font-size: clamp(1.75rem, 3.5vw, 2.125rem);
+      font-size: clamp(1.125rem, 2.5vw, 1.375rem);
       font-weight: 600;
       letter-spacing: -0.01em;
       color: var(--text);
-    }
-    .page-sub {
-      font-size: 0.875rem;
-      color: var(--faint);
-      letter-spacing: 0.04em;
-      margin-top: 6px;
     }
   </style>
 </head>
@@ -72,14 +66,6 @@
         <a href="../archive/" class="active">archive</a>
       </nav>
     </div>
-    <div class="concept-nav">
-      <span class="concept-nav__sep">A field of observation</span>
-      <div class="concept-nav__links">
-        <span class="concept-nav__link current">animals</span>
-        <a href="https://haruo-records.github.io/phantom-graph-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Phantom Graph</a>
-        <a href="https://haruo-records.github.io/slow-watching-site/" class="concept-nav__link external" target="_blank" rel="noopener noreferrer">Slow Watching</a>
-      </div>
-    </div>
   </header>
 
   <main>
@@ -87,10 +73,9 @@
       <div class="page-header__top">
         <h1 class="page-title">Animals</h1>
       </div>
-      <p class="page-sub">Forms appear. Relationships form.</p>
     </div>
 
-    <div class="obs-modes fade-in" id="obs-modes">
+    <div class="obs-modes fade-in" id="obs-modes" style="margin-bottom:16px;">
       <p class="obs-modes__heading">Observation modes</p>
       <div class="obs-modes__row">
         <span class="obs-modes__label">Form</span>
@@ -117,13 +102,8 @@
       </div>
     </div>
 
-    <p class="fade-in" style="font-size:0.875rem;line-height:1.85;color:var(--sub);margin-bottom:32px;">Each piece is a condition.<br>What you see depends on what you attend to.</p>
-
     <div class="works-grid" id="works-grid" role="list"></div>
 
-    <div style="margin-top:40px;">
-      <a href="../support/" style="font-size:0.8125rem;color:var(--sub);letter-spacing:0.04em;transition:color 0.18s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--sub)'">&rarr; Support animals</a>
-    </div>
   </main>
 
   <footer class="site-footer">
@@ -320,7 +300,7 @@
       body.innerHTML =
         '<p class="work-card__title">' + w.title + '</p>' +
         '<p class="work-card__meta">' +
-          [w.series, w.observed || w.date].filter(Boolean).join(' · ') +
+          (w.observed || w.date || '') +
         '</p>' +
         '<div class="work-card__tags">' + tagPills + '</div>';
 
