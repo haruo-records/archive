@@ -318,7 +318,9 @@ a.tag      { text-decoration: none; cursor: pointer; }
 .work-card__thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0;
+  background: transparent;
   transition: transform 0.45s ease, opacity 0.3s;
 }
 .work-card:hover .work-card__thumb img {
