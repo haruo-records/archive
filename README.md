@@ -1,4 +1,4 @@
-# haruo records — 更新ガイド v4
+# HARUO — 更新ガイド v4
 
 ## ディレクトリ構成
 

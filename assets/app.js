@@ -1,5 +1,5 @@
 /*
-  animals — haruo records
+  animals — HARUO
   shared utilities v4
 */
 
